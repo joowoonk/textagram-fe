@@ -1,9 +1,11 @@
 import React from "react";
+import Login from "./components/Authentication/Login";
 
 function App() {
   return (
     <div>
-      <h1>Running</h1>
+      <Login />
+      <h1></h1>
     </div>
   );
 }
