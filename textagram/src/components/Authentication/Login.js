@@ -7,7 +7,7 @@ import { baseURL } from "../utils/config";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 const Login = ({ props }) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [close, setClose] = useState("");
   const [user, setUser] = useState({
     email: "",
@@ -55,13 +55,13 @@ const Login = ({ props }) => {
   };
   return (
     <Fragment>
-      <div
+      {/* <div
         data-toggle="modal"
         data-target="#staticBackdrop"
         onClick={() => setShow(true)}
       >
         Sign In/Sign Up
-      </div>
+      </div> */}
 
       <Modal
         show={show}
@@ -71,7 +71,7 @@ const Login = ({ props }) => {
         size="sm"
       >
         <Modal.Header closeButton className="header">
-          Sign In
+          <Modal.Title>Sign In</Modal.Title>
           <button
             type="button"
             className="close"
@@ -88,6 +88,7 @@ const Login = ({ props }) => {
               value={user.email}
               name="email"
             />
+
             <Form.Label>password</Form.Label>
             <Form.Control
               type="password"
@@ -96,7 +97,7 @@ const Login = ({ props }) => {
               name="password"
             />
             {errorMsg ? (
-              <Form.Text className="text-muted">{errorMsg}</Form.Text>
+              <Form.Text style={{ color: "red" }}>{errorMsg}</Form.Text>
             ) : null}
           </Form>
         </Modal.Body>
