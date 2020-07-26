@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+
 import Loader from "react-loader-spinner";
 import { baseURL } from "../utils/config";
 import { useHistory } from "react-router-dom";
@@ -14,6 +15,7 @@ const Login = ({ props }) => {
   });
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
+
   const { push } = useHistory();
 
   const handleClose = () => {
