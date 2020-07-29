@@ -3,41 +3,35 @@ import {} from "../actions/index";
 const initialState = {
   user: {
     id: "",
-    username: "",
-    email: "",
-    created_at: "",
-    fake_id: "",
-    location: "",
-    profile_picture: "",
-    about: "",
-    is_admin: "",
+    posts: [],
+    voted_post: [],
+    followers: [],
   },
-  posts: {
-    id: "",
-    posts: "",
-    votes: "",
-    hashtags: "",
-  },
-  vote_post: {
-    id: "",
-    post_id: "",
-    user_id: "",
-  },
-  followers: {
-    id: "",
-    created_at: "",
-    encourager_id: "",
-    encouraged_id: "",
+  post: {
+    comments: [],
   },
   isFetching: false,
+  login: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "setting":
+    case "LOGIN_USER_START":
+      return {
+        ...state,
+        isFetching: false,
+        login: true,
+      };
+    case "LOGIN_USER_SUCCESS":
       return {
         ...state,
         user: action.payload,
+        login: true,
+      };
+    case "LOGIN_USER_FAILURE":
+      return {
+        ...state,
+        login: false,
       };
   }
 };
