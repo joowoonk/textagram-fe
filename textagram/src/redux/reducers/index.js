@@ -12,6 +12,7 @@ const initialState = {
     total_votes: 0,
     up_votes: 0,
     down_votes: 0,
+    hashtags: [],
   },
   friend: {
     posts: [],

@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
 import axios from "axios";
+import "../styles/app.scss";
 import { Modal, Button, Form, Nav } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import { baseURL } from "../utils/config";

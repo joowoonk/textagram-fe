@@ -1,0 +1,63 @@
+.nav-bar {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-bottom: 2px solid #e9ecef;
+  padding: 5px 0;
+  .title {
+    font-family: "Dancing Script", cursive;
+    font-size: 3rem;
+  }
+}
+
+nav a {
+  color: $main-green;
+  transition: 0.2s;
+}
+
+nav a:hover {
+  text-decoration: none;
+  color: #0f7585;
+}
+
+nav .nav-search {
+  margin: 0 3% 0 0;
+  border: 1px solid silver;
+  border-radius: 25px;
+  padding: 8px 20px;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  background: #f5f5f5;
+}
+
+nav .nav-search input,
+nav .nav-search button {
+  border: none;
+  background: none;
+}
+
+nav .nav-search input {
+  width: 100%;
+}
+
+button:focus,
+input:focus {
+  outline: none !important;
+  outline-offset: none !important;
+}
+
+.nav-att {
+  //   outline: none !important;
+  border: none;
+  background: none;
+  //   outline-offset: none !important;
+}
+
+nav .title {
+  font-family: $accent-font;
+  font-size: 40px;
+  margin: 0 1% 0 3%;
+}

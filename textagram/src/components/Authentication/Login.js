@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import "../styles/app.scss";
 import { NavLink } from "react-router-dom";
 
 import Loader from "react-loader-spinner";
