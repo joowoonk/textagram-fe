@@ -34,6 +34,7 @@ function Register(props) {
       setErrorMsg("Email, Password & Username are required");
     } else {
       setIsLoggingIn(true);
+      console.log({ newUser });
       axios
         .post(`${baseURL}/auth/register`, newUser)
         .then((res) => {
