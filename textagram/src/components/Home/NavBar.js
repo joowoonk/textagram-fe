@@ -5,15 +5,16 @@ import { Nav } from "react-bootstrap";
 import { IoIosSearch } from "react-icons/io";
 import { BsFillPersonDashFill, BsFillPersonCheckFill } from "react-icons/bs";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/index";
 
 import { useHistory } from "react-router-dom";
 
 const NavBar = () => {
   const dispatch = useDispatch();
+  const loginState = useSelector((state) => state);
   const { push } = useHistory();
-
+  console.log({ loginState });
   const signOut = () => {
     dispatch(logout());
     push("/");
@@ -39,7 +40,8 @@ const NavBar = () => {
         <a className="nav-att" onClick={() => signOut()}>
           <BsFillPersonDashFill size="2.0em" />
         </a>
-      ) : (
+      ) : null}
+      {localStorage.getItem("token") ? null : (
         <Nav.Link className="nav-att" href="/login">
           <BsFillPersonCheckFill size="2.0em" />
         </Nav.Link>
