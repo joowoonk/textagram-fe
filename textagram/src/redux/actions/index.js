@@ -4,7 +4,14 @@ import axios from "axios";
 
 export const REMOVE_USER = "REMOVE_USER";
 
+export const LOGIN_USER = "LOGIN_USER";
+
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
   dispatch({ type: REMOVE_USER });
+};
+
+export const login = () => (dispatch) => {
+  console.log("login");
+  dispatch({ type: LOGIN_USER });
 };

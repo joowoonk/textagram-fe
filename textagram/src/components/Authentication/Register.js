@@ -4,9 +4,12 @@ import "../styles/app.scss";
 import { Modal, Button, Form, Nav } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import { baseURL } from "../utils/config";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/actions";
 
 function Register(props) {
   const [show, setShow] = useState(true);
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setShow(false);
@@ -42,6 +45,7 @@ function Register(props) {
           setIsLoggingIn(false);
           setErrorMsg("");
           props.history.push(`/portfolio/${res.data.newUser.id}/posts`);
+          dispatch(login());
         })
         .catch((err) => {
           console.log({ err });

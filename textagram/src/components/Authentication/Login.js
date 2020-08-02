@@ -6,9 +6,12 @@ import { NavLink } from "react-router-dom";
 import Loader from "react-loader-spinner";
 import { baseURL } from "../utils/config";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/actions";
 import axios from "axios";
 const Login = ({ props }) => {
   const [show, setShow] = useState(true);
+
   const [close, setClose] = useState("");
   const [user, setUser] = useState({
     email: "",
@@ -18,6 +21,7 @@ const Login = ({ props }) => {
   const [errorMsg, setErrorMsg] = useState(false);
 
   const { push } = useHistory();
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setShow(false);
@@ -41,10 +45,12 @@ const Login = ({ props }) => {
         .post(`${baseURL}/auth/login`, user)
         .then((res) => {
           localStorage.setItem("token", res.data.token);
+          dispatch(login());
           console.log({ res });
           setIsLoggingIn(false);
           setErrorMsg("");
           handleClose();
+
           push(`/user/${res.data.user.id}/posts`);
         })
         .catch((err) => {

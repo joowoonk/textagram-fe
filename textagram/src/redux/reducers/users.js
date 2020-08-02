@@ -1,4 +1,4 @@
-import { REMOVE_USER } from "../actions/index";
+import { REMOVE_USER, LOGIN_USER } from "../actions/index";
 
 const initialState = {
   user: {
@@ -46,6 +46,12 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         login: false,
+      };
+    case LOGIN_USER:
+      console.log("yes?");
+      return {
+        ...state,
+        login: true,
       };
     default:
       return state;
