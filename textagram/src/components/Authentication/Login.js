@@ -62,14 +62,6 @@ const Login = ({ props }) => {
   };
   return (
     <Fragment>
-      {/* <div
-        data-toggle="modal"
-        data-target="#staticBackdrop"
-        onClick={() => setShow(true)}
-      >
-        Sign In/Sign Up
-      </div> */}
-
       <Modal
         show={show}
         onHide={handleClose}
