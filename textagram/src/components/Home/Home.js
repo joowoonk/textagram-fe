@@ -35,7 +35,12 @@ const Home = () => {
       {posts.map((post) => (
         <>
           <Card key={post.id} className="card">
-            {post.hashtagging}
+            <div className="hash-tags">
+              <span className="hash-tag-title">Hashtags:</span>
+              {post.hashtags.map((hashtag) => (
+                <span className="hash-tag">{hashtag}</span>
+              ))}
+            </div>
           </Card>
         </>
       ))}

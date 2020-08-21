@@ -1,0 +1,18 @@
+.hash-tags {
+  display: flex;
+  .hash-tag-title {
+    margin: 0.5%;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    padding: 0.5%;
+  }
+  .hash-tag {
+    border: 2px solid lightblue;
+    background: blue;
+    color: white;
+    margin: 0.5%;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    padding: 0.5%;
+  }
+}
