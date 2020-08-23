@@ -31,33 +31,40 @@ const Home = () => {
   // user_id: 1
 
   return (
-    <div>
+    <>
       {posts.map((post) => (
-        <>
-          <Card key={post.id} className="card">
-            <Card.Title className="card-top">
-              <Image
-                roundedCircle
-                src={post.profile_picture}
-                style={{ height: "20px", width: "20px", margin: "0 2%" }}
-                alt={`user-id:${post.id}`}
-              />
-              <span className="fake-id">{post.fake_id}</span>
-            </Card.Title>
-            <Card.Body className="body">
-              <h2>{post.title}</h2>
-              <p>{post.context}</p>
-            </Card.Body>
-            <div className="hash-tags">
+        <div key={post.id} className="card">
+          <div className="card-top">
+            <Image
+              roundedCircle
+              src={post.profile_picture}
+              style={{ height: "25px", width: "25px", margin: "0 2%" }}
+              alt={`user-id:${post.id}`}
+            />
+            <span className="fake-id">{post.fake_id}</span>
+            <div className="likes">
+              <i class="fas fa-arrow-up like"></i>
+              {post.likes}
+              <i class="fas fa-arrow-down like"></i>
+              <i class="fas fa-bookmark"></i>
+            </div>
+          </div>
+          <div className="card-body body">
+            <h2>{post.title}</h2>
+            <p>{post.context}</p>
+          </div>
+          <div className="bottom-section">
+            <i class="fas fa-comment"></i>
+            <div className="hash-tags ">
               <span className="hash-tag-title">Hashtags:</span>
               {post.hashtags.map((hashtag) => (
                 <span className="hash-tag">{hashtag}</span>
               ))}
             </div>
-          </Card>
-        </>
+          </div>
+        </div>
       ))}
-    </div>
+    </>
   );
 };
 

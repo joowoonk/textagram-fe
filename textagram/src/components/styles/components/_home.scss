@@ -1,46 +1,66 @@
 .card {
   margin: 3% auto;
-  padding: 3%;
   width: 750px;
   background-color: white;
+
   .card-top {
+    padding: 3% 1%;
+    border-bottom: 1px solid #f7f2e7;
     display: flex;
-    // margin: 1%;
+
+    .likes {
+      margin-left: 470px;
+      width: 100%;
+      font-family: "Yanone Kaffeesatz", sans-serif;
+      font-size: 1.2rem;
+      .like {
+        padding: 0 10%;
+      }
+
+      .fas {
+        cursor: pointer;
+      }
+      .fa-bookmark {
+        color: navy;
+
+        margin-left: 10px;
+      }
+    }
   }
   .fake-id {
-    background-color: white;
     font-size: 1rem;
   }
   .body {
     background: white;
-    // border-radius: 10px;
   }
-  .hash-tags {
+  .bottom-section {
     display: flex;
-    justify-content: flex-end;
-    .hash-tag-title {
-      margin: 0.5%;
-      font-size: 1rem;
-      border-radius: 10px;
-      background-color: white;
-    }
-    .hash-tag {
-      border: 2px solid lightblue;
-      background: lightblue;
-      color: white;
-      margin: 0.5%;
-      font-size: 1rem;
-      border-radius: 3px;
-    }
+    padding-bottom: 3%;
+    .hash-tags {
+      display: flex;
 
-    .hash-tag:hover {
-      border: 2px solid lightblue;
-      background: white;
-      color: lightblue;
-      margin: 0.5%;
-      font-size: 1rem;
-      border-radius: 3px;
-      // padding: 1%;
+      .fas {
+        margin: 0.5%;
+      }
+      .hash-tag-title {
+        margin: 0.5%;
+        font-size: 1rem;
+        border-radius: 10px;
+      }
+
+      .hash-tag {
+        border: 2px solid lightblue;
+        background: lightblue;
+        color: white;
+        margin: 0.5%;
+        font-size: 1rem;
+        border-radius: 3px;
+      }
+
+      .hash-tag:hover {
+        background: white;
+        color: lightblue;
+      }
     }
   }
 }
