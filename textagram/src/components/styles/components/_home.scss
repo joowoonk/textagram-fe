@@ -1,18 +1,46 @@
-.hash-tags {
-  display: flex;
-  .hash-tag-title {
-    margin: 0.5%;
-    font-size: 1.2rem;
-    border-radius: 10px;
-    padding: 0.5%;
+.card {
+  margin: 3% auto;
+  padding: 3%;
+  width: 750px;
+  background-color: white;
+  .card-top {
+    display: flex;
+    // margin: 1%;
   }
-  .hash-tag {
-    border: 2px solid lightblue;
-    background: blue;
-    color: white;
-    margin: 0.5%;
-    font-size: 1.2rem;
-    border-radius: 10px;
-    padding: 0.5%;
+  .fake-id {
+    background-color: white;
+    font-size: 1rem;
+  }
+  .body {
+    background: white;
+    // border-radius: 10px;
+  }
+  .hash-tags {
+    display: flex;
+    justify-content: flex-end;
+    .hash-tag-title {
+      margin: 0.5%;
+      font-size: 1rem;
+      border-radius: 10px;
+      background-color: white;
+    }
+    .hash-tag {
+      border: 2px solid lightblue;
+      background: lightblue;
+      color: white;
+      margin: 0.5%;
+      font-size: 1rem;
+      border-radius: 3px;
+    }
+
+    .hash-tag:hover {
+      border: 2px solid lightblue;
+      background: white;
+      color: lightblue;
+      margin: 0.5%;
+      font-size: 1rem;
+      border-radius: 3px;
+      // padding: 1%;
+    }
   }
 }

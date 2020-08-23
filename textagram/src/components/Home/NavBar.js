@@ -34,7 +34,10 @@ const NavBar = () => {
           className="search-input"
         />
         <button type="search">
-          <IoIosSearch size="1.5em" style={{ color: "#000" }} />
+          <IoIosSearch
+            size="1.5em"
+            style={{ color: "#000", backgroundColor: "#f5f5f5" }}
+          />
         </button>
       </form>
       {localStorage.getItem("token") || loginState ? (
