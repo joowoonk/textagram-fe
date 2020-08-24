@@ -43,24 +43,40 @@ const Home = () => {
             />
             <span className="fake-id">{post.fake_id}</span>
             <div className="likes">
-              <i class="fas fa-arrow-up like"></i>
+              <i
+                style={{ color: "lightgrey" }}
+                class="fas fa-arrow-up like"
+              ></i>
               {post.likes}
-              <i class="fas fa-arrow-down like"></i>
-              <i class="fas fa-bookmark"></i>
+              <i
+                style={{ color: "lightgrey" }}
+                class="fas fa-arrow-down like"
+              ></i>
+              {/* <i class="fas fa-bookmark"></i> */}
+              <i class="far fa-bookmark"></i>
             </div>
           </div>
           <div className="card-body body">
-            <h2>{post.title}</h2>
+            <h2>{post.title.charAt(0).toUpperCase() + post.title.slice(1)}</h2>
             <p>{post.context}</p>
+
+            <div className="hash-tags ">
+              <p className="hash-tag-title">Hashtags:</p>
+              {post.hashtags.map((hashtag) => {
+                return (
+                  <span className="hash-tag" id="hashTag">
+                    {hashtag.length <= 25 ? (
+                      <span>{hashtag}</span>
+                    ) : (
+                      <span>{`${hashtag.slice(0, 25)}...`}</span>
+                    )}
+                  </span>
+                );
+              })}
+            </div>
           </div>
           <div className="bottom-section">
-            <i class="fas fa-comment"></i>
-            <div className="hash-tags ">
-              <span className="hash-tag-title">Hashtags:</span>
-              {post.hashtags.map((hashtag) => (
-                <span className="hash-tag">{hashtag}</span>
-              ))}
-            </div>
+            <i class="far fa-comment icon"></i>
           </div>
         </div>
       ))}
