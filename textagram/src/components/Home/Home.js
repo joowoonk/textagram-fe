@@ -52,25 +52,24 @@ const Home = () => {
                 style={{ color: "lightgrey" }}
                 class="fas fa-arrow-down like"
               ></i>
-              {/* <i class="fas fa-bookmark"></i> */}
               <i class="far fa-bookmark"></i>
             </div>
           </div>
           <div className="card-body body">
             <h2>{post.title.charAt(0).toUpperCase() + post.title.slice(1)}</h2>
-            <p>{post.context}</p>
-
             <div className="hash-tags ">
-              <p className="hash-tag-title">Hashtags:</p>
               {post.hashtags.map((hashtag) => {
                 return (
-                  <span className="hash-tag" id="hashTag">
+                  <>
                     {hashtag.length <= 25 ? (
-                      <span>{hashtag}</span>
+                      <span className="hash-tag">{hashtag}</span>
                     ) : (
-                      <span>{`${hashtag.slice(0, 25)}...`}</span>
+                      <span className="hash-tag">{`${hashtag.slice(
+                        0,
+                        25
+                      )}...`}</span>
                     )}
-                  </span>
+                  </>
                 );
               })}
             </div>

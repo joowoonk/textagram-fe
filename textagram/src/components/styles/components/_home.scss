@@ -1,5 +1,5 @@
 .card {
-  margin: 3% auto;
+  margin: 10px auto;
   width: 700px;
   // padding: 30px 30px;
   background-color: white;
@@ -38,25 +38,18 @@
     border-bottom: 1px solid #f7f2e7;
     .hash-tags {
       display: flex;
-      justify-content: flex-end;
+      // justify-content: flex-end;
       // flex-direction: row;
       flex-wrap: wrap;
       white-space: nowrap;
       width: 100%;
 
-      .hash-tag-title {
-        margin: 0 2%;
-        border-radius: 10px;
-      }
-
       .hash-tag {
         cursor: pointer;
         font-weight: bold;
-        margin: 0 1%;
-        padding: 0 2%;
+        margin: 0 2% 0 0;
         font-size: 1rem;
-        border: 1px solid silver;
-        border-radius: 5px 20px 5px;
+        color: silver;
       }
     }
   }

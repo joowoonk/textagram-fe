@@ -4,7 +4,8 @@ import { Route, withRouter } from "react-router-dom";
 import Register from "./components/Authentication/Register";
 import NavBar from "./components/Home/NavBar";
 import Home from "./components/Home/Home";
-
+import PrivateRoute from "./components/utils/PrivateRoute";
+import Post from "./components/Home/Post";
 function App() {
   return (
     <div className="App">
@@ -14,6 +15,7 @@ function App() {
       </header>
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
+      <PrivateRoute path="/post/:postId" component={Post} />
     </div>
   );
 }

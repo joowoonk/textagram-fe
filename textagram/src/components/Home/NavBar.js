@@ -18,7 +18,7 @@ const NavBar = () => {
   console.log({ loginState });
   const signOut = () => {
     dispatch(logout());
-    push("/");
+    window.location.href = "/";
   };
 
   return (

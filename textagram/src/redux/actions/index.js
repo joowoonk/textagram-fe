@@ -5,6 +5,7 @@ import { baseURL } from "../../components/utils/config";
 export const REMOVE_USER = "REMOVE_USER";
 
 export const LOGIN_USER = "LOGIN_USER";
+export const SET_SINGLE_POST_VIEW = "SET_SINGLE_POST_VIEW";
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
@@ -14,4 +15,16 @@ export const logout = () => (dispatch) => {
 export const login = () => (dispatch) => {
   console.log("login");
   dispatch({ type: LOGIN_USER });
+};
+
+export const getPostById = (id) => (dispatch) => {
+  axios
+    .get(`${baseURL}/posts/${id}`)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: SET_SINGLE_POST_VIEW, payload: res.data.post });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
