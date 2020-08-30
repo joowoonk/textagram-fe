@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { baseURL } from "../utils/config";
 import { Card, Image } from "react-bootstrap";
 
@@ -17,18 +18,6 @@ const Home = () => {
         console.error(err);
       });
   }, []);
-  console.log(posts);
-  // console.log(posts.hashtags);
-  //   comments: 2
-  // context: ""
-  // created_at: ""
-  // fake_id: ""
-  // hashtags: "{"friendship","friends","bestFriend"}"
-  // id: 6
-  // likes: 0
-  // profile_picture: "https://static.wixstatic.com/media/4151a5_7706b6198d164a3e947f4548166228ad~mv2.png"
-  // title: "One best quote regarding a honest friendship"
-  // user_id: 1
 
   return (
     <>
@@ -56,7 +45,11 @@ const Home = () => {
             </div>
           </div>
           <div className="card-body body">
-            <h2>{post.title.charAt(0).toUpperCase() + post.title.slice(1)}</h2>
+            <Link className="title" to={`/posts/${post.id}`}>
+              <h2>
+                {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
+              </h2>
+            </Link>
             <div className="hash-tags ">
               {post.hashtags.map((hashtag) => {
                 return (
@@ -74,9 +67,9 @@ const Home = () => {
               })}
             </div>
           </div>
-          <div className="bottom-section">
-            <i class="far fa-comment icon"></i>
-          </div>
+          <Link className="comment" to={`/posts/${post.id}`}>
+            <div className="card-body">{post.comments} comments</div>
+          </Link>
         </div>
       ))}
     </>

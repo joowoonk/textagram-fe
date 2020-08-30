@@ -8,6 +8,10 @@
     padding: 3% 1%;
     border-bottom: 1px solid #f7f2e7;
     display: flex;
+    .title {
+      text-decoration: none;
+      color: black;
+    }
 
     .likes {
       margin-left: 400px;
@@ -36,6 +40,7 @@
   .body {
     background: white;
     border-bottom: 1px solid #f7f2e7;
+
     .hash-tags {
       display: flex;
       // justify-content: flex-end;
@@ -65,4 +70,16 @@
       width: 40%;
     }
   }
+}
+
+.title,
+.comment {
+  color: black;
+  text-decoration: none;
+}
+
+.title:hover,
+.comment:hover {
+  color: black;
+  text-decoration: none;
 }
