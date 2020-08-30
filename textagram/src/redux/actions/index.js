@@ -21,7 +21,7 @@ export const getPostById = (id) => (dispatch) => {
   axios
     .get(`${baseURL}/posts/${id}`)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch({ type: SET_SINGLE_POST_VIEW, payload: res.data.post });
     })
     .catch((err) => {

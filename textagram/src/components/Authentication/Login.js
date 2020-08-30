@@ -51,7 +51,7 @@ const Login = ({ props }) => {
           setErrorMsg("");
           handleClose();
 
-          push(`/user/${res.data.user.id}/posts`);
+          push(`/posts`);
         })
         .catch((err) => {
           //   console.log(err);

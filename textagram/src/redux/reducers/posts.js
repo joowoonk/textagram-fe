@@ -11,7 +11,7 @@ const initialState = {
   login: false,
 };
 
-export const usersReducer = (state = initialState, action) => {
+export const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SINGLE_POST_VIEW:
       return {

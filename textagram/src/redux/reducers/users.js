@@ -8,12 +8,6 @@ const initialState = {
     followers: [], //being follwered.
     followering: [], //this will diplay a user's following in a list.
   },
-  post: {
-    comments: [],
-    total_votes: 0,
-    up_votes: 0,
-    hashtags: [],
-  },
   friend: {
     posts: [],
     voting_counts: [], //how many votes this user has gotten
