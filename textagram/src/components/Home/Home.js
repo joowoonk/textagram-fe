@@ -3,11 +3,20 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { baseURL } from "../utils/config";
 import { Card, Image } from "react-bootstrap";
-
-const Home = () => {
+import { useSelector, useDispatch } from "react-redux";
+import { getUser, setBookmarksID } from "../../redux/actions";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+const Home = (props) => {
   const [posts, setPosts] = useState([]);
-
+  const dispatch = useDispatch();
+  const userBookmarks = useSelector(
+    (state) => state.usersReducer.userBookmarks
+  );
+  const bookmarkPostId = useSelector(
+    (state) => state.usersReducer.bookmarkPostId
+  );
   useEffect(() => {
+    dispatch(getUser());
     axios
       .get(`${baseURL}/posts`)
       .then((res) => {
@@ -17,8 +26,26 @@ const Home = () => {
       .catch((err) => {
         console.error(err);
       });
-  }, []);
-  console.log(posts);
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(setBookmarksID());
+  }, [userBookmarks, dispatch]);
+  const bookmarkIt = (id) => {
+    if (!localStorage.getItem("token")) {
+      props.history.push("login");
+    } else {
+      axiosWithAuth()
+        .post(`${baseURL}/posts/${id}/bookmark`)
+        .then((res) => {
+          dispatch(getUser());
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+  // console.log(posts);
   return (
     <>
       {posts.map((post) => (
@@ -41,7 +68,14 @@ const Home = () => {
                 style={{ color: "lightgrey" }}
                 class="fas fa-arrow-down like"
               ></i>
-              <i class="far fa-bookmark"></i>
+              {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
+                <i class="fas fa-bookmark"></i>
+              ) : (
+                <i
+                  onClick={() => bookmarkIt(post.id)}
+                  className="far fa-bookmark"
+                ></i>
+              )}
             </div>
           </div>
           <div className="card-body body">
