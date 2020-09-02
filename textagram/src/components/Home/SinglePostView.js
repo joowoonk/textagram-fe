@@ -45,6 +45,18 @@ const SinglePostView = (props) => {
         });
     }
   };
+
+  const unbookmarkIt = (id) => {
+    axiosWithAuth()
+      .delete(`${baseURL}/posts/${id}/unbookmark`)
+      .then((res) => {
+        dispatch(getUser());
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   // console.log(post);
   return (
     <div key={post.id} className="single-post-view">
@@ -68,7 +80,12 @@ const SinglePostView = (props) => {
               className="fas fa-arrow-down like"
             ></i>
             {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
-              <i class="fas fa-bookmark"></i>
+              <i
+                onClick={() => {
+                  unbookmarkIt(post.id);
+                }}
+                class="fas fa-bookmark"
+              ></i>
             ) : (
               <i
                 onClick={() => bookmarkIt(post.id)}

@@ -31,6 +31,7 @@ const Home = (props) => {
   useEffect(() => {
     dispatch(setBookmarksID());
   }, [userBookmarks, dispatch]);
+
   const bookmarkIt = (id) => {
     if (!localStorage.getItem("token")) {
       props.history.push("login");
@@ -45,7 +46,18 @@ const Home = (props) => {
         });
     }
   };
-  // console.log(posts);
+
+  const unbookmarkIt = (id) => {
+    axiosWithAuth()
+      .delete(`${baseURL}/posts/${id}/unbookmark`)
+      .then((res) => {
+        dispatch(getUser());
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <>
       {posts.map((post) => (
@@ -69,7 +81,10 @@ const Home = (props) => {
                 class="fas fa-arrow-down like"
               ></i>
               {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
-                <i class="fas fa-bookmark"></i>
+                <i
+                  onClick={() => unbookmarkIt(post.id)}
+                  class="fas fa-bookmark"
+                ></i>
               ) : (
                 <i
                   onClick={() => bookmarkIt(post.id)}
