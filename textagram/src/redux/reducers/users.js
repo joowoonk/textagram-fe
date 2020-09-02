@@ -3,6 +3,7 @@ import {
   LOGIN_USER,
   FETCH_USER,
   SET_USER_BOOKMARKS,
+  SET_BOOKMARKS_ID,
 } from "../actions/index";
 
 const initialState = {
@@ -14,6 +15,9 @@ const initialState = {
     followering: [], //this will diplay a user's following in a list.
     bookmarks: [],
   },
+  userBookmarks: [],
+  favTexterIds: [],
+
   friend: {
     posts: [],
     voting_counts: [], //how many votes this user has gotten
@@ -30,6 +34,18 @@ export const usersReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
         login: true,
+      };
+    case SET_USER_BOOKMARKS:
+      return {
+        ...state,
+        userBookmarks: action.payload,
+      };
+    case SET_BOOKMARKS_ID:
+      return {
+        ...state,
+        bookmarkPostId: state.userBookmarks.map((favs) => {
+          return favs.id;
+        }),
       };
     case "LOGIN_USER_START":
       return {

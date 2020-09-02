@@ -1,20 +1,35 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPostById, getUser } from "../../redux/actions/";
+import { getPostById, getUser, setBookmarksID } from "../../redux/actions";
 import { Card, Image } from "react-bootstrap";
 import { baseURL } from "../utils/config";
 import Comment from "../Common/Comment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
 const SinglePostView = (props) => {
-  console.log(props.match.params.postId);
+  // console.log(props.match.params.postId);
   const post = useSelector((state) => state.postReducer.post);
+  const userBookmarks = useSelector(
+    (state) => state.usersReducer.userBookmarks
+  );
+  const bookmarkPostId = useSelector(
+    (state) => state.usersReducer.bookmarkPostId
+  );
+  const user = useSelector((state) => state.usersReducer);
   const dispatch = useDispatch();
   // console.log({ post });
   useEffect(() => {
     dispatch(getPostById(props.match.params.postId));
-  }, [props.match.params.postId]);
-  // console.log(typeof post.title);
+  }, [dispatch, userBookmarks, props.match.params.postId]);
+
+  console.log({ user });
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(setBookmarksID());
+  }, [userBookmarks, dispatch]);
 
   const bookmarkIt = (id) => {
     if (!localStorage.getItem("token")) {
@@ -52,10 +67,14 @@ const SinglePostView = (props) => {
               style={{ color: "lightgrey" }}
               className="fas fa-arrow-down like"
             ></i>
-            <i
-              onClick={() => bookmarkIt(post.id)}
-              className="far fa-bookmark"
-            ></i>
+            {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
+              <i class="fas fa-bookmark"></i>
+            ) : (
+              <i
+                onClick={() => bookmarkIt(post.id)}
+                className="far fa-bookmark"
+              ></i>
+            )}
           </div>
         </div>
         <div className="card-body body">

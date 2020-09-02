@@ -7,7 +7,7 @@ export const FETCH_USER = "FETCH_USER";
 export const LOGIN_USER = "LOGIN_USER";
 export const SET_USER_BOOKMARKS = "SET_USER_BOOKMARKS";
 export const SET_SINGLE_POST_VIEW = "SET_SINGLE_POST_VIEW";
-
+export const SET_BOOKMARKS_ID = "SET_BOOKMARKS_ID";
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
   dispatch({ type: REMOVE_USER });
@@ -47,4 +47,8 @@ export const getUser = () => (dispatch) => {
   } else {
     dispatch({ type: REMOVE_USER });
   }
+};
+
+export const setBookmarksID = () => (dispatch) => {
+  dispatch({ type: SET_BOOKMARKS_ID });
 };
