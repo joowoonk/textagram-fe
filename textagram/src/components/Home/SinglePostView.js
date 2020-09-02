@@ -1,19 +1,36 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPostById } from "../../redux/actions";
+import { getPostById, getUser } from "../../redux/actions/";
 import { Card, Image } from "react-bootstrap";
 import { baseURL } from "../utils/config";
 import Comment from "../Common/Comment";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
 const SinglePostView = (props) => {
   console.log(props.match.params.postId);
   const post = useSelector((state) => state.postReducer.post);
   const dispatch = useDispatch();
-  console.log({ post });
+  // console.log({ post });
   useEffect(() => {
     dispatch(getPostById(props.match.params.postId));
   }, [props.match.params.postId]);
-  console.log(typeof post.title);
+  // console.log(typeof post.title);
+
+  const bookmarkIt = (id) => {
+    if (!localStorage.getItem("token")) {
+      props.history.push("login");
+    } else {
+      axiosWithAuth()
+        .post(`${baseURL}/posts/${id}/bookmark`)
+        .then((res) => {
+          dispatch(getUser());
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+  // console.log(post);
   return (
     <div key={post.id} className="single-post-view">
       <div className="card">
@@ -30,12 +47,15 @@ const SinglePostView = (props) => {
               style={{ color: "lightgrey" }}
               className="fas fa-arrow-up like"
             ></i>
-            {post.likes}
+            {post.votes && post.votes.votes}
             <i
               style={{ color: "lightgrey" }}
               className="fas fa-arrow-down like"
             ></i>
-            <i className="far fa-bookmark"></i>
+            <i
+              onClick={() => bookmarkIt(post.id)}
+              className="far fa-bookmark"
+            ></i>
           </div>
         </div>
         <div className="card-body body">
@@ -58,7 +78,11 @@ const SinglePostView = (props) => {
               );
             })}
           </div>
-          <p className="single-post-context">{post.context}</p>
+          {post.context &&
+            post.context.map((text) => {
+              return <p className="single-post-context">{text}</p>;
+            })}
+
           <p className="comments">{post.comments.length} Comments</p>
         </div>
 

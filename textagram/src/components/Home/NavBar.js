@@ -23,7 +23,7 @@ const NavBar = () => {
 
   return (
     <nav className="nav-bar">
-      <Link to="/posts" className="title">
+      <Link to="/posts" className="logo">
         Textagram
       </Link>
 

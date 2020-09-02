@@ -18,7 +18,7 @@ const Home = () => {
         console.error(err);
       });
   }, []);
-
+  console.log(posts);
   return (
     <>
       {posts.map((post) => (
@@ -36,7 +36,7 @@ const Home = () => {
                 style={{ color: "lightgrey" }}
                 class="fas fa-arrow-up like"
               ></i>
-              {post.likes}
+              {post.votes && post.votes.votes}
               <i
                 style={{ color: "lightgrey" }}
                 class="fas fa-arrow-down like"

@@ -44,7 +44,7 @@ function Register(props) {
           localStorage.setItem("token", res.data.token);
           setIsLoggingIn(false);
           setErrorMsg("");
-          props.history.push(`/portfolio/${res.data.newUser.id}/posts`);
+          props.history.push(`/posts`);
           dispatch(login());
         })
         .catch((err) => {

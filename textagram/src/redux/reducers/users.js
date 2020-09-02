@@ -1,4 +1,9 @@
-import { REMOVE_USER, LOGIN_USER } from "../actions/index";
+import {
+  REMOVE_USER,
+  LOGIN_USER,
+  FETCH_USER,
+  SET_USER_BOOKMARKS,
+} from "../actions/index";
 
 const initialState = {
   user: {
@@ -7,6 +12,7 @@ const initialState = {
     voting_counts: [], //how many votes this user has gotten
     followers: [], //being follwered.
     followering: [], //this will diplay a user's following in a list.
+    bookmarks: [],
   },
   friend: {
     posts: [],
@@ -19,6 +25,12 @@ const initialState = {
 
 export const usersReducer = (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_USER:
+      return {
+        ...state,
+        user: action.payload,
+        login: true,
+      };
     case "LOGIN_USER_START":
       return {
         ...state,
