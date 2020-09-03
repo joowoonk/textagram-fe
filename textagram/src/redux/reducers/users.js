@@ -4,6 +4,10 @@ import {
   FETCH_USER,
   SET_USER_BOOKMARKS,
   SET_BOOKMARKS_ID,
+  SET_UP_VOTES_ID,
+  SET_USER_UP_VOTES,
+  SET_USER_DOWN_VOTES,
+  SET_DOWN_VOTES_ID,
 } from "../actions/index";
 
 const initialState = {
@@ -17,6 +21,9 @@ const initialState = {
   },
   userBookmarks: [],
   favTexterIds: [],
+
+  userUpVotes: [],
+  userDownVotes: [],
 
   friend: {
     posts: [],
@@ -44,6 +51,32 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         bookmarkPostId: state.userBookmarks.map((favs) => {
+          return favs.id;
+        }),
+      };
+
+    case SET_USER_UP_VOTES:
+      return {
+        ...state,
+        userUpVotes: action.payload,
+      };
+    case SET_UP_VOTES_ID:
+      return {
+        ...state,
+        upVotesPostId: state.userUpVotes.map((favs) => {
+          return favs.id;
+        }),
+      };
+
+    case SET_USER_DOWN_VOTES:
+      return {
+        ...state,
+        userDownVotes: action.payload,
+      };
+    case SET_DOWN_VOTES_ID:
+      return {
+        ...state,
+        downVotesPostId: state.userDownVotes.map((favs) => {
           return favs.id;
         }),
       };

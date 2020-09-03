@@ -6,6 +6,7 @@ const initialState = {
     total_votes: 0,
     up_votes: 0,
     hashtags: [],
+    votes: { downVoted: [], upVoted: [], votes: 0 },
   },
   isFetching: false,
   login: false,

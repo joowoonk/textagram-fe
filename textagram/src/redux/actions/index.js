@@ -6,8 +6,15 @@ export const REMOVE_USER = "REMOVE_USER";
 export const FETCH_USER = "FETCH_USER";
 export const LOGIN_USER = "LOGIN_USER";
 export const SET_USER_BOOKMARKS = "SET_USER_BOOKMARKS";
+
 export const SET_SINGLE_POST_VIEW = "SET_SINGLE_POST_VIEW";
 export const SET_BOOKMARKS_ID = "SET_BOOKMARKS_ID";
+
+export const SET_USER_UP_VOTES = "SET_USER_UP_VOTES";
+export const SET_UP_VOTES_ID = "SET_UP_VOTES_ID";
+export const SET_USER_DOWN_VOTES = "SET_USER_DOWN_VOTES";
+export const SET_DOWN_VOTES_ID = "SET_DOWN_VOTES_ID";
+
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
   dispatch({ type: REMOVE_USER });
@@ -22,7 +29,7 @@ export const getPostById = (id) => (dispatch) => {
   axios
     .get(`${baseURL}/posts/${id}`)
     .then((res) => {
-      // console.log(res);
+      console.log(res);
       dispatch({ type: SET_SINGLE_POST_VIEW, payload: res.data.post });
     })
     .catch((err) => {
@@ -35,10 +42,19 @@ export const getUser = () => (dispatch) => {
     axios
       .get(`${baseURL}/users/${decodedToken()}`)
       .then((res) => {
+        console.log("getUser res:", { res });
         dispatch({ type: FETCH_USER, payload: res.data.user });
         dispatch({
           type: SET_USER_BOOKMARKS,
           payload: res.data.user.bookmarks,
+        });
+        dispatch({
+          type: SET_USER_UP_VOTES,
+          payload: res.data.user.upVotes,
+        });
+        dispatch({
+          type: SET_USER_DOWN_VOTES,
+          payload: res.data.user.downVotes,
         });
       })
       .catch((err) => {
@@ -51,4 +67,12 @@ export const getUser = () => (dispatch) => {
 
 export const setBookmarksID = () => (dispatch) => {
   dispatch({ type: SET_BOOKMARKS_ID });
+};
+
+export const setUpVotesID = () => (dispatch) => {
+  dispatch({ type: SET_UP_VOTES_ID });
+};
+
+export const setDownVotesID = () => (dispatch) => {
+  dispatch({ type: SET_DOWN_VOTES_ID });
 };

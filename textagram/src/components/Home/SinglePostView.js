@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPostById, getUser, setBookmarksID } from "../../redux/actions";
+import {
+  getPostById,
+  getUser,
+  setBookmarksID,
+  setUpVotesID,
+  setDownVotesID,
+} from "../../redux/actions";
 import { Card, Image } from "react-bootstrap";
 import { baseURL } from "../utils/config";
 import Comment from "../Common/Comment";
@@ -9,27 +15,43 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const SinglePostView = (props) => {
   // console.log(props.match.params.postId);
   const post = useSelector((state) => state.postReducer.post);
+  console.log({ post });
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
+
   const bookmarkPostId = useSelector(
     (state) => state.usersReducer.bookmarkPostId
   );
+
+  const userUpVotes = useSelector((state) => state.usersReducer.userUpVotes);
+  const upVotesPostId = useSelector(
+    (state) => state.usersReducer.upVotesPostId
+  );
+
+  const userDownVotes = useSelector(
+    (state) => state.usersReducer.userDownVotes
+  );
+  const downVotesPostId = useSelector(
+    (state) => state.usersReducer.downVotesPostId
+  );
+
   const user = useSelector((state) => state.usersReducer);
   const dispatch = useDispatch();
-  // console.log({ post });
+  console.log({ user });
   useEffect(() => {
     dispatch(getPostById(props.match.params.postId));
   }, [dispatch, userBookmarks, props.match.params.postId]);
 
-  console.log({ user });
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(setBookmarksID());
-  }, [userBookmarks, dispatch]);
+    dispatch(setUpVotesID());
+    dispatch(setDownVotesID());
+  }, [userBookmarks, userUpVotes, userDownVotes, , dispatch]);
 
   const bookmarkIt = (id) => {
     if (!localStorage.getItem("token")) {
@@ -57,6 +79,65 @@ const SinglePostView = (props) => {
       });
   };
 
+  const upVotePost = (id) => {
+    if (!localStorage.getItem("token")) {
+      props.history.push("login");
+    } else {
+      axiosWithAuth()
+        .post(`${baseURL}/posts/${id}/upvote`)
+        .then((res) => {
+          dispatch(getUser());
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+
+  const cancelUpVotePost = (id) => {
+    if (!localStorage.getItem("token")) {
+      props.history.push("login");
+    } else {
+      axiosWithAuth()
+        .post(`${baseURL}/posts/${id}/removeupvote`)
+        .then((res) => {
+          dispatch(getUser());
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+
+  const downVotePost = (id) => {
+    if (!localStorage.getItem("token")) {
+      props.history.push("login");
+    } else {
+      axiosWithAuth()
+        .post(`${baseURL}/posts/${id}/downvote`)
+        .then((res) => {
+          dispatch(getUser());
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+
+  const cancelDownVotePost = (id) => {
+    if (!localStorage.getItem("token")) {
+      props.history.push("login");
+    } else {
+      axiosWithAuth()
+        .post(`${baseURL}/posts/${id}/removedownvote`)
+        .then((res) => {
+          dispatch(getUser());
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
   // console.log(post);
   return (
     <div key={post.id} className="single-post-view">
@@ -70,15 +151,41 @@ const SinglePostView = (props) => {
           />
           <span className="fake-id">{post.fake_id}</span>
           <div className="likes">
-            <i
-              style={{ color: "lightgrey" }}
-              className="fas fa-arrow-up like"
-            ></i>
-            {post.votes && post.votes.votes}
-            <i
-              style={{ color: "lightgrey" }}
-              className="fas fa-arrow-down like"
-            ></i>
+            {upVotesPostId && upVotesPostId.includes(post.id) ? (
+              <i
+                onClick={() => {
+                  cancelUpVotePost(post.id);
+                }}
+                style={{ color: "black" }}
+                class="fas fa-arrow-up like"
+              ></i>
+            ) : (
+              <i
+                onClick={() => {
+                  upVotePost(post.id);
+                }}
+                style={{ color: "lightgrey" }}
+                class="fas fa-arrow-up like"
+              ></i>
+            )}
+            {post.votes && post.votes}
+            {downVotesPostId && downVotesPostId.includes(post.id) ? (
+              <i
+                onClick={() => {
+                  cancelDownVotePost(post.id);
+                }}
+                style={{ color: "black" }}
+                class="fas fa-arrow-down like"
+              ></i>
+            ) : (
+              <i
+                onClick={() => {
+                  downVotePost(post.id);
+                }}
+                style={{ color: "lightgrey" }}
+                class="fas fa-arrow-down like"
+              ></i>
+            )}
             {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
               <i
                 onClick={() => {
