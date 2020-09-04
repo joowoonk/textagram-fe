@@ -9,7 +9,7 @@ export const SET_USER_BOOKMARKS = "SET_USER_BOOKMARKS";
 
 export const SET_SINGLE_POST_VIEW = "SET_SINGLE_POST_VIEW";
 export const SET_BOOKMARKS_ID = "SET_BOOKMARKS_ID";
-
+export const SET_POST_VIEW = "SET_POST_VIEW";
 export const SET_USER_UP_VOTES = "SET_USER_UP_VOTES";
 export const SET_UP_VOTES_ID = "SET_UP_VOTES_ID";
 export const SET_USER_DOWN_VOTES = "SET_USER_DOWN_VOTES";
@@ -23,6 +23,18 @@ export const logout = () => (dispatch) => {
 export const login = () => (dispatch) => {
   console.log("login");
   dispatch({ type: LOGIN_USER });
+};
+
+export const getPosts = () => (dispatch) => {
+  axios
+    .get(`${baseURL}/posts`)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: SET_POST_VIEW, payload: res.data.posts });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const getPostById = (id) => (dispatch) => {

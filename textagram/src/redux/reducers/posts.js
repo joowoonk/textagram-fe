@@ -1,4 +1,4 @@
-import { SET_SINGLE_POST_VIEW } from "../actions/index";
+import { SET_SINGLE_POST_VIEW, SET_POST_VIEW } from "../actions/index";
 
 const initialState = {
   post: {
@@ -6,8 +6,11 @@ const initialState = {
     total_votes: 0,
     up_votes: 0,
     hashtags: [],
-    votes: { downVoted: [], upVoted: [], votes: 0 },
+    votes: [],
+    downVoted: [],
+    upVoted: [],
   },
+  posts: [],
   isFetching: false,
   login: false,
 };
@@ -18,7 +21,12 @@ export const postReducer = (state = initialState, action) => {
       return {
         ...state,
         post: action.payload,
-        login: true,
+        // login: true,
+      };
+    case SET_POST_VIEW:
+      return {
+        ...state,
+        posts: action.payload,
       };
     default:
       return state;

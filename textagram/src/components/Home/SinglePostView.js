@@ -14,30 +14,30 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
 const SinglePostView = (props) => {
   // console.log(props.match.params.postId);
+  const dispatch = useDispatch();
   const post = useSelector((state) => state.postReducer.post);
   console.log({ post });
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
-
   const bookmarkPostId = useSelector(
     (state) => state.usersReducer.bookmarkPostId
   );
 
   const userUpVotes = useSelector((state) => state.usersReducer.userUpVotes);
+  const userDownVotes = useSelector(
+    (state) => state.usersReducer.userDownVotes
+  );
   const upVotesPostId = useSelector(
     (state) => state.usersReducer.upVotesPostId
   );
 
-  const userDownVotes = useSelector(
-    (state) => state.usersReducer.userDownVotes
-  );
   const downVotesPostId = useSelector(
     (state) => state.usersReducer.downVotesPostId
   );
 
   const user = useSelector((state) => state.usersReducer);
-  const dispatch = useDispatch();
+
   console.log({ user });
   useEffect(() => {
     dispatch(getPostById(props.match.params.postId));
@@ -51,7 +51,7 @@ const SinglePostView = (props) => {
     dispatch(setBookmarksID());
     dispatch(setUpVotesID());
     dispatch(setDownVotesID());
-  }, [userBookmarks, userUpVotes, userDownVotes, , dispatch]);
+  }, [userBookmarks, userUpVotes, userDownVotes, dispatch]);
 
   const bookmarkIt = (id) => {
     if (!localStorage.getItem("token")) {
@@ -99,7 +99,7 @@ const SinglePostView = (props) => {
       props.history.push("login");
     } else {
       axiosWithAuth()
-        .post(`${baseURL}/posts/${id}/removeupvote`)
+        .delete(`${baseURL}/posts/${id}/removeupvote`)
         .then((res) => {
           dispatch(getUser());
         })
@@ -129,7 +129,7 @@ const SinglePostView = (props) => {
       props.history.push("login");
     } else {
       axiosWithAuth()
-        .post(`${baseURL}/posts/${id}/removedownvote`)
+        .delete(`${baseURL}/posts/${id}/removedownvote`)
         .then((res) => {
           dispatch(getUser());
         })
@@ -138,7 +138,7 @@ const SinglePostView = (props) => {
         });
     }
   };
-  // console.log(post);
+
   return (
     <div key={post.id} className="single-post-view">
       <div className="card">
@@ -168,7 +168,7 @@ const SinglePostView = (props) => {
                 class="fas fa-arrow-up like"
               ></i>
             )}
-            {post.votes && post.votes}
+            {post.votes.votes}
             {downVotesPostId && downVotesPostId.includes(post.id) ? (
               <i
                 onClick={() => {

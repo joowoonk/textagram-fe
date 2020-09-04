@@ -9,11 +9,15 @@ import {
   setBookmarksID,
   setUpVotesID,
   setDownVotesID,
+  getPosts,
 } from "../../redux/actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 const Home = (props) => {
-  const [posts, setPosts] = useState([]);
   const dispatch = useDispatch();
+
+  const posts = useSelector((state) => state.postReducer.posts);
+  // const [posts, setPosts] = useState(allPosts);
+  console.log({ posts });
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
@@ -34,25 +38,29 @@ const Home = (props) => {
     (state) => state.usersReducer.downVotesPostId
   );
 
-  useEffect(() => {
-    dispatch(getUser());
-    axios
-      .get(`${baseURL}/posts`)
-      .then((res) => {
-        setPosts(res.data.posts);
-      })
+  // useEffect(() => {
+  //   dispatch(getUser());
+  //   axios
+  //     .get(`${baseURL}/posts`)
+  //     .then((res) => {
+  //       setPosts(res.data.posts);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }, [dispatch]);
 
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [dispatch]);
-
   useEffect(() => {
+    dispatch(getPosts());
     dispatch(setBookmarksID());
     dispatch(setUpVotesID());
     dispatch(setDownVotesID());
+    // await setPosts();
   }, [userBookmarks, userUpVotes, userDownVotes, dispatch]);
 
+  // console.log({ allPosts });
+
+  console.log({ posts });
   const bookmarkIt = (id) => {
     if (!localStorage.getItem("token")) {
       props.history.push("login");
@@ -169,7 +177,7 @@ const Home = (props) => {
                   class="fas fa-arrow-up like"
                 ></i>
               )}
-              {post.votes && post.votes}
+              {post.votes}
               {downVotesPostId && downVotesPostId.includes(post.id) ? (
                 <i
                   onClick={() => {
