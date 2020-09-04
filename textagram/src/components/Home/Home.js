@@ -38,29 +38,13 @@ const Home = (props) => {
     (state) => state.usersReducer.downVotesPostId
   );
 
-  // useEffect(() => {
-  //   dispatch(getUser());
-  //   axios
-  //     .get(`${baseURL}/posts`)
-  //     .then((res) => {
-  //       setPosts(res.data.posts);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }, [dispatch]);
-
   useEffect(() => {
     dispatch(getPosts());
     dispatch(setBookmarksID());
     dispatch(setUpVotesID());
     dispatch(setDownVotesID());
-    // await setPosts();
   }, [userBookmarks, userUpVotes, userDownVotes, dispatch]);
 
-  // console.log({ allPosts });
-
-  console.log({ posts });
   const bookmarkIt = (id) => {
     if (!localStorage.getItem("token")) {
       props.history.push("login");
@@ -74,6 +58,17 @@ const Home = (props) => {
           console.error(err);
         });
     }
+  };
+
+  const unbookmarkIt = (id) => {
+    axiosWithAuth()
+      .delete(`${baseURL}/posts/${id}/unbookmark`)
+      .then((res) => {
+        dispatch(getUser());
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   const upVotePost = (id) => {
@@ -136,16 +131,14 @@ const Home = (props) => {
     }
   };
 
-  const unbookmarkIt = (id) => {
-    axiosWithAuth()
-      .delete(`${baseURL}/posts/${id}/unbookmark`)
-      .then((res) => {
-        dispatch(getUser());
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+  function resetVotes(post_id) {
+    if (downVotesPostId.includes(post_id)) {
+      return cancelDownVotePost(post_id);
+    } else if (upVotesPostId.includes(post_id)) {
+      return cancelUpVotePost(post_id);
+    }
+  }
+
   // console.log(posts);
   return (
     <>
@@ -172,6 +165,7 @@ const Home = (props) => {
                 <i
                   onClick={() => {
                     upVotePost(post.id);
+                    resetVotes(post.id);
                   }}
                   style={{ color: "lightgrey" }}
                   class="fas fa-arrow-up like"
@@ -190,6 +184,7 @@ const Home = (props) => {
                 <i
                   onClick={() => {
                     downVotePost(post.id);
+                    resetVotes(post.id);
                   }}
                   style={{ color: "lightgrey" }}
                   class="fas fa-arrow-down like"

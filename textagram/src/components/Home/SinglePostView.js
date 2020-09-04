@@ -139,6 +139,13 @@ const SinglePostView = (props) => {
     }
   };
 
+  function resetVotes(post_id) {
+    if (downVotesPostId.includes(post_id)) {
+      return cancelDownVotePost(post_id);
+    } else if (upVotesPostId.includes(post_id)) {
+      return cancelUpVotePost(post_id);
+    }
+  }
   return (
     <div key={post.id} className="single-post-view">
       <div className="card">
@@ -163,6 +170,7 @@ const SinglePostView = (props) => {
               <i
                 onClick={() => {
                   upVotePost(post.id);
+                  resetVotes(post.id);
                 }}
                 style={{ color: "lightgrey" }}
                 class="fas fa-arrow-up like"
@@ -181,6 +189,7 @@ const SinglePostView = (props) => {
               <i
                 onClick={() => {
                   downVotePost(post.id);
+                  resetVotes(post.id);
                 }}
                 style={{ color: "lightgrey" }}
                 class="fas fa-arrow-down like"
