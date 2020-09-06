@@ -43,6 +43,7 @@ function Register({ setShowReg, showReg, setShow }) {
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           setIsLoggingIn(false);
+          setShowReg(false);
           setErrorMsg("");
           push(`/posts`);
           dispatch(login());
@@ -115,7 +116,7 @@ function Register({ setShowReg, showReg, setShow }) {
         </Modal.Body>
         <Modal.Footer className="footer">
           <p>
-            Log in
+            Log in{" "}
             <a
               href="#"
               onClick={() => {

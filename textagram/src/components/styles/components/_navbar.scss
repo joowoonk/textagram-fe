@@ -6,10 +6,44 @@
   background-color: #fff;
   border-bottom: 2px solid #e9ecef;
   padding: 5px 0;
-  .logo {
-    font-family: "Dancing Script", cursive;
-    font-size: 2.5rem;
-    margin-right: 5%;
+  .nav-logo-search {
+    display: flex;
+    .nav-search {
+      margin: 0 0 0 0;
+      border: 1px solid silver;
+      border-radius: 25px;
+      padding: 8px 20px;
+      width: 400px;
+
+      display: flex;
+      justify-content: space-between;
+      background: #f5f5f5;
+    }
+    button:focus,
+    input:focus {
+      outline: none !important;
+      outline-offset: none !important;
+    }
+
+    .nav-search input,
+    .nav-search button {
+      border: none;
+      background: none;
+    }
+
+    .nav-search input {
+      width: 100%;
+    }
+
+    .logo {
+      font-family: "Dancing Script", cursive;
+      font-size: 2.5rem;
+      margin-right: 5%;
+    }
+  }
+  .nav-icons {
+    display: flex;
+    margin: 0 5%;
   }
 }
 
@@ -23,44 +57,10 @@ nav a:hover {
   color: #0f7585;
 }
 
-nav .nav-search {
-  margin: 0 0 0 0;
-  border: 1px solid silver;
-  border-radius: 25px;
-  padding: 8px 20px;
-  width: 30%;
-
-  display: flex;
-  justify-content: space-between;
-  background: #f5f5f5;
-}
-
-nav .nav-search input,
-nav .nav-search button {
-  border: none;
-  background: none;
-}
-
-nav .nav-search input {
-  width: 100%;
-}
-
-button:focus,
-input:focus {
-  outline: none !important;
-  outline-offset: none !important;
-}
-
 .nav-att {
   cursor: pointer;
   border: none;
   background: none;
   color: black !important;
   //   outline-offset: none !important;
-}
-
-nav .title {
-  font-family: $accent-font;
-  font-size: 40px;
-  margin: 0 1% 0 3%;
 }

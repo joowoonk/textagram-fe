@@ -14,7 +14,7 @@ import {
 } from "../../redux/actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import Pagination from "./Pagination";
-const Home = ({ setShow }) => {
+const Home = ({ show, setShow }) => {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.postReducer.posts);
@@ -49,7 +49,7 @@ const Home = ({ setShow }) => {
   );
   useEffect(() => {
     dispatch(getUser());
-  }, []);
+  }, [show]);
 
   useEffect(() => {
     dispatch(getPosts());
