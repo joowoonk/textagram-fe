@@ -11,12 +11,10 @@ import {
   setUpVotesID,
   setDownVotesID,
   getPosts,
-  SET_POST_VIEW,
 } from "../../redux/actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import axios from "axios";
 import Pagination from "./Pagination";
-const Home = (props) => {
+const Home = ({ setShow }) => {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.postReducer.posts);
@@ -62,7 +60,7 @@ const Home = (props) => {
 
   const bookmarkIt = (id) => {
     if (!localStorage.getItem("token")) {
-      props.history.push("login");
+      setShow(true);
     } else {
       axiosWithAuth()
         .post(`${baseURL}/posts/${id}/bookmark`)
@@ -88,7 +86,7 @@ const Home = (props) => {
 
   const upVotePost = (id) => {
     if (!localStorage.getItem("token")) {
-      props.history.push("login");
+      setShow(true);
     } else {
       axiosWithAuth()
         .post(`${baseURL}/posts/${id}/upvote`)
@@ -103,7 +101,7 @@ const Home = (props) => {
 
   const cancelUpVotePost = (id) => {
     if (!localStorage.getItem("token")) {
-      props.history.push("login");
+      setShow(true);
     } else {
       axiosWithAuth()
         .delete(`${baseURL}/posts/${id}/removeupvote`)
@@ -118,7 +116,7 @@ const Home = (props) => {
 
   const downVotePost = (id) => {
     if (!localStorage.getItem("token")) {
-      props.history.push("login");
+      setShow(true);
     } else {
       axiosWithAuth()
         .post(`${baseURL}/posts/${id}/downvote`)
@@ -133,7 +131,7 @@ const Home = (props) => {
 
   const cancelDownVotePost = (id) => {
     if (!localStorage.getItem("token")) {
-      props.history.push("login");
+      setShow(true);
     } else {
       axiosWithAuth()
         .delete(`${baseURL}/posts/${id}/removedownvote`)

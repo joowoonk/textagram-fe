@@ -4,16 +4,16 @@ import "../styles/app.scss";
 import { Modal, Button, Form } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import { baseURL } from "../utils/config";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions";
 
-function Register(props) {
-  const [show, setShow] = useState(true);
+function Register({ setShowReg, showReg, setShow }) {
   const dispatch = useDispatch();
+  const { push } = useHistory();
 
   const handleClose = () => {
-    setShow(false);
-    props.history.push("/");
+    setShowReg(false);
   };
 
   const [newUser, setNewUser] = useState({
@@ -44,7 +44,7 @@ function Register(props) {
           localStorage.setItem("token", res.data.token);
           setIsLoggingIn(false);
           setErrorMsg("");
-          props.history.push(`/posts`);
+          push(`/posts`);
           dispatch(login());
         })
         .catch((err) => {
@@ -58,7 +58,7 @@ function Register(props) {
   return (
     <Fragment>
       <Modal
-        show={show}
+        show={showReg}
         onHide={handleClose}
         centered
         size="sm"
@@ -115,7 +115,17 @@ function Register(props) {
         </Modal.Body>
         <Modal.Footer className="footer">
           <p>
-            Log in <a href="/login">here</a>.
+            Log in
+            <a
+              href="#"
+              onClick={() => {
+                setShowReg(false);
+                setShow(true);
+              }}
+            >
+              here
+            </a>
+            .
           </p>
         </Modal.Footer>
       </Modal>

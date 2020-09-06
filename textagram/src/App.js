@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Login from "./components/Authentication/Login";
 import { Route } from "react-router-dom";
 import Register from "./components/Authentication/Register";
@@ -7,15 +7,31 @@ import Home from "./components/Home/Home";
 import PrivateRoute from "./components/utils/PrivateRoute";
 import SinglePostView from "./components/Home/SinglePostView";
 function App() {
+  const [show, setShow] = useState(false);
+  const [showReg, setShowReg] = useState(false);
+  console.log({ showReg });
   return (
     <div className="App">
       <header>
-        <NavBar />
+        <NavBar show={show} setShow={setShow} />
       </header>
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/posts" component={Home} />
-      <PrivateRoute exact path="/posts/:postId" component={SinglePostView} />
+      <Route path="/">
+        <Login
+          show={show}
+          setShow={setShow}
+          showReg={showReg}
+          setShowReg={setShowReg}
+        />
+      </Route>
+      <Route path="/">
+        <Register showReg={showReg} setShowReg={setShowReg} setShow={setShow} />
+      </Route>
+      <Route exact path="/posts">
+        <Home show={show} setShow={setShow} />
+      </Route>
+      <PrivateRoute exact path="/posts/:postId">
+        <SinglePostView setShow={setShow} />
+      </PrivateRoute>
     </div>
   );
 }

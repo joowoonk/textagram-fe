@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { IoIosSearch } from "react-icons/io";
 import { BsFillPersonCheckFill } from "react-icons/bs";
+import { AiOutlineCloudUpload } from "react-icons/ai";
 import { GiExitDoor } from "react-icons/gi";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/index";
 
-const NavBar = () => {
+const NavBar = ({ setShow }) => {
   const dispatch = useDispatch();
   const loginState = useSelector((state) => state.usersReducer.login);
 
@@ -38,14 +39,26 @@ const NavBar = () => {
         </button>
       </form>
       {localStorage.getItem("token") || loginState ? (
-        <a className="nav-att" onClick={() => signOut()}>
-          <GiExitDoor size="2.0em" />
-        </a>
+        <>
+          <Nav.Link className="nav-att" href="/upload">
+            <AiOutlineCloudUpload size="2.0em" />
+          </Nav.Link>
+          <a className="nav-att" onClick={() => signOut()}>
+            <GiExitDoor size="2.0em" />
+          </a>
+        </>
       ) : null}
       {localStorage.getItem("token") ? null : (
-        <Nav.Link className="nav-att" href="/login">
-          <BsFillPersonCheckFill size="2.0em" />
-        </Nav.Link>
+        <>
+          <Nav.Link
+            className="nav-att"
+            onClick={() => {
+              setShow(true);
+            }}
+          >
+            <BsFillPersonCheckFill size="2.0em" />
+          </Nav.Link>
+        </>
       )}
     </nav>
   );

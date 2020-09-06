@@ -8,9 +8,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions";
 import axios from "axios";
-const Login = ({ props }) => {
-  const [show, setShow] = useState(true);
-
+const Login = ({ show, setShow, showReg, setShowReg }) => {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -23,7 +21,6 @@ const Login = ({ props }) => {
 
   const handleClose = () => {
     setShow(false);
-    push("/");
   };
 
   const handleChange = (e) => {
@@ -116,7 +113,17 @@ const Login = ({ props }) => {
           </Button>
         </div>
         <div className="modal-footer">
-          Not a member? Sign up<a href="/register">here</a>.
+          Not a member? Sign up
+          <a
+            href="#"
+            onClick={() => {
+              setShow(false);
+              setShowReg(true);
+            }}
+          >
+            here
+          </a>
+          .
         </div>
       </Modal>
     </Fragment>

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
 import {
   getPostById,
   getUser,
@@ -12,7 +13,10 @@ import { baseURL } from "../utils/config";
 import Comment from "../Common/Comment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
-const SinglePostView = (props) => {
+const SinglePostView = ({ setShow }) => {
+  const { push } = useHistory();
+  const match = useParams();
+  console.log({ match });
   const dispatch = useDispatch();
   const post = useSelector((state) => state.postReducer.post);
 
@@ -36,8 +40,8 @@ const SinglePostView = (props) => {
   );
 
   useEffect(() => {
-    dispatch(getPostById(props.match.params.postId));
-  }, [dispatch, userBookmarks, props.match.params.postId]);
+    dispatch(getPostById(match.postId));
+  }, [dispatch, userBookmarks, match.postId]);
 
   useEffect(() => {
     dispatch(getUser());
@@ -51,7 +55,7 @@ const SinglePostView = (props) => {
 
   const bookmarkIt = (id) => {
     if (!localStorage.getItem("token")) {
-      props.history.push("login");
+      setShow(true);
     } else {
       axiosWithAuth()
         .post(`${baseURL}/posts/${id}/bookmark`)
@@ -77,7 +81,7 @@ const SinglePostView = (props) => {
 
   const upVotePost = (id) => {
     if (!localStorage.getItem("token")) {
-      props.history.push("login");
+      setShow(true);
     } else {
       axiosWithAuth()
         .post(`${baseURL}/posts/${id}/upvote`)
@@ -92,7 +96,7 @@ const SinglePostView = (props) => {
 
   const cancelUpVotePost = (id) => {
     if (!localStorage.getItem("token")) {
-      props.history.push("login");
+      setShow(true);
     } else {
       axiosWithAuth()
         .delete(`${baseURL}/posts/${id}/removeupvote`)
@@ -107,7 +111,7 @@ const SinglePostView = (props) => {
 
   const downVotePost = (id) => {
     if (!localStorage.getItem("token")) {
-      props.history.push("login");
+      setShow(true);
     } else {
       axiosWithAuth()
         .post(`${baseURL}/posts/${id}/downvote`)
@@ -122,7 +126,7 @@ const SinglePostView = (props) => {
 
   const cancelDownVotePost = (id) => {
     if (!localStorage.getItem("token")) {
-      props.history.push("login");
+      setShow(true);
     } else {
       axiosWithAuth()
         .delete(`${baseURL}/posts/${id}/removedownvote`)
@@ -160,7 +164,7 @@ const SinglePostView = (props) => {
                   cancelUpVotePost(post.id);
                 }}
                 style={{ color: "black" }}
-                className="fas fa-arrow-up like"
+                class="fas fa-arrow-up like"
               ></i>
             ) : (
               <i
@@ -169,7 +173,7 @@ const SinglePostView = (props) => {
                   resetVotes(post.id);
                 }}
                 style={{ color: "lightgrey" }}
-                className="fas fa-arrow-up like"
+                class="fas fa-arrow-up like"
               ></i>
             )}
             {post.votes.votes}
@@ -179,7 +183,7 @@ const SinglePostView = (props) => {
                   cancelDownVotePost(post.id);
                 }}
                 style={{ color: "black" }}
-                className="fas fa-arrow-down like"
+                class="fas fa-arrow-down like"
               ></i>
             ) : (
               <i
@@ -188,7 +192,7 @@ const SinglePostView = (props) => {
                   resetVotes(post.id);
                 }}
                 style={{ color: "lightgrey" }}
-                className="fas fa-arrow-down like"
+                class="fas fa-arrow-down like"
               ></i>
             )}
             {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
@@ -196,7 +200,7 @@ const SinglePostView = (props) => {
                 onClick={() => {
                   unbookmarkIt(post.id);
                 }}
-                className="fas fa-bookmark"
+                class="fas fa-bookmark"
               ></i>
             ) : (
               <i
