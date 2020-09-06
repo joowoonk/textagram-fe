@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import "../styles/app.scss";
-import { NavLink } from "react-router-dom";
 
 import Loader from "react-loader-spinner";
 import { baseURL } from "../utils/config";
@@ -12,7 +11,6 @@ import axios from "axios";
 const Login = ({ props }) => {
   const [show, setShow] = useState(true);
 
-  const [close, setClose] = useState("");
   const [user, setUser] = useState({
     email: "",
     password: "",

@@ -7,7 +7,7 @@ import {
   setUpVotesID,
   setDownVotesID,
 } from "../../redux/actions";
-import { Card, Image } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import { baseURL } from "../utils/config";
 import Comment from "../Common/Comment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -34,8 +34,6 @@ const SinglePostView = (props) => {
   const downVotesPostId = useSelector(
     (state) => state.usersReducer.downVotesPostId
   );
-
-  const user = useSelector((state) => state.usersReducer);
 
   useEffect(() => {
     dispatch(getPostById(props.match.params.postId));
@@ -162,7 +160,7 @@ const SinglePostView = (props) => {
                   cancelUpVotePost(post.id);
                 }}
                 style={{ color: "black" }}
-                class="fas fa-arrow-up like"
+                className="fas fa-arrow-up like"
               ></i>
             ) : (
               <i
@@ -171,7 +169,7 @@ const SinglePostView = (props) => {
                   resetVotes(post.id);
                 }}
                 style={{ color: "lightgrey" }}
-                class="fas fa-arrow-up like"
+                className="fas fa-arrow-up like"
               ></i>
             )}
             {post.votes.votes}
@@ -181,7 +179,7 @@ const SinglePostView = (props) => {
                   cancelDownVotePost(post.id);
                 }}
                 style={{ color: "black" }}
-                class="fas fa-arrow-down like"
+                className="fas fa-arrow-down like"
               ></i>
             ) : (
               <i
@@ -190,7 +188,7 @@ const SinglePostView = (props) => {
                   resetVotes(post.id);
                 }}
                 style={{ color: "lightgrey" }}
-                class="fas fa-arrow-down like"
+                className="fas fa-arrow-down like"
               ></i>
             )}
             {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
@@ -198,7 +196,7 @@ const SinglePostView = (props) => {
                 onClick={() => {
                   unbookmarkIt(post.id);
                 }}
-                class="fas fa-bookmark"
+                className="fas fa-bookmark"
               ></i>
             ) : (
               <i

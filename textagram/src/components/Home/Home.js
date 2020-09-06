@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 import { baseURL } from "../utils/config";
-import { Card, Image } from "react-bootstrap";
+import { Image } from "react-bootstrap";
+
 import { useSelector, useDispatch } from "react-redux";
 import {
   getUser,
@@ -10,12 +11,24 @@ import {
   setUpVotesID,
   setDownVotesID,
   getPosts,
+  SET_POST_VIEW,
 } from "../../redux/actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axios from "axios";
+import Pagination from "./Pagination";
 const Home = (props) => {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.postReducer.posts);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
@@ -25,6 +38,7 @@ const Home = (props) => {
     (state) => state.usersReducer.bookmarkPostId
   );
   const userUpVotes = useSelector((state) => state.usersReducer.userUpVotes);
+
   const upVotesPostId = useSelector(
     (state) => state.usersReducer.upVotesPostId
   );
@@ -142,7 +156,7 @@ const Home = (props) => {
 
   return (
     <>
-      {posts.map((post) => (
+      {currentPosts.map((post) => (
         <div key={post.id} className="card">
           <div className="card-top">
             <Image
@@ -159,7 +173,7 @@ const Home = (props) => {
                     cancelUpVotePost(post.id);
                   }}
                   style={{ color: "black" }}
-                  class="fas fa-arrow-up like"
+                  className="fas fa-arrow-up like"
                 ></i>
               ) : (
                 <i
@@ -168,7 +182,7 @@ const Home = (props) => {
                     resetVotes(post.id);
                   }}
                   style={{ color: "lightgrey" }}
-                  class="fas fa-arrow-up like"
+                  className="fas fa-arrow-up like"
                 ></i>
               )}
               {post.votes}
@@ -178,7 +192,7 @@ const Home = (props) => {
                     cancelDownVotePost(post.id);
                   }}
                   style={{ color: "black" }}
-                  class="fas fa-arrow-down like"
+                  className="fas fa-arrow-down like"
                 ></i>
               ) : (
                 <i
@@ -187,14 +201,14 @@ const Home = (props) => {
                     resetVotes(post.id);
                   }}
                   style={{ color: "lightgrey" }}
-                  class="fas fa-arrow-down like"
+                  className="fas fa-arrow-down like"
                 ></i>
               )}
 
               {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
                 <i
                   onClick={() => unbookmarkIt(post.id)}
-                  class="fas fa-bookmark"
+                  className="fas fa-bookmark"
                 ></i>
               ) : (
                 <i
@@ -232,6 +246,11 @@ const Home = (props) => {
           </Link>
         </div>
       ))}
+      <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={posts.length}
+        paginate={paginate}
+      />
     </>
   );
 };

@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/app.scss";
-import { Link, NavLink, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { IoIosSearch } from "react-icons/io";
-import { BsFillPersonDashFill, BsFillPersonCheckFill } from "react-icons/bs";
+import { BsFillPersonCheckFill } from "react-icons/bs";
 import { GiExitDoor } from "react-icons/gi";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/index";
 
-import { useHistory } from "react-router-dom";
-
 const NavBar = () => {
   const dispatch = useDispatch();
   const loginState = useSelector((state) => state.usersReducer.login);
-  const { push } = useHistory();
-  // console.log({ loginState });
+
   const signOut = () => {
     dispatch(logout());
     window.location.href = "/";
