@@ -21,7 +21,6 @@ export const logout = () => (dispatch) => {
 };
 
 export const login = () => (dispatch) => {
-  console.log("login");
   dispatch({ type: LOGIN_USER });
 };
 
@@ -29,7 +28,7 @@ export const getPosts = () => (dispatch) => {
   axios
     .get(`${baseURL}/posts`)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch({ type: SET_POST_VIEW, payload: res.data.posts });
     })
     .catch((err) => {
@@ -41,7 +40,6 @@ export const getPostById = (id) => (dispatch) => {
   axios
     .get(`${baseURL}/posts/${id}`)
     .then((res) => {
-      console.log(res);
       dispatch({ type: SET_SINGLE_POST_VIEW, payload: res.data.post });
     })
     .catch((err) => {
@@ -54,7 +52,6 @@ export const getUser = () => (dispatch) => {
     axios
       .get(`${baseURL}/users/${decodedToken()}`)
       .then((res) => {
-        console.log("getUser res:", { res });
         dispatch({ type: FETCH_USER, payload: res.data.user });
         dispatch({
           type: SET_USER_BOOKMARKS,

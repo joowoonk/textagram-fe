@@ -15,7 +15,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const loginState = useSelector((state) => state.usersReducer.login);
   const { push } = useHistory();
-  console.log({ loginState });
+  // console.log({ loginState });
   const signOut = () => {
     dispatch(logout());
     window.location.href = "/";

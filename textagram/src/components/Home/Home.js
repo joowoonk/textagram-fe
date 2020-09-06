@@ -16,13 +16,11 @@ const Home = (props) => {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.postReducer.posts);
-  // const [posts, setPosts] = useState(allPosts);
-  console.log({ posts });
+
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
-  const user = useSelector((state) => state.usersReducer);
-  console.log({ user });
+
   const bookmarkPostId = useSelector(
     (state) => state.usersReducer.bookmarkPostId
   );
@@ -37,6 +35,9 @@ const Home = (props) => {
   const downVotesPostId = useSelector(
     (state) => state.usersReducer.downVotesPostId
   );
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -139,7 +140,6 @@ const Home = (props) => {
     }
   }
 
-  // console.log(posts);
   return (
     <>
       {posts.map((post) => (

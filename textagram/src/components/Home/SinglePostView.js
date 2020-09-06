@@ -13,10 +13,9 @@ import Comment from "../Common/Comment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
 const SinglePostView = (props) => {
-  // console.log(props.match.params.postId);
   const dispatch = useDispatch();
   const post = useSelector((state) => state.postReducer.post);
-  console.log({ post });
+
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
@@ -38,7 +37,6 @@ const SinglePostView = (props) => {
 
   const user = useSelector((state) => state.usersReducer);
 
-  console.log({ user });
   useEffect(() => {
     dispatch(getPostById(props.match.params.postId));
   }, [dispatch, userBookmarks, props.match.params.postId]);
