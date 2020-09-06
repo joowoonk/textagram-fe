@@ -151,12 +151,13 @@ const SinglePostView = ({ setShow }) => {
       <div className="card">
         <div className="card-top">
           <Image
+            className="noselect"
             roundedCircle
             src={post.profile_picture}
             style={{ height: "25px", width: "25px", margin: "0 2%" }}
             alt={`user-id:${post.id}`}
           />
-          <span className="fake-id">{post.fake_id}</span>
+          <span className="noselect fake-id">{post.fake_id}</span>
           <div className="likes">
             {upVotesPostId && upVotesPostId.includes(post.id) ? (
               <i

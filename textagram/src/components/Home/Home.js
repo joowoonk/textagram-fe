@@ -155,15 +155,16 @@ const Home = ({ show, setShow }) => {
   return (
     <>
       {currentPosts.map((post) => (
-        <div key={post.id} className="card">
+        <div key={post.id} className="cards card">
           <div className="card-top">
             <Image
+              className="noselect"
               roundedCircle
               src={post.profile_picture}
               style={{ height: "25px", width: "25px", margin: "0 2%" }}
               alt={`user-id:${post.id}`}
             />
-            <span className="fake-id">{post.fake_id}</span>
+            <span className="noselect fake-id">{post.fake_id}</span>
             <div className="likes">
               {upVotesPostId && upVotesPostId.includes(post.id) ? (
                 <i
@@ -216,31 +217,32 @@ const Home = ({ show, setShow }) => {
               )}
             </div>
           </div>
-          <div className="card-body body">
-            <Link className="title" to={`/posts/${post.id}`}>
+          <Link className="title" to={`/posts/${post.id}`}>
+            <div className="card-body body">
               <h2>
                 {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
               </h2>
-            </Link>
-            <div className="hash-tags ">
-              {post.hashtags.map((hashtag) => {
-                return (
-                  <>
-                    {hashtag.length <= 25 ? (
-                      <span className="hash-tag">{hashtag}</span>
-                    ) : (
-                      <span className="hash-tag">{`${hashtag.slice(
-                        0,
-                        25
-                      )}...`}</span>
-                    )}
-                  </>
-                );
-              })}
+
+              <div className="hash-tags ">
+                {post.hashtags.map((hashtag) => {
+                  return (
+                    <>
+                      {hashtag.length <= 25 ? (
+                        <span className="hash-tag">{hashtag}</span>
+                      ) : (
+                        <span className="hash-tag">{`${hashtag.slice(
+                          0,
+                          25
+                        )}...`}</span>
+                      )}
+                    </>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-          <Link className="comment" to={`/posts/${post.id}`}>
-            <div className="card-body">{post.comments} comments</div>
+            <Link className="comment" to={`/posts/${post.id}`}>
+              <div className="card-body">{post.comments} comments</div>
+            </Link>
           </Link>
         </div>
       ))}

@@ -1,0 +1,31 @@
+.single-page {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  .go-back {
+    width: 28%;
+    cursor: pointer;
+  }
+  .go-back:hover {
+    background-color: #a3d2ca;
+  }
+  .space {
+    width: 5%;
+  }
+
+  .hashtags {
+    width: 33%;
+  }
+}
+
+.single-post-view {
+  //   margin: 2% 0 0 0;
+  .card {
+    .body {
+      h2 {
+        font-size: 1.7rem;
+      }
+    }
+  }
+}
