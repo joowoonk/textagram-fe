@@ -15,19 +15,22 @@ import { GiExitDoor } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/index";
 
-const NavBar = ({ setShow }) => {
+const NavBar = ({ setShow, params }) => {
   const dispatch = useDispatch();
   const loginState = useSelector((state) => state.usersReducer.login);
 
   const signOut = () => {
     dispatch(logout());
-    window.location.href = "/posts";
+    window.location.href = "/posts/1";
   };
 
   return (
     <nav className="nav-bar">
       <div className="nav-logo-search">
-        <Link to="/posts/1" className="logo">
+        <Link
+          onClick={() => (window.location.href = "/posts/1")}
+          className="logo"
+        >
           Textagram
         </Link>
 
