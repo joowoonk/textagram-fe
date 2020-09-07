@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-
 import { Link, useParams } from "react-router-dom";
 import { baseURL } from "../utils/config";
 import { Image } from "react-bootstrap";
-
 import { useSelector, useDispatch } from "react-redux";
 import {
   getUser,
@@ -12,12 +10,12 @@ import {
   setDownVotesID,
   getPosts,
 } from "../../redux/actions";
+
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import Pagination from "./Pagination";
 const Home = ({ show, setShow }) => {
   const params = useParams();
-  //   console.log(history);
-  console.log(params);
+
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.postReducer.posts);

@@ -14,9 +14,8 @@ import Comment from "../Common/Comment";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
 const SinglePostView = ({ setShow }) => {
-  const { push } = useHistory();
   const match = useParams();
-  console.log({ match });
+
   const dispatch = useDispatch();
   const post = useSelector((state) => state.postReducer.post);
 
@@ -165,7 +164,7 @@ const SinglePostView = ({ setShow }) => {
                   cancelUpVotePost(post.id);
                 }}
                 style={{ color: "black" }}
-                class="fas fa-arrow-up like"
+                className="fas fa-arrow-up like"
               ></i>
             ) : (
               <i
@@ -174,7 +173,7 @@ const SinglePostView = ({ setShow }) => {
                   resetVotes(post.id);
                 }}
                 style={{ color: "lightgrey" }}
-                class="fas fa-arrow-up like"
+                className="fas fa-arrow-up like"
               ></i>
             )}
             {post.votes.votes}
@@ -184,7 +183,7 @@ const SinglePostView = ({ setShow }) => {
                   cancelDownVotePost(post.id);
                 }}
                 style={{ color: "black" }}
-                class="fas fa-arrow-down like"
+                className="fas fa-arrow-down like"
               ></i>
             ) : (
               <i
@@ -193,7 +192,7 @@ const SinglePostView = ({ setShow }) => {
                   resetVotes(post.id);
                 }}
                 style={{ color: "lightgrey" }}
-                class="fas fa-arrow-down like"
+                className="fas fa-arrow-down like"
               ></i>
             )}
             {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
@@ -201,7 +200,7 @@ const SinglePostView = ({ setShow }) => {
                 onClick={() => {
                   unbookmarkIt(post.id);
                 }}
-                class="fas fa-bookmark"
+                className="fas fa-bookmark"
               ></i>
             ) : (
               <i
