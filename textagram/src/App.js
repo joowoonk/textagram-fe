@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Login from "./components/Authentication/Login";
-import { Route, useParams } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Register from "./components/Authentication/Register";
 import NavBar from "./components/Home/NavBar";
 import Home from "./components/Home/Home";
@@ -11,8 +11,6 @@ function App() {
   const [show, setShow] = useState(false);
   const [showReg, setShowReg] = useState(false);
 
-  const params = useParams();
-  console.log({ showReg });
   return (
     <div className="App">
       <header>

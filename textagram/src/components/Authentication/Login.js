@@ -46,7 +46,7 @@ const Login = ({ show, setShow, showReg, setShowReg }) => {
           setErrorMsg("");
           handleClose();
 
-          push(`/posts`);
+          push(`/posts/1`);
         })
         .catch((err) => {
           //   console.log(err);
