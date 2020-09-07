@@ -5,8 +5,8 @@ import Register from "./components/Authentication/Register";
 import NavBar from "./components/Home/NavBar";
 import Home from "./components/Home/Home";
 import PrivateRoute from "./components/utils/PrivateRoute";
-import SinglePostView from "./components/SinglePost/SinglePostView";
 import HomeSinglePost from "./components/SinglePost/HomeSinglePost";
+import UploadForm from "./components/Upload/UploadForm";
 function App() {
   const [show, setShow] = useState(false);
   const [showReg, setShowReg] = useState(false);
@@ -27,11 +27,14 @@ function App() {
       <Route path="/">
         <Register showReg={showReg} setShowReg={setShowReg} setShow={setShow} />
       </Route>
-      <Route exact path="/posts">
+      <Route exact path="/posts/:page">
         <Home show={show} setShow={setShow} />
       </Route>
-      <PrivateRoute exact path="/posts/:postId">
+      <PrivateRoute exact path="/posts/detail/:postId">
         <HomeSinglePost setShow={setShow} />
+      </PrivateRoute>
+      <PrivateRoute exact path="/upload">
+        <UploadForm />
       </PrivateRoute>
     </div>
   );

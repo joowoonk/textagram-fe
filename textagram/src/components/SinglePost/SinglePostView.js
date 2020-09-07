@@ -235,14 +235,13 @@ const SinglePostView = ({ setShow }) => {
             post.context.map((text) => {
               return <p className="single-post-context">{text}</p>;
             })}
-
-          <p className="comments">{post.comments.length} Comments</p>
         </div>
+        <div className="card-body">{post.comments.length} comments</div>
 
-        <input
+        {/* <input
           className="bottom-section"
           placeholder="Add a comment..."
-        ></input>
+        ></input> */}
       </div>
       {post.comments.length > 0 && (
         <div className="card">

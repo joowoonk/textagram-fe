@@ -1,0 +1,23 @@
+.card {
+  width: 700px;
+  .text-area {
+    border: none;
+    font-family: "Raleway", sans-serif;
+    font-size: 1.5rem;
+  }
+  .text-area:focus {
+    outline: none !important;
+    outline-offset: none !important;
+    border: none;
+  }
+  .text-area::placeholder {
+    font-family: "Raleway", sans-serif;
+    font-size: 1.5rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  margin: 10px auto;
+  width: 700px;
+}

@@ -27,7 +27,7 @@ const NavBar = ({ setShow }) => {
   return (
     <nav className="nav-bar">
       <div className="nav-logo-search">
-        <Link to="/posts" className="logo">
+        <Link to="/posts/1" className="logo">
           Textagram
         </Link>
 

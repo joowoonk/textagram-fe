@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { baseURL } from "../utils/config";
 import { Image } from "react-bootstrap";
 
@@ -15,11 +15,14 @@ import {
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import Pagination from "./Pagination";
 const Home = ({ show, setShow }) => {
+  const params = useParams();
+  //   console.log(history);
+  console.log(params);
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.postReducer.posts);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(params.page);
   const [postsPerPage] = useState(10);
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -217,7 +220,7 @@ const Home = ({ show, setShow }) => {
               )}
             </div>
           </div>
-          <Link className="title" to={`/posts/${post.id}`}>
+          <Link className="title" to={`/posts/detail/${post.id}`}>
             <div className="card-body body">
               <h2>
                 {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
@@ -240,7 +243,7 @@ const Home = ({ show, setShow }) => {
                 })}
               </div>
             </div>
-            <Link className="comment" to={`/posts/${post.id}`}>
+            <Link className="comment" to={`/posts/detail/${post.id}`}>
               <div className="card-body">{post.comments} comments</div>
             </Link>
           </Link>
