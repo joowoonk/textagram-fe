@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/app.scss";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { IoIosSearch } from "react-icons/io";
 import {
@@ -18,10 +18,11 @@ import { logout } from "../../redux/actions/index";
 const NavBar = ({ setShow, params }) => {
   const dispatch = useDispatch();
   const loginState = useSelector((state) => state.usersReducer.login);
+  const { push } = useHistory();
 
   const signOut = () => {
     dispatch(logout());
-    window.location.href = "/1";
+    window.location.href = "/page/1";
   };
 
   return (

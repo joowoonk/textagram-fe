@@ -9,25 +9,17 @@
     border-bottom: 1px solid #f7f2e7;
     display: flex;
 
-    .likes {
-      margin-left: 400px;
+    .card-top-left-section {
+      display: flex;
+      align-items: center;
+    }
+    .card-top-right-section {
+      margin-left: 450px;
+      display: flex;
+      justify-content: space-around;
       width: 100%;
-      font-family: "Yanone Kaffeesatz", sans-serif;
+      align-items: center;
       font-size: 1.2rem;
-
-      .like {
-        padding: 0 10%;
-      }
-
-      .fas,
-      .far {
-        cursor: pointer;
-      }
-      .fa-bookmark {
-        color: navy;
-
-        margin-left: 10px;
-      }
     }
   }
   .fake-id {

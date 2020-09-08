@@ -8,17 +8,23 @@ import {
   setUpVotesID,
   setDownVotesID,
 } from "../../redux/actions";
-import { Image } from "react-bootstrap";
+import moment from "moment";
+import { Image, Dropdown } from "react-bootstrap";
 import { baseURL } from "../utils/config";
 import Comment from "../Common/Comment";
+import { BsThreeDots } from "react-icons/bs";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import decodedToken from "../utils/decodedToken";
+import DeletePostModal from "./DeletePostModal";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
 const SinglePostView = ({ setShow }) => {
   const match = useParams();
 
   const dispatch = useDispatch();
   const post = useSelector((state) => state.postReducer.post);
-
+  console.log({ post });
+  const admin = useSelector((state) => state.usersReducer.user.is_admin);
+  console.log(admin);
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
@@ -148,16 +154,16 @@ const SinglePostView = ({ setShow }) => {
 
   const votesColor = () => {
     console.log(post.votes.votes);
-    if (post.votes.votes > 0) {
-      return "black";
-    } else if (-5 <= post.votes.votes && 0 > post.votes.votes) {
-      return "#7E7B7A";
+    if (post.votes.votes >= 0) {
+      return "#000000";
+    } else if (-5 <= post.votes.votes && post.votes.votes < 0) {
+      return "#3C3C3C";
     } else if (-10 <= post.votes.votes && post.votes.votes < -5) {
-      return "#A4A09F";
+      return "#7C7C7C";
     } else if (-15 <= post.votes.votes && post.votes.votes < -10) {
-      return "#D2CDCC";
+      return "#CBCBCB";
     } else if (-20 <= post.votes.votes && post.votes.votes < -15) {
-      return "white";
+      return "#E7E7E7";
     } else {
       return "white";
     }
@@ -165,16 +171,19 @@ const SinglePostView = ({ setShow }) => {
   return (
     <div key={post.id} className="single-post-view">
       <div className="card">
-        <div className="card-top">
-          <Image
-            className="noselect"
-            roundedCircle
-            src={post.profile_picture}
-            style={{ height: "25px", width: "25px", margin: "0 2%" }}
-            alt={`user-id:${post.id}`}
-          />
-          <span className="noselect fake-id">{post.fake_id}</span>
-          <div className="likes">
+        <div className="ds-card-top-section">
+          <div className="top-left-section">
+            <Image
+              className="noselect image"
+              roundedCircle
+              src={post.profile_picture}
+              style={{ height: "25px", width: "25px", margin: "0 10px" }}
+              alt={`user-id:${post.id}`}
+            />
+            <span className="noselect fake-id">{post.fake_id}</span>
+          </div>
+
+          <div className="top-right-section">
             {upVotesPostId && upVotesPostId.includes(post.id) ? (
               <i
                 onClick={() => {
@@ -193,7 +202,8 @@ const SinglePostView = ({ setShow }) => {
                 className="fas fa-arrow-up like"
               ></i>
             )}
-            {post.votes.votes}
+            <p className="vote-number">{post.votes.votes}</p>
+
             {downVotesPostId && downVotesPostId.includes(post.id) ? (
               <i
                 onClick={() => {
@@ -225,10 +235,34 @@ const SinglePostView = ({ setShow }) => {
                 className="far fa-bookmark"
               ></i>
             )}
+            {(post.user_id === decodedToken() || admin) && (
+              <Dropdown alignRight variant="info">
+                <Dropdown.Toggle variant="none" id="dropdown-basic">
+                  <BsThreeDots size="1.2em" />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href={`/edit`}>Edit</Dropdown.Item>
+                  <DeletePostModal post_id={post.id} />
+                </Dropdown.Menu>
+              </Dropdown>
+            )}
           </div>
         </div>
         <div className="card-body body">
-          <h2 style={{ color: `${votesColor()}` }}>{post.title}</h2>
+          <h2 style={{ color: `${votesColor()}`, textTransform: "capitalize" }}>
+            {post.title}
+          </h2>
+          <p
+            style={{
+              color: "gray",
+              fontSize: "10px",
+              textTransform: "uppercase",
+              margin: "-5px 0",
+            }}
+          >
+            {moment(post.created_at).fromNow()}
+          </p>
+
           <div className="hash-tags ">
             {post.hashtags.map((hashtag, index) => {
               return (

@@ -5,11 +5,16 @@
     font-family: "Raleway", sans-serif;
     font-size: 1.5rem;
   }
-  .text-area:focus {
+  .text-area:focus,
+  .title-area:focus {
     outline: none !important;
     outline-offset: none !important;
     border: none;
+
+    border-color: none !important;
+    box-shadow: none !important;
   }
+
   .text-area::placeholder {
     font-family: "Raleway", sans-serif;
     font-size: 1.5rem;

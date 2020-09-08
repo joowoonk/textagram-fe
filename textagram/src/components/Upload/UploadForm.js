@@ -71,7 +71,8 @@ export default function UploadForm() {
               outlineOffset: "none",
             }}
             name="title"
-            className="font-weight-bold"
+            autocomplete="off"
+            className="font-weight-bold title-area"
             placeholder="New post title here..."
             value={newPost.title}
             onChange={handleChange}
@@ -94,6 +95,7 @@ export default function UploadForm() {
             name="hashtags"
             size="md"
             type="text"
+            autocomplete="off"
             value={newPost.hashtags}
             onChange={handleChange}
             className="text-area no-border"
@@ -127,8 +129,9 @@ export default function UploadForm() {
             placeholder="Would you like to shine a light to people who are lost for a bit?"
             name="context"
             value={newPost.context}
+            autocomplete="off"
             onChange={handleChange}
-            className="text-area no-border"
+            className="area text-area no-border"
           />
         </Form.Group>
       </Form>

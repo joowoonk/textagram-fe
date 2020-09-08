@@ -20,8 +20,13 @@ const Home = ({ show, setShow }) => {
 
   const posts = useSelector((state) => state.postReducer.posts);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(null || params.page);
+  const [currentPage, setCurrentPage] = useState(params.page);
   const [postsPerPage] = useState(10);
+
+  if (params.page === undefined) {
+    params.page = 1;
+    setCurrentPage(params.page);
+  }
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -158,17 +163,16 @@ const Home = ({ show, setShow }) => {
       {currentPosts.map((post) => {
         const votesColor = () => {
           if (post.votes >= 0) {
-            return "black";
+            return "#000000";
           } else if (-5 <= post.votes && post.votes < 0) {
-            console.log("grey");
-            return "grey";
+            return "#3C3C3C";
           } else if (-10 <= post.votes && post.votes < -5) {
-            return "#A4A09F";
+            return "#7C7C7C";
           } else if (-15 <= post.votes && post.votes < -10) {
-            return "#D2CDCC";
+            return "#CBCBCB";
           } else if (-20 <= post.votes && post.votes < -15) {
             console.log("YESESES");
-            return "white";
+            return "#E7E7E7";
           } else {
             return "white";
           }
@@ -176,15 +180,18 @@ const Home = ({ show, setShow }) => {
         return (
           <div key={post.id} className="cards card">
             <div className="card-top">
-              <Image
-                className="noselect"
-                roundedCircle
-                src={post.profile_picture}
-                style={{ height: "25px", width: "25px", margin: "0 2%" }}
-                alt={`user-id:${post.id}`}
-              />
-              <span className="noselect fake-id">{post.fake_id}</span>
-              <div className="likes">
+              <div className="card-top-left-section">
+                <Image
+                  className="noselect"
+                  roundedCircle
+                  src={post.profile_picture}
+                  style={{ height: "25px", width: "25px", margin: "0 10px" }}
+                  alt={`user-id:${post.id}`}
+                />
+                <span className="noselect fake-id">{post.fake_id}</span>
+              </div>
+
+              <div className="card-top-right-section">
                 {upVotesPostId && upVotesPostId.includes(post.id) ? (
                   <i
                     onClick={() => {
@@ -238,9 +245,10 @@ const Home = ({ show, setShow }) => {
             </div>
             <Link className="title" to={`/post/${post.id}`}>
               <div className="card-body body">
-                <h2 style={{ color: votesColor() }}>
-                  {console.log(post.title)}
-                  {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
+                <h2
+                  style={{ color: votesColor(), textTransform: "capitalize" }}
+                >
+                  {post.title}
                 </h2>
 
                 <div className="hash-tags ">

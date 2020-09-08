@@ -1,0 +1,54 @@
+.single-post-view {
+  .card {
+    .ds-card-top-section {
+      display: flex;
+      padding: 3% 1%;
+      border-bottom: 1px solid #f7f2e7;
+
+      .top-left-section {
+        display: flex;
+        align-items: center;
+      }
+
+      .top-right-section {
+        margin-left: 430px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        font-family: "Yanone Kaffeesatz", sans-serif;
+        font-size: 1.2rem;
+
+        #dropdown-basic {
+          background: none;
+          border: none;
+        }
+
+        #dropdown-basic:focus {
+          border-color: none !important;
+          box-shadow: none !important;
+        }
+        #dropdown-basic::after {
+          display: none !important;
+        }
+        .vote-number {
+          font-size: 1.1rem;
+          margin-bottom: 0;
+          // margin-top: -2px;
+        }
+
+        .fas,
+        .far {
+          cursor: pointer;
+        }
+      }
+    }
+    .card-body {
+      .single-post-context {
+        margin: 2% 0;
+        font-size: 1.2rem;
+        font-family: "Raleway", sans-serif;
+      }
+    }
+  }
+}
