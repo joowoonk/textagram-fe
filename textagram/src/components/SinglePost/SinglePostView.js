@@ -145,6 +145,23 @@ const SinglePostView = ({ setShow }) => {
       return cancelUpVotePost(post_id);
     }
   }
+
+  const votesColor = () => {
+    console.log(post.votes.votes);
+    if (post.votes.votes > 0) {
+      return "black";
+    } else if (-5 <= post.votes.votes && 0 > post.votes.votes) {
+      return "#7E7B7A";
+    } else if (-10 <= post.votes.votes && post.votes.votes < -5) {
+      return "#A4A09F";
+    } else if (-15 <= post.votes.votes && post.votes.votes < -10) {
+      return "#D2CDCC";
+    } else if (-20 <= post.votes.votes && post.votes.votes < -15) {
+      return "white";
+    } else {
+      return "white";
+    }
+  };
   return (
     <div key={post.id} className="single-post-view">
       <div className="card">
@@ -163,7 +180,7 @@ const SinglePostView = ({ setShow }) => {
                 onClick={() => {
                   cancelUpVotePost(post.id);
                 }}
-                style={{ color: "black" }}
+                style={{ color: "green" }}
                 className="fas fa-arrow-up like"
               ></i>
             ) : (
@@ -182,7 +199,7 @@ const SinglePostView = ({ setShow }) => {
                 onClick={() => {
                   cancelDownVotePost(post.id);
                 }}
-                style={{ color: "black" }}
+                style={{ color: "red" }}
                 className="fas fa-arrow-down like"
               ></i>
             ) : (
@@ -211,7 +228,7 @@ const SinglePostView = ({ setShow }) => {
           </div>
         </div>
         <div className="card-body body">
-          <h2>{post.title}</h2>
+          <h2 style={{ color: `${votesColor()}` }}>{post.title}</h2>
           <div className="hash-tags ">
             {post.hashtags.map((hashtag, index) => {
               return (
@@ -232,7 +249,14 @@ const SinglePostView = ({ setShow }) => {
           </div>
           {post.context &&
             post.context.map((text) => {
-              return <p className="single-post-context">{text}</p>;
+              return (
+                <p
+                  style={{ color: votesColor(post.votes.votes) }}
+                  className="single-post-context"
+                >
+                  {text}
+                </p>
+              );
             })}
         </div>
         <div className="card-body">{post.comments.length} comments</div>

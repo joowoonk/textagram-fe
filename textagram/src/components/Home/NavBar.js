@@ -21,14 +21,14 @@ const NavBar = ({ setShow, params }) => {
 
   const signOut = () => {
     dispatch(logout());
-    window.location.href = "/posts/1";
+    window.location.href = "/1";
   };
 
   return (
     <nav className="nav-bar">
       <div className="nav-logo-search">
         <Link
-          onClick={() => (window.location.href = "/posts/1")}
+          onClick={() => (window.location.href = "/page/1")}
           className="logo"
         >
           Textagram

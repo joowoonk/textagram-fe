@@ -20,7 +20,7 @@ const Home = ({ show, setShow }) => {
 
   const posts = useSelector((state) => state.postReducer.posts);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(params.page);
+  const [currentPage, setCurrentPage] = useState(null || params.page);
   const [postsPerPage] = useState(10);
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -155,98 +155,118 @@ const Home = ({ show, setShow }) => {
 
   return (
     <>
-      {currentPosts.map((post) => (
-        <div key={post.id} className="cards card">
-          <div className="card-top">
-            <Image
-              className="noselect"
-              roundedCircle
-              src={post.profile_picture}
-              style={{ height: "25px", width: "25px", margin: "0 2%" }}
-              alt={`user-id:${post.id}`}
-            />
-            <span className="noselect fake-id">{post.fake_id}</span>
-            <div className="likes">
-              {upVotesPostId && upVotesPostId.includes(post.id) ? (
-                <i
-                  onClick={() => {
-                    cancelUpVotePost(post.id);
-                  }}
-                  style={{ color: "black" }}
-                  className="fas fa-arrow-up like"
-                ></i>
-              ) : (
-                <i
-                  onClick={() => {
-                    upVotePost(post.id);
-                    resetVotes(post.id);
-                  }}
-                  style={{ color: "lightgrey" }}
-                  className="fas fa-arrow-up like"
-                ></i>
-              )}
-              {post.votes}
-              {downVotesPostId && downVotesPostId.includes(post.id) ? (
-                <i
-                  onClick={() => {
-                    cancelDownVotePost(post.id);
-                  }}
-                  style={{ color: "black" }}
-                  className="fas fa-arrow-down like"
-                ></i>
-              ) : (
-                <i
-                  onClick={() => {
-                    downVotePost(post.id);
-                    resetVotes(post.id);
-                  }}
-                  style={{ color: "lightgrey" }}
-                  className="fas fa-arrow-down like"
-                ></i>
-              )}
+      {currentPosts.map((post) => {
+        const votesColor = () => {
+          if (post.votes >= 0) {
+            return "black";
+          } else if (-5 <= post.votes && post.votes < 0) {
+            console.log("grey");
+            return "grey";
+          } else if (-10 <= post.votes && post.votes < -5) {
+            return "#A4A09F";
+          } else if (-15 <= post.votes && post.votes < -10) {
+            return "#D2CDCC";
+          } else if (-20 <= post.votes && post.votes < -15) {
+            console.log("YESESES");
+            return "white";
+          } else {
+            return "white";
+          }
+        };
+        return (
+          <div key={post.id} className="cards card">
+            <div className="card-top">
+              <Image
+                className="noselect"
+                roundedCircle
+                src={post.profile_picture}
+                style={{ height: "25px", width: "25px", margin: "0 2%" }}
+                alt={`user-id:${post.id}`}
+              />
+              <span className="noselect fake-id">{post.fake_id}</span>
+              <div className="likes">
+                {upVotesPostId && upVotesPostId.includes(post.id) ? (
+                  <i
+                    onClick={() => {
+                      cancelUpVotePost(post.id);
+                    }}
+                    style={{ color: "green" }}
+                    className="fas fa-arrow-up like"
+                  ></i>
+                ) : (
+                  <i
+                    onClick={() => {
+                      upVotePost(post.id);
+                      resetVotes(post.id);
+                    }}
+                    style={{ color: "lightgrey" }}
+                    className="fas fa-arrow-up like"
+                  ></i>
+                )}
+                {post.votes}
+                {downVotesPostId && downVotesPostId.includes(post.id) ? (
+                  <i
+                    onClick={() => {
+                      cancelDownVotePost(post.id);
+                    }}
+                    style={{ color: "red" }}
+                    className="fas fa-arrow-down like"
+                  ></i>
+                ) : (
+                  <i
+                    onClick={() => {
+                      downVotePost(post.id);
+                      resetVotes(post.id);
+                    }}
+                    style={{ color: "lightgrey" }}
+                    className="fas fa-arrow-down like"
+                  ></i>
+                )}
 
-              {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
-                <i
-                  onClick={() => unbookmarkIt(post.id)}
-                  className="fas fa-bookmark"
-                ></i>
-              ) : (
-                <i
-                  onClick={() => bookmarkIt(post.id)}
-                  className="far fa-bookmark"
-                ></i>
-              )}
-            </div>
-          </div>
-          <Link className="title" to={`/posts/detail/${post.id}`}>
-            <div className="card-body body">
-              <h2>
-                {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
-              </h2>
-
-              <div className="hash-tags ">
-                {post.hashtags.map((hashtag) => {
-                  return (
-                    <>
-                      {hashtag.length <= 25 ? (
-                        <span className="hash-tag">{hashtag}</span>
-                      ) : (
-                        <span className="hash-tag">{`${hashtag.slice(
-                          0,
-                          25
-                        )}...`}</span>
-                      )}
-                    </>
-                  );
-                })}
+                {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
+                  <i
+                    onClick={() => unbookmarkIt(post.id)}
+                    className="fas fa-bookmark"
+                  ></i>
+                ) : (
+                  <i
+                    onClick={() => bookmarkIt(post.id)}
+                    className="far fa-bookmark"
+                  ></i>
+                )}
               </div>
             </div>
-            <Link className="comment" to={`/posts/detail/${post.id}`}>
-              <div className="card-body">{post.comments} comments</div>
+            <Link className="title" to={`/post/${post.id}`}>
+              <div className="card-body body">
+                <h2 style={{ color: votesColor() }}>
+                  {console.log(post.title)}
+                  {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
+                </h2>
+
+                <div className="hash-tags ">
+                  {post.hashtags.map((hashtag) => {
+                    return (
+                      <>
+                        {hashtag.length <= 25 ? (
+                          <span className="hash-tag">{hashtag}</span>
+                        ) : (
+                          <span className="hash-tag">{`${hashtag.slice(
+                            0,
+                            25
+                          )}...`}</span>
+                        )}
+                      </>
+                    );
+                  })}
+                </div>
+              </div>
+              <Link className="comment" to={`/post/${post.id}`}>
+                <div className="card-body">{post.comments} comments</div>
+              </Link>
             </Link>
-          </Link>
-        </div>
-      ))}
+          </div>
+        );
+      })}
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={posts.length}

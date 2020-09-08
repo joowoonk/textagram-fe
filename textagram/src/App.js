@@ -27,10 +27,10 @@ function App() {
       <Route path="/">
         <Register showReg={showReg} setShowReg={setShowReg} setShow={setShow} />
       </Route>
-      <Route exact path="/posts/:page">
+      <Route exact path="/page/:page">
         <Home show={show} setShow={setShow} />
       </Route>
-      <PrivateRoute exact path="/posts/detail/:postId">
+      <PrivateRoute exact path="/post/:postId">
         <HomeSinglePost setShow={setShow} />
       </PrivateRoute>
       <PrivateRoute exact path="/upload">

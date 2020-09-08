@@ -45,7 +45,7 @@ export default function UploadForm() {
         console.log({ res });
         setMessageHashTags(false);
         dispatch(getUser());
-        push(`/posts/detail/${res.data.newPost.id}`);
+        push(`/post/${res.data.newPost.id}`);
         setNewPost({
           title: "",
           context: "",

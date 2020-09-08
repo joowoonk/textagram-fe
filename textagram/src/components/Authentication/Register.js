@@ -45,7 +45,7 @@ function Register({ setShowReg, showReg, setShow }) {
           setIsLoggingIn(false);
           setShowReg(false);
           setErrorMsg("");
-          push(`/posts/1`);
+          push(`/page/1`);
           dispatch(login());
         })
         .catch((err) => {
