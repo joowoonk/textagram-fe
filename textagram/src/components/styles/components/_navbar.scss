@@ -8,6 +8,14 @@
   padding: 5px 0;
   .nav-logo-search {
     display: flex;
+    a {
+      color: $main-green;
+      cursor: pointer;
+    }
+    a:hover {
+      color: $main-green;
+    }
+
     .nav-search {
       margin: 0 0 0 0;
       border: 1px solid silver;

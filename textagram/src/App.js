@@ -30,12 +30,13 @@ function App() {
       <Route exact path="/page/:page">
         <Home show={show} setShow={setShow} />
       </Route>
-      <PrivateRoute exact path="/post/:postId">
+      <PrivateRoute exact path="/posts/:postId">
         <HomeSinglePost setShow={setShow} />
       </PrivateRoute>
       <PrivateRoute exact path="/upload">
         <UploadForm />
       </PrivateRoute>
+      <PrivateRoute exact path="/profiles/:userId"></PrivateRoute>
     </div>
   );
 }

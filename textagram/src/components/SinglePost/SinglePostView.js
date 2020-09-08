@@ -180,7 +180,19 @@ const SinglePostView = ({ setShow }) => {
               style={{ height: "25px", width: "25px", margin: "0 10px" }}
               alt={`user-id:${post.id}`}
             />
-            <span className="noselect fake-id">{post.fake_id}</span>
+            <div className="post-user">
+              <p className="noselect fake-id ">{post.fake_id}</p>
+              <p
+                style={{
+                  color: "gray",
+                  fontSize: "10px",
+                  textTransform: "uppercase",
+                  margin: 0,
+                }}
+              >
+                {moment(post.created_at).fromNow()}
+              </p>
+            </div>
           </div>
 
           <div className="top-right-section">
@@ -252,16 +264,6 @@ const SinglePostView = ({ setShow }) => {
           <h2 style={{ color: `${votesColor()}`, textTransform: "capitalize" }}>
             {post.title}
           </h2>
-          <p
-            style={{
-              color: "gray",
-              fontSize: "10px",
-              textTransform: "uppercase",
-              margin: "-5px 0",
-            }}
-          >
-            {moment(post.created_at).fromNow()}
-          </p>
 
           <div className="hash-tags ">
             {post.hashtags.map((hashtag, index) => {

@@ -7,7 +7,7 @@ import { Modal, Dropdown, Form, Button } from "react-bootstrap";
 
 export default function DeletePostModal({ post_id }) {
   const [show, setShow] = useState(false);
-
+  const { replace } = useHistory();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -15,7 +15,7 @@ export default function DeletePostModal({ post_id }) {
     axiosWithAuth()
       .delete(`${baseURL}/posts/${post_id}`)
       .then((res) => {
-        window.location.href = "/page/1";
+        replace("/page/1");
       })
       .catch((err) => {
         console.log(err);
@@ -31,15 +31,15 @@ export default function DeletePostModal({ post_id }) {
           <Modal.Title>Delete post</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Text className="text-muted">
+          <Form.Text className="text-muted" style={{ fontSize: "20px" }}>
             Are you sure you want to proceed? This cannot be undone.
           </Form.Text>
         </Modal.Body>
         <Modal.Footer className="delete-mdl">
-          <Button className="delete-btn" onClick={() => deletePost()}>
+          <Button className="btn btn-danger" onClick={() => deletePost()}>
             Delete
           </Button>
-          <Button onClick={handleClose} className="cancel-btn">
+          <Button onClick={handleClose} className="btn btn-success">
             Cancel
           </Button>
         </Modal.Footer>

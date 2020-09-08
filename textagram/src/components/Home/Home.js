@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { baseURL } from "../utils/config";
 import { Image } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
 import {
   getUser,
   setBookmarksID,
@@ -188,7 +189,19 @@ const Home = ({ show, setShow }) => {
                   style={{ height: "25px", width: "25px", margin: "0 10px" }}
                   alt={`user-id:${post.id}`}
                 />
-                <span className="noselect fake-id">{post.fake_id}</span>
+                <div className="post-user">
+                  <p className="noselect fake-id ">{post.fake_id}</p>
+                  <p
+                    style={{
+                      color: "gray",
+                      fontSize: "10px",
+                      textTransform: "uppercase",
+                      margin: 0,
+                    }}
+                  >
+                    {moment(post.created_at).fromNow()}
+                  </p>
+                </div>
               </div>
 
               <div className="card-top-right-section">
@@ -243,7 +256,7 @@ const Home = ({ show, setShow }) => {
                 )}
               </div>
             </div>
-            <Link className="title" to={`/post/${post.id}`}>
+            <Link className="title" to={`/posts/${post.id}`}>
               <div className="card-body body">
                 <h2
                   style={{ color: votesColor(), textTransform: "capitalize" }}
@@ -268,7 +281,7 @@ const Home = ({ show, setShow }) => {
                   })}
                 </div>
               </div>
-              <Link className="comment" to={`/post/${post.id}`}>
+              <Link className="comment" to={`/posts/${post.id}`}>
                 <div className="card-body">{post.comments} comments</div>
               </Link>
             </Link>

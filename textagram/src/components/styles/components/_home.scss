@@ -5,7 +5,7 @@
   background-color: white;
 
   .card-top {
-    padding: 3% 1%;
+    padding: 10px 1%;
     border-bottom: 1px solid #f7f2e7;
     display: flex;
 
@@ -22,9 +22,15 @@
       font-size: 1.2rem;
     }
   }
-  .fake-id {
-    font-size: 1rem;
+  .post-user {
+    display: flex;
+    flex-direction: column;
+    .fake-id {
+      font-size: 1rem;
+      margin: 0;
+    }
   }
+
   .body {
     background: white;
     border-bottom: 1px solid #f7f2e7;
@@ -33,13 +39,8 @@
       font-size: 1.7rem;
       font-family: "PT Sans Narrow", sans-serif;
     }
-    h2:hover {
-      color: #1e5f74;
-    }
     .hash-tags {
       display: flex;
-      // justify-content: flex-end;
-      // flex-direction: row;
       flex-wrap: wrap;
       white-space: nowrap;
       width: 100%;
