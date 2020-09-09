@@ -181,7 +181,9 @@ const SinglePostView = ({ setShow }) => {
               alt={`user-id:${post.id}`}
             />
             <div className="post-user">
-              <p className="noselect fake-id ">{post.fake_id}</p>
+              <p className="noselect fake-id ">
+                {post.fake_id} is feeling {post.feeling}.
+              </p>
               <p
                 style={{
                   color: "gray",
@@ -253,7 +255,9 @@ const SinglePostView = ({ setShow }) => {
                   <BsThreeDots size="1.2em" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href={`/edit`}>Edit</Dropdown.Item>
+                  <Dropdown.Item href={`/edit/${match.postId}`}>
+                    Edit
+                  </Dropdown.Item>
                   <DeletePostModal post_id={post.id} />
                 </Dropdown.Menu>
               </Dropdown>

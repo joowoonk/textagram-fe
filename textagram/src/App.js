@@ -7,6 +7,8 @@ import Home from "./components/Home/Home";
 import PrivateRoute from "./components/utils/PrivateRoute";
 import HomeSinglePost from "./components/SinglePost/HomeSinglePost";
 import UploadForm from "./components/Upload/UploadForm";
+import EditPost from "./components/Edit/EditPost";
+
 function App() {
   const [show, setShow] = useState(false);
   const [showReg, setShowReg] = useState(false);
@@ -32,6 +34,9 @@ function App() {
       </Route>
       <PrivateRoute exact path="/posts/:postId">
         <HomeSinglePost setShow={setShow} />
+      </PrivateRoute>
+      <PrivateRoute exact path="/edit/:postId">
+        <EditPost />
       </PrivateRoute>
       <PrivateRoute exact path="/upload">
         <UploadForm />

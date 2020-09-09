@@ -38,7 +38,6 @@ const Home = ({ show, setShow }) => {
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
-
   const bookmarkPostId = useSelector(
     (state) => state.usersReducer.bookmarkPostId
   );
@@ -190,7 +189,10 @@ const Home = ({ show, setShow }) => {
                   alt={`user-id:${post.id}`}
                 />
                 <div className="post-user">
-                  <p className="noselect fake-id ">{post.fake_id}</p>
+                  <p className="noselect fake-id ">
+                    {post.fake_id}{" "}
+                    {post.feeling && `is feeling ${post.feeling}.`}
+                  </p>
                   <p
                     style={{
                       color: "gray",

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import decodedToken from "../utils/decodedToken";
 import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useSelector, useDispatch } from "react-redux";
 import { baseURL } from "../utils/config";
 import { Modal, Dropdown, Form, Button } from "react-bootstrap";
-import { feelings } from "./FeelingList";
-export default function FeelingListModal({ newPost, setNewPost }) {
+import { feelings } from "../Upload/FeelingList";
+export default function EditFeelingListModal({ updatedPost, setUpdatedPost }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -13,8 +14,8 @@ export default function FeelingListModal({ newPost, setNewPost }) {
   return (
     <>
       <Button variant="success" className="feeling-modal" onClick={handleShow}>
-        {newPost.feeling && `Mood: ${newPost.feeling}`}
-        {!newPost.feeling && "Feeling"}
+        {updatedPost.feeling && `Mood: ${updatedPost.feeling}`}
+        {!updatedPost.feeling && "Feeling"}
       </Button>
 
       <Modal show={show} onHide={handleClose} centered>
@@ -26,8 +27,8 @@ export default function FeelingListModal({ newPost, setNewPost }) {
             return (
               <div
                 onClick={() => {
-                  setNewPost({
-                    ...newPost,
+                  setUpdatedPost({
+                    ...updatedPost,
                     feeling: `${feeling.face} ${feeling.feeling}`,
                   });
                 }}

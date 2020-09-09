@@ -28,17 +28,18 @@
 }
 
 .feeling-modal {
-  width: 25%;
-  margin: 0 10px;
+  width: 30%;
+  margin: -20px 0 0 10px;
 }
 
 .feeling-body {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  justify-content: center;
 
   .feeling {
-    width: 48%;
+    width: 49%;
     border: 2px solid $main-green;
     padding: 2%;
     margin: 2px;

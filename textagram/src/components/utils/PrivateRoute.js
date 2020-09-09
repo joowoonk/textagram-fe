@@ -10,7 +10,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           return <Component {...props} />;
         } else {
           // alert("You haven't logged in yet!");
-          return <Redirect to="/login" />;
+          return <Redirect to="/page/1" />;
         }
       }}
     />
