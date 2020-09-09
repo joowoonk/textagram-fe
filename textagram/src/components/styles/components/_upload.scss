@@ -26,3 +26,28 @@
   margin: 10px auto;
   width: 700px;
 }
+
+.feeling-modal {
+  width: 25%;
+  margin: 0 10px;
+}
+
+.feeling-body {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .feeling {
+    width: 48%;
+    border: 2px solid $main-green;
+    padding: 2%;
+    margin: 2px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
+    background-color: $main-green;
+  }
+  .feeling:hover {
+    background-color: green;
+  }
+}

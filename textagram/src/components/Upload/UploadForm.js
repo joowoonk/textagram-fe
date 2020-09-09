@@ -6,6 +6,7 @@ import { baseURL } from "../utils/config";
 import { withRouter, useHistory } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 import { Form, Button, Row, Col, Image } from "react-bootstrap";
+import FeelingListModal from "./FeelingListModal";
 
 export default function UploadForm() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export default function UploadForm() {
     title: "",
     context: "",
     hashtags: "",
+    feeling: "",
   });
 
   const [messageTitle, setMessageTitle] = useState(false);
@@ -50,6 +52,7 @@ export default function UploadForm() {
           title: "",
           context: "",
           hashtags: "",
+          feeling: "",
         });
       })
       .catch((err) => {
@@ -71,7 +74,7 @@ export default function UploadForm() {
               outlineOffset: "none",
             }}
             name="title"
-            autocomplete="off"
+            autoComplete="off"
             className="font-weight-bold title-area"
             placeholder="New post title here..."
             value={newPost.title}
@@ -89,13 +92,14 @@ export default function UploadForm() {
             Title is missing!
           </div>
         )}
+        <FeelingListModal newPost={newPost} setNewPost={setNewPost} />
         <Form.Group controlId="formHashtags">
           <Form.Control
             placeholder="Add Up to 5 tags... eg: #Inpiration #Programming"
             name="hashtags"
             size="md"
             type="text"
-            autocomplete="off"
+            autoComplete="off"
             value={newPost.hashtags}
             onChange={handleChange}
             className="text-area no-border"
@@ -129,7 +133,7 @@ export default function UploadForm() {
             placeholder="Would you like to shine a light to people who are lost for a bit?"
             name="context"
             value={newPost.context}
-            autocomplete="off"
+            autoComplete="off"
             onChange={handleChange}
             className="area text-area no-border"
           />
