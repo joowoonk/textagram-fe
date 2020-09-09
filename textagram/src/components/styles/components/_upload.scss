@@ -1,9 +1,11 @@
 .card {
-  width: 700px;
+  width: 600px;
   .text-area {
     border: none;
     font-family: "Raleway", sans-serif;
     font-size: 1.5rem;
+  }
+  .hashtags-area {
   }
   .text-area:focus,
   .title-area:focus {
@@ -24,7 +26,7 @@
 .buttons {
   display: flex;
   margin: 10px auto;
-  width: 700px;
+  width: 600px;
 }
 
 .feeling-modal {

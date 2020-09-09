@@ -148,7 +148,7 @@ export default function EditPost() {
             autoComplete="off"
             value={updatedPost.hashtags}
             onChange={handleChange}
-            className="text-area no-border"
+            className="text-area hashtags-area no-border"
           />
         </Form.Group>
         {messageHashTags && (

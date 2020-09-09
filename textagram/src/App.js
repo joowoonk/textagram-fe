@@ -5,6 +5,7 @@ import Register from "./components/Authentication/Register";
 import NavBar from "./components/Home/NavBar";
 import Home from "./components/Home/Home";
 import PrivateRoute from "./components/utils/PrivateRoute";
+import RedirectRoute from "./components/utils/RedirectRoute";
 import HomeSinglePost from "./components/SinglePost/HomeSinglePost";
 import UploadForm from "./components/Upload/UploadForm";
 import EditPost from "./components/Edit/EditPost";
@@ -18,17 +19,15 @@ function App() {
       <header>
         <NavBar show={show} setShow={setShow} />
       </header>
-      <Route path="/">
-        <Login
-          show={show}
-          setShow={setShow}
-          showReg={showReg}
-          setShowReg={setShowReg}
-        />
-      </Route>
-      <Route path="/">
-        <Register showReg={showReg} setShowReg={setShowReg} setShow={setShow} />
-      </Route>
+      <Login
+        show={show}
+        setShow={setShow}
+        showReg={showReg}
+        setShowReg={setShowReg}
+      />
+      <Register showReg={showReg} setShowReg={setShowReg} setShow={setShow} />
+
+      <RedirectRoute exact path="/"></RedirectRoute>
       <Route exact path="/page/:page">
         <Home show={show} setShow={setShow} />
       </Route>

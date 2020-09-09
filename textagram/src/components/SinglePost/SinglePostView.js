@@ -255,7 +255,10 @@ const SinglePostView = ({ setShow }) => {
                   <BsThreeDots size="1.2em" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href={`/edit/${match.postId}`}>
+                  <Dropdown.Item
+                    postId={post.id}
+                    href={`/edit/${match.postId}`}
+                  >
                     Edit
                   </Dropdown.Item>
                   <DeletePostModal post_id={post.id} />
