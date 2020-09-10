@@ -3,7 +3,7 @@ import Login from "./components/Authentication/Login";
 import { Route } from "react-router-dom";
 import Register from "./components/Authentication/Register";
 import NavBar from "./components/Home/NavBar";
-import Home from "./components/Home/Home";
+
 import PrivateRoute from "./components/utils/PrivateRoute";
 import RedirectRoute from "./components/utils/RedirectRoute";
 import HomeSinglePost from "./components/SinglePost/HomeSinglePost";
@@ -18,19 +18,19 @@ function App() {
   return (
     <div className="App">
       <header>
-        <NavBar show={show} setShow={setShow} />
+        <NavBar show={show} setShow={setShow} />{" "}
+        <Login
+          show={show}
+          setShow={setShow}
+          showReg={showReg}
+          setShowReg={setShowReg}
+        />
+        <Register showReg={showReg} setShowReg={setShowReg} setShow={setShow} />
       </header>
-      <Login
-        show={show}
-        setShow={setShow}
-        showReg={showReg}
-        setShowReg={setShowReg}
-      />
-      <Register showReg={showReg} setShowReg={setShowReg} setShow={setShow} />
 
       <RedirectRoute exact path="/"></RedirectRoute>
       <Route exact path="/page/:page">
-        <Home />
+        <AllPostsView show={show} setShow={setShow} />
       </Route>
       <PrivateRoute exact path="/posts/:postId">
         <HomeSinglePost show={show} setShow={setShow} />

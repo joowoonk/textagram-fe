@@ -103,7 +103,6 @@ export const usersReducer = (state = initialState, action) => {
         login: false,
       };
     case LOGIN_USER:
-      console.log("yes?");
       return {
         ...state,
         login: true,

@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, setUpVotesID } from "../../redux/actions/index";
+import { getUser } from "../../redux/actions/index";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
-import { withRouter, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
-import { Form, Button, Row, Col, Image } from "react-bootstrap";
-import FeelingListModal from "../Upload/FeelingListModal";
+import { Form, Button } from "react-bootstrap";
+
 import EditFeelingListModal from "./EditFeelingListModal";
 
 export default function EditPost() {
   const dispatch = useDispatch();
   const match = useParams();
-  console.log(match.postId);
   const { push } = useHistory();
   const [updatedPost, setUpdatedPost] = useState({
     title: "",
@@ -29,7 +28,6 @@ export default function EditPost() {
   const [messageContext, setMessageContext] = useState(false);
 
   const handleChange = (e) => {
-    console.log({ e });
     setUpdatedPost({
       ...updatedPost,
       [e.target.name]: e.target.value,
@@ -41,7 +39,6 @@ export default function EditPost() {
     axiosWithAuth()
       .get(`${baseURL}/posts/${match.postId}`)
       .then((res) => {
-        console.log(res);
         setUpdatedPost({
           title: res.data.post.title !== null ? res.data.post.title : "",
           hashtags:
@@ -87,7 +84,6 @@ export default function EditPost() {
     axiosWithAuth()
       .put(`${baseURL}/posts/${match.postId}`, updatedPost)
       .then((res) => {
-        console.log({ res });
         setMessageHashTags(false);
         dispatch(getUser());
         push(`/posts/${match.postId}`);

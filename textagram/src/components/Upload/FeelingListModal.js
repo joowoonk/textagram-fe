@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import decodedToken from "../utils/decodedToken";
-import { useHistory } from "react-router-dom";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { baseURL } from "../utils/config";
-import { Modal, Dropdown, Form, Button } from "react-bootstrap";
+
+import { Modal, Button } from "react-bootstrap";
 import { feelings } from "./FeelingList";
 export default function FeelingListModal({ newPost, setNewPost }) {
   const [show, setShow] = useState(false);

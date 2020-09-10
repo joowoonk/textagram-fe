@@ -28,7 +28,6 @@ export const getPosts = () => (dispatch) => {
   axios
     .get(`${baseURL}/posts`)
     .then((res) => {
-      // console.log(res);
       dispatch({ type: SET_POST_VIEW, payload: res.data.posts });
       dispatch({ type: SET_ALL_THE_HASHTAGS, payload: res.data.posts });
     })

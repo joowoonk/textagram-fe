@@ -21,7 +21,7 @@ const AllPostsView = ({ show, setShow }) => {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.postReducer.posts);
-  const [loading, setLoading] = useState(false);
+
   const [currentPage, setCurrentPage] = useState(params.page);
   const [postsPerPage] = useState(10);
 
@@ -174,7 +174,6 @@ const AllPostsView = ({ show, setShow }) => {
             } else if (-15 <= post.votes && post.votes < -10) {
               return "#bcbcbc";
             } else if (-20 <= post.votes && post.votes < -15) {
-              console.log("YESESES");
               return "#ebebeb";
             } else {
               return "#white";
@@ -261,7 +260,11 @@ const AllPostsView = ({ show, setShow }) => {
                   )}
                 </div>
               </div>
-              <Link className="title" to={`/posts/${post.id}`}>
+              <Link
+                className="title"
+                to={`/posts/${post.id}`}
+                onClick={window.scrollTo(0, 0)}
+              >
                 <div className="card-body body">
                   <h2
                     style={{ color: votesColor(), textTransform: "capitalize" }}
@@ -286,9 +289,10 @@ const AllPostsView = ({ show, setShow }) => {
                     })}
                   </div>
                 </div>
-                <Link className="comment" to={`/posts/${post.id}`}>
-                  <div className="card-body">{post.comments} comments</div>
-                </Link>
+
+                <div className="card-body comment">
+                  {post.comments} comments
+                </div>
               </Link>
             </div>
           );

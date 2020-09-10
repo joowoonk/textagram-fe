@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
-
+  const { push } = useHistory();
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
@@ -12,19 +12,18 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
     <nav>
       <ul className="pagination">
         {pageNumbers.map((number) => (
-          <Link to={`${number}`}>
-            <li key={number} className="page-item">
-              <a
-                onClick={() => {
-                  paginate(number);
-                  window.scrollTo(0, 0);
-                }}
-                className="page-link"
-              >
-                {number}
-              </a>
-            </li>
-          </Link>
+          <li key={number} className="page-item">
+            <ul
+              onClick={() => {
+                paginate(number);
+                window.scrollTo(0, 0);
+                push(`${number}`);
+              }}
+              className="page-link"
+            >
+              {number}
+            </ul>
+          </li>
         ))}
       </ul>
     </nav>

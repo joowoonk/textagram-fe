@@ -4,8 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 export default function HomeSinglePost({ show, setShow }) {
   const { goBack } = useHistory();
   const params = useParams();
-  //   console.log(history);
-  console.log(params);
+
   return (
     <div className="single-page">
       <div

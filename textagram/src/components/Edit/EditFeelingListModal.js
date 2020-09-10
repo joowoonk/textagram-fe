@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import decodedToken from "../utils/decodedToken";
-import { useHistory } from "react-router-dom";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { useSelector, useDispatch } from "react-redux";
-import { baseURL } from "../utils/config";
-import { Modal, Dropdown, Form, Button } from "react-bootstrap";
+
+import { Modal, Button } from "react-bootstrap";
 import { feelings } from "../Upload/FeelingList";
 export default function EditFeelingListModal({ updatedPost, setUpdatedPost }) {
   const [show, setShow] = useState(false);

@@ -4,7 +4,7 @@ import "../styles/app.scss";
 
 import Loader from "react-loader-spinner";
 import { baseURL } from "../utils/config";
-import { useHistory } from "react-router-dom";
+
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions";
 import axios from "axios";
@@ -16,7 +16,6 @@ const Login = ({ show, setShow, showReg, setShowReg }) => {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
 
-  const { push } = useHistory();
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -41,13 +40,11 @@ const Login = ({ show, setShow, showReg, setShowReg }) => {
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           dispatch(login());
-          console.log({ res });
           setIsLoggingIn(false);
           setErrorMsg("");
           handleClose();
         })
         .catch((err) => {
-          //   console.log(err);
           setErrorMsg(err.response.data.message);
           setIsLoggingIn(false);
         });
@@ -112,15 +109,15 @@ const Login = ({ show, setShow, showReg, setShowReg }) => {
         </div>
         <div className="modal-footer">
           Not a member? Sign up
-          <a
-            href="#"
+          <span
+            className="register-login"
             onClick={() => {
               setShow(false);
               setShowReg(true);
             }}
           >
             here
-          </a>
+          </span>
           .
         </div>
       </Modal>

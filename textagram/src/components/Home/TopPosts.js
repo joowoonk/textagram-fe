@@ -14,7 +14,7 @@ const TopPosts = () => {
       count[`${hashtags[i]}`] = 1;
     }
   }
-  //   console.log(count);
+
   var sortable = [];
   for (var hashtag in count) {
     sortable.push([hashtag, count[hashtag]]);

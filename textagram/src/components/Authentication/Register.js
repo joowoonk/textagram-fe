@@ -4,13 +4,12 @@ import "../styles/app.scss";
 import { Modal, Button, Form } from "react-bootstrap";
 import Loader from "react-loader-spinner";
 import { baseURL } from "../utils/config";
-import { useHistory } from "react-router-dom";
+
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/actions";
 
 function Register({ setShowReg, showReg, setShow }) {
   const dispatch = useDispatch();
-  const { push } = useHistory();
 
   const handleClose = () => {
     setShowReg(false);
@@ -37,7 +36,6 @@ function Register({ setShowReg, showReg, setShow }) {
       setErrorMsg("Email, Password & Username are required");
     } else {
       setIsLoggingIn(true);
-      console.log({ newUser });
       axios
         .post(`${baseURL}/auth/register`, newUser)
         .then((res) => {
@@ -48,7 +46,6 @@ function Register({ setShowReg, showReg, setShow }) {
           dispatch(login());
         })
         .catch((err) => {
-          console.log({ err });
           setIsLoggingIn(false);
           setErrorMsg("Email is already associated with an Artsy account.");
         });
@@ -116,15 +113,15 @@ function Register({ setShowReg, showReg, setShow }) {
         <Modal.Footer className="footer">
           <p>
             Log in{" "}
-            <a
-              href="#"
+            <span
+              className="register-login"
               onClick={() => {
                 setShowReg(false);
                 setShow(true);
               }}
             >
               here
-            </a>
+            </span>
             .
           </p>
         </Modal.Footer>

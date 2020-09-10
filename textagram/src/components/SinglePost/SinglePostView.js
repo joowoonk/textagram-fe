@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   getPostById,
   getUser,
@@ -23,9 +23,8 @@ const SinglePostView = ({ show, setShow }) => {
 
   const dispatch = useDispatch();
   const post = useSelector((state) => state.postReducer.post);
-  console.log({ post });
+
   const admin = useSelector((state) => state.usersReducer.user.is_admin);
-  console.log(admin);
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
@@ -154,7 +153,6 @@ const SinglePostView = ({ show, setShow }) => {
   }
 
   const votesColor = () => {
-    console.log(post.votes.votes);
     if (post.votes.votes >= 0) {
       return "#000000";
     } else if (-5 <= post.votes.votes && post.votes.votes < 0) {

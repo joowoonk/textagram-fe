@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/app.scss";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { IoIosSearch } from "react-icons/io";
 import {
