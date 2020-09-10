@@ -18,7 +18,7 @@ import decodedToken from "../utils/decodedToken";
 import DeletePostModal from "./DeletePostModal";
 import TopPosts from "../Home/TopPosts";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
-const SinglePostView = ({ setShow }) => {
+const SinglePostView = ({ show, setShow }) => {
   const match = useParams();
 
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ const SinglePostView = ({ setShow }) => {
 
   useEffect(() => {
     dispatch(getUser());
-  }, [dispatch]);
+  }, [dispatch, show]);
 
   useEffect(() => {
     dispatch(setBookmarksID());

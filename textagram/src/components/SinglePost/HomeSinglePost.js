@@ -1,7 +1,7 @@
 import React from "react";
 import SinglePostView from "./SinglePostView";
 import { useParams, useHistory } from "react-router-dom";
-export default function HomeSinglePost({ setShow }) {
+export default function HomeSinglePost({ show, setShow }) {
   const { goBack } = useHistory();
   const params = useParams();
   //   console.log(history);
@@ -15,7 +15,7 @@ export default function HomeSinglePost({ setShow }) {
         }}
       ></div>
       <div className="space"></div>
-      <SinglePostView setShow={setShow} />
+      <SinglePostView show={show} setShow={setShow} />
       <div
         className="hashtags"
         onClick={() => {

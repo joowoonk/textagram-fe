@@ -33,7 +33,7 @@ function App() {
         <Home />
       </Route>
       <PrivateRoute exact path="/posts/:postId">
-        <HomeSinglePost setShow={setShow} />
+        <HomeSinglePost show={show} setShow={setShow} />
       </PrivateRoute>
       <PrivateRoute exact path="/edit/:postId">
         <EditPost />

@@ -31,6 +31,7 @@ export default function EditFeelingListModal({ updatedPost, setUpdatedPost }) {
                     ...updatedPost,
                     feeling: `${feeling.face} ${feeling.feeling}`,
                   });
+                  return setShow(false);
                 }}
                 className="feeling"
                 key={feeling.id}
