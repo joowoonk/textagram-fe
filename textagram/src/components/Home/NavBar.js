@@ -26,7 +26,7 @@ const NavBar = ({ setShow }) => {
 
   const { push } = useHistory();
   return (
-    <nav className="nav-bar">
+    <nav id="top" className="nav-bar">
       <div className="nav-logo-search">
         <a onClick={() => push("/")} className="logo">
           Textagram
