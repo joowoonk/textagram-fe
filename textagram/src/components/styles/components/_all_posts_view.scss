@@ -117,11 +117,10 @@
   justify-content: center;
 }
 @media only screen and (max-width: 1000px) {
-  .posts {
-    display: block;
-    margin: 0 auto;
-    // justify-content: center;
-  }
+  // .card-posts {
+  //   margin: 10px auto;
+  //   width: 500px;
+  // }
 }
 
 @media only screen and (max-width: 600px) {
@@ -129,9 +128,12 @@
     display: block;
     margin: 0 auto;
     width: 100%;
-
     .card-posts {
       width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2% auto;
     }
   }
 }

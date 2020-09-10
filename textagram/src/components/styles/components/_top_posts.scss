@@ -2,14 +2,11 @@
   margin: 10px 20px;
   height: 90vh;
 
-  @media only screen and (max-width: 1000px) {
-    .top-hash-card {
-      display: none;
-    }
-  }
-  .top-hash-card {
+  .top-hash-card,
+  .top-post-card {
     width: 300px;
     background-color: white;
+    margin-bottom: 10px;
 
     .card-top {
       display: flex;
@@ -17,17 +14,32 @@
       justify-content: center;
       align-content: center;
       color: navy;
-      h5 {
-        margin: 0 3px;
-      }
     }
     .card-bottom {
-      padding: 10px;
-
+      margin: 10px;
+      text-decoration: none;
+      h6 {
+        color: black;
+      }
+      h6:hover {
+        color: black;
+        text-decoration: none;
+      }
       p {
         margin: -5px 0 0 0;
         color: silver;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .top-posts {
+    display: none;
+    background-color: red;
+    .top-post-card,
+    .top-hash-card {
+      display: none;
     }
   }
 }
