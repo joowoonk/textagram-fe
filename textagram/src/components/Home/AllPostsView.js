@@ -29,6 +29,7 @@ const AllPostsView = ({ show, setShow }) => {
     params.page = 1;
     setCurrentPage(params.page);
   }
+
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;

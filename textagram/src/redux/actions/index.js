@@ -6,7 +6,7 @@ export const REMOVE_USER = "REMOVE_USER";
 export const FETCH_USER = "FETCH_USER";
 export const LOGIN_USER = "LOGIN_USER";
 export const SET_USER_BOOKMARKS = "SET_USER_BOOKMARKS";
-
+export const SET_ALL_THE_HASHTAGS = "SET_ALL_THE_HASHTAGS";
 export const SET_SINGLE_POST_VIEW = "SET_SINGLE_POST_VIEW";
 export const SET_BOOKMARKS_ID = "SET_BOOKMARKS_ID";
 export const SET_POST_VIEW = "SET_POST_VIEW";
@@ -30,6 +30,7 @@ export const getPosts = () => (dispatch) => {
     .then((res) => {
       // console.log(res);
       dispatch({ type: SET_POST_VIEW, payload: res.data.posts });
+      dispatch({ type: SET_ALL_THE_HASHTAGS, payload: res.data.posts });
     })
     .catch((err) => {
       console.log(err);

@@ -1,4 +1,8 @@
-import { SET_SINGLE_POST_VIEW, SET_POST_VIEW } from "../actions/index";
+import {
+  SET_SINGLE_POST_VIEW,
+  SET_POST_VIEW,
+  SET_ALL_THE_HASHTAGS,
+} from "../actions/index";
 
 const initialState = {
   post: {
@@ -11,6 +15,7 @@ const initialState = {
     upVoted: [],
   },
   posts: [],
+  all_hashtags: [],
   isFetching: false,
   login: false,
 };
@@ -27,6 +32,17 @@ export const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: action.payload,
+      };
+    case SET_ALL_THE_HASHTAGS:
+      let allHashtags = [];
+      for (let i = 0; i < action.payload.length; i++) {
+        for (let k = 0; k < action.payload[i].hashtags.length; k++) {
+          allHashtags.push(action.payload[i].hashtags[k]);
+        }
+      }
+      return {
+        ...state,
+        all_hashtags: allHashtags,
       };
     default:
       return state;
