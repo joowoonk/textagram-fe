@@ -92,7 +92,6 @@ const Login = ({ show, setShow, showReg, setShowReg }) => {
         </Modal.Body>
         <div className="modal-footer">
           <Button
-            type="button"
             className="btn btn-primary"
             block
             size="lg"

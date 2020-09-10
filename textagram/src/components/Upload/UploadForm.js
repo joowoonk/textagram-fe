@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { getUser } from "../../redux/actions/index";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
-import { withRouter, useHistory } from "react-router-dom";
-import decodedToken from "../utils/decodedToken";
-import { Form, Button, Row, Col, Image } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+
+import { Form, Button } from "react-bootstrap";
 import FeelingListModal from "./FeelingListModal";
 
 export default function UploadForm() {
@@ -62,7 +62,7 @@ export default function UploadForm() {
 
   return (
     <>
-      <Form className="card" onSubmit={handleSubmit}>
+      <Form className="upload-card" onSubmit={handleSubmit}>
         <Form.Group controlId="formTitle">
           <Form.Control
             size="lg"

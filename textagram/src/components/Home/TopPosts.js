@@ -24,11 +24,20 @@ const TopPosts = () => {
     return b[1] - a[1];
   });
   let topFive = sortable.splice(0, 5);
-
+  //   console.log({ topFive });
   return (
     <div className="top-posts">
-      <div className="card">
-        <BsGraphUp /> Top 5 Hashtags
+      <div className="top-hash-card">
+        <div className="card-top">
+          <BsGraphUp size="1.5em" /> <h5>Top 5 Hashtags</h5>
+        </div>
+        <hr></hr>
+        {topFive.map((hashtag) => (
+          <div className="card-bottom">
+            <h6>{hashtag[0]}</h6>
+            <p>{hashtag[1]} times being used</p>
+          </div>
+        ))}
       </div>
     </div>
   );

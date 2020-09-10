@@ -161,7 +161,7 @@ const AllPostsView = ({ show, setShow }) => {
   }
 
   return (
-    <div className="home">
+    <div className="posts">
       <div>
         {currentPosts.map((post) => {
           const votesColor = () => {
@@ -180,7 +180,7 @@ const AllPostsView = ({ show, setShow }) => {
             }
           };
           return (
-            <div key={post.id} className="cards card">
+            <div key={post.id} className="cards card-posts">
               <div className="card-top">
                 <div className="card-top-left-section">
                   <Image
@@ -249,6 +249,7 @@ const AllPostsView = ({ show, setShow }) => {
 
                   {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
                     <i
+                      style={{ color: "#A4DE02" }}
                       onClick={() => unbookmarkIt(post.id)}
                       className="fas fa-bookmark"
                     ></i>
@@ -263,7 +264,7 @@ const AllPostsView = ({ show, setShow }) => {
               <Link
                 className="title"
                 to={`/posts/${post.id}`}
-                onClick={window.scrollTo(0, 0)}
+                onClick={() => window.scrollTo(0, 0)}
               >
                 <div className="card-body body">
                   <h2

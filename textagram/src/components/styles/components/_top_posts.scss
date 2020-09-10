@@ -1,10 +1,33 @@
 .top-posts {
-  margin: 0 20px;
+  margin: 10px 20px;
   height: 90vh;
 
-  .card {
-    height: 460px;
+  @media only screen and (max-width: 1000px) {
+    .top-hash-card {
+      display: none;
+    }
+  }
+  .top-hash-card {
     width: 300px;
     background-color: white;
+
+    .card-top {
+      display: flex;
+      padding: 10px 0 0 0;
+      justify-content: center;
+      align-content: center;
+      color: navy;
+      h5 {
+        margin: 0 3px;
+      }
+    }
+    .card-bottom {
+      padding: 10px;
+
+      p {
+        margin: -5px 0 0 0;
+        color: silver;
+      }
+    }
   }
 }

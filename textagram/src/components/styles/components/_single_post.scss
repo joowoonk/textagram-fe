@@ -1,53 +1,39 @@
-.single-post-view {
-  .card {
-    .ds-card-top-section {
-      display: flex;
-      padding: 10px 0 10px 10px;
-      border-bottom: 1px solid #f7f2e7;
+.card {
+  .ds-card-top-section {
+    display: flex;
+    padding: 10px 0 10px 10px;
+    border-bottom: 1px solid #f7f2e7;
 
-      .top-left-section {
-        display: flex;
-        align-items: center;
+    .top-left-section {
+      display: flex;
+      align-items: center;
+    }
+
+    .top-right-section {
+      margin-left: 80px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      font-family: "Yanone Kaffeesatz", sans-serif;
+      font-size: 1.2rem;
+
+      .vote-number {
+        font-size: 22px;
+        margin-bottom: 0;
       }
 
-      .top-right-section {
-        margin-left: 80px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
-        font-family: "Yanone Kaffeesatz", sans-serif;
-        font-size: 1.2rem;
-
-        #dropdown-basic {
-          background: none;
-          border: none;
-        }
-
-        #dropdown-basic:focus {
-          border-color: none !important;
-          box-shadow: none !important;
-        }
-        #dropdown-basic::after {
-          display: none !important;
-        }
-        .vote-number {
-          font-size: 22px;
-          margin-bottom: 0;
-        }
-
-        .fas,
-        .far {
-          cursor: pointer;
-        }
+      .fas,
+      .far {
+        cursor: pointer;
       }
     }
-    .card-body {
-      .single-post-context {
-        margin: 2% 0;
-        font-size: 1.2rem;
-        font-family: "Raleway", sans-serif;
-      }
+  }
+  .card-body {
+    .single-post-context {
+      margin: 2% 0;
+      font-size: 1.2rem;
+      font-family: "Raleway", sans-serif;
     }
   }
 }

@@ -14,7 +14,7 @@ export default function FeelingListModal({ newPost, setNewPost }) {
         {!newPost.feeling && "Feeling"}
       </Button>
 
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal show={show} onHide={handleClose} className="feeling-box" centered>
         <Modal.Header closeButton className="header">
           <Modal.Title> How are you feeling?</Modal.Title>
         </Modal.Header>
@@ -27,6 +27,7 @@ export default function FeelingListModal({ newPost, setNewPost }) {
                     ...newPost,
                     feeling: `${feeling.face} ${feeling.feeling}`,
                   });
+                  setShow(false);
                 }}
                 className="feeling"
                 key={feeling.id}

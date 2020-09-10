@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/app.scss";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { IoIosSearch } from "react-icons/io";
 import {
@@ -24,13 +24,12 @@ const NavBar = ({ setShow }) => {
     window.location.href = "/page/1";
   };
 
-  const { push } = useHistory();
   return (
     <nav id="top" className="nav-bar">
       <div className="nav-logo-search">
-        <a onClick={() => push("/")} className="logo">
+        <Link to={"/"} className="logo">
           Textagram
-        </a>
+        </Link>
 
         <form className="nav-search">
           <input

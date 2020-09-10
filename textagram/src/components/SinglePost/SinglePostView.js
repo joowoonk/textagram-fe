@@ -7,6 +7,7 @@ import {
   setBookmarksID,
   setUpVotesID,
   setDownVotesID,
+  getPosts,
 } from "../../redux/actions";
 import moment from "moment";
 import { Image, Dropdown } from "react-bootstrap";
@@ -50,6 +51,7 @@ const SinglePostView = ({ show, setShow }) => {
 
   useEffect(() => {
     dispatch(getUser());
+    dispatch(getPosts());
   }, [dispatch, show]);
 
   useEffect(() => {
@@ -168,11 +170,11 @@ const SinglePostView = ({ show, setShow }) => {
     }
   };
   return (
-    <div className="single-page">
-      <div key={post.id} className="single-post-view">
-        <div className="card">
-          <div className="ds-card-top-section">
-            <div className="top-left-section">
+    <div className="posts">
+      <div>
+        <div key={post.id} className="card card-posts">
+          <div className="card-top">
+            <div className="card-top-left-section">
               <Image
                 className="noselect image"
                 roundedCircle
@@ -197,7 +199,7 @@ const SinglePostView = ({ show, setShow }) => {
               </div>
             </div>
 
-            <div className="top-right-section">
+            <div className="card-top-right-section">
               {upVotesPostId && upVotesPostId.includes(post.id) ? (
                 <i
                   onClick={() => {
@@ -238,6 +240,7 @@ const SinglePostView = ({ show, setShow }) => {
               )}
               {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
                 <i
+                  style={{ color: "#A4DE02" }}
                   onClick={() => {
                     unbookmarkIt(post.id);
                   }}
@@ -310,15 +313,17 @@ const SinglePostView = ({ show, setShow }) => {
           className="bottom-section"
           placeholder="Add a comment..."
         ></input> */}
+
+          {post.comments.length > 0 && (
+            <div className="card">
+              {post.comments.map((comment, index) => {
+                return <Comment comment={comment} key={index} />;
+              })}
+            </div>
+          )}
         </div>
-        {post.comments.length > 0 && (
-          <div className="card">
-            {post.comments.map((comment, index) => {
-              return <Comment comment={comment} key={index} />;
-            })}
-          </div>
-        )}
       </div>
+
       <TopPosts />
     </div>
   );

@@ -1,39 +1,59 @@
-.card {
+.card-posts {
   margin: 10px auto;
   width: 600px;
   display: flex;
   flex-direction: column;
-  // padding: 30px 30px;
   background-color: white;
 
   .card-top {
     padding: 10px 1%;
     border-bottom: 1px solid #f7f2e7;
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+
+    p {
+      margin-bottom: 0;
+    }
 
     .card-top-left-section {
       display: flex;
       align-items: center;
+      width: 76%;
+      .post-user {
+        display: flex;
+        flex-direction: column;
+        .fake-id {
+          font-size: 0.9rem;
+          margin: 0;
+        }
+      }
     }
+
     .card-top-right-section {
-      margin-left: 100px;
       display: flex;
-      justify-content: space-around;
-      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      width: 24%;
       align-items: center;
       font-size: 1.2rem;
     }
   }
-  .post-user {
-    display: flex;
-    flex-direction: column;
-    .fake-id {
-      font-size: 0.9rem;
-      margin: 0;
-      width: 300px;
-    }
+
+  #dropdown-basic {
+    background: none;
+    border: none;
+    margin: 0 -10px;
   }
 
+  #dropdown-basic:focus {
+    border-color: none !important;
+    box-shadow: none !important;
+  }
+  #dropdown-basic::after {
+    display: none !important;
+  }
   .body {
     background: white;
     border-bottom: 1px solid #f7f2e7;
@@ -90,4 +110,28 @@
 
 .cards:hover {
   border: 1px solid black;
+}
+.posts {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+}
+@media only screen and (max-width: 1000px) {
+  .posts {
+    display: block;
+    margin: 0 auto;
+    // justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .posts {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+
+    .card-posts {
+      width: 100%;
+    }
+  }
 }

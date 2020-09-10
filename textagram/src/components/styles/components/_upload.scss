@@ -1,5 +1,11 @@
-.card {
+.upload-card {
   width: 600px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 2%;
+  justify-content: center;
+  margin: 1% auto;
   .text-area {
     border: none;
     font-family: "Raleway", sans-serif;
@@ -19,7 +25,7 @@
 
   .text-area::placeholder {
     font-family: "Raleway", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 
@@ -30,27 +36,35 @@
 }
 
 .feeling-modal {
-  width: 30%;
+  width: 35%;
   margin: -20px 0 0 10px;
 }
+.feeling-box {
+  width: auto;
+  .feeling-body {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
 
-.feeling-body {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: center;
+    .feeling {
+      width: 48%;
+      border: 2px solid $main-green;
+      padding: 2%;
+      margin: 2px;
+      border-radius: 10px;
+      font-weight: bold;
+      color: white;
+      background-color: $main-green;
+    }
+    .feeling:hover {
+      background-color: green;
+    }
 
-  .feeling {
-    width: 49%;
-    border: 2px solid $main-green;
-    padding: 2%;
-    margin: 2px;
-    border-radius: 10px;
-    font-weight: bold;
-    color: white;
-    background-color: $main-green;
-  }
-  .feeling:hover {
-    background-color: green;
+    @media only screen and (max-width: 600px) {
+      .feeling {
+        width: 98%;
+      }
+    }
   }
 }

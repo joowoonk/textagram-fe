@@ -72,3 +72,11 @@ nav a:hover {
   color: black !important;
   //   outline-offset: none !important;
 }
+
+@media only screen and (max-width: 800px) {
+  .nav-bar {
+    display: none;
+    // margin: 10px auto;
+    // width: 100%;
+  }
+}
