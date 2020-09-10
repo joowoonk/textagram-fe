@@ -11,9 +11,6 @@ const TopPosts = () => {
     return b["votes"] - a["votes"];
   });
 
-  let topFivePosts = topPosts;
-  console.log(topPosts.slice(0, 5));
-
   const hashtags = useSelector((state) => state.postReducer.all_hashtags);
   let saved = [];
   let count = {};
@@ -40,7 +37,7 @@ const TopPosts = () => {
     <div className="top-posts">
       <div className="top-post-card">
         <div className="card-top">
-          <BsTrophy size="1.5em" style={{ margin: "0 1%" }} />{" "}
+          <BsTrophy size="1.5em" style={{ margin: "0 1%", color: "gold" }} />{" "}
           <h5>Top 5 Posts</h5>
         </div>
         <hr></hr>
@@ -59,7 +56,7 @@ const TopPosts = () => {
       </div>
       <div className="top-hash-card">
         <div className="card-top">
-          <BsGraphUp size="1.5em" style={{ margin: "0 1%" }} />{" "}
+          <BsGraphUp size="1.5em" style={{ margin: "0 1%", color: "red" }} />{" "}
           <h5>Top 5 Hashtags</h5>
         </div>
         <hr></hr>

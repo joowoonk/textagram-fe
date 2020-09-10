@@ -64,11 +64,25 @@ export default function UploadForm() {
     <>
       <Form className="upload-card" onSubmit={handleSubmit}>
         <Form.Group controlId="formTitle">
+          {messageTitle && (
+            <div
+              style={{
+                marginLeft: "20px",
+                // marginBottom: "-20px",
+                zIndex: 1,
+                color: "red",
+                fontFamily: "bold",
+              }}
+            >
+              TITLE IS MISSING!
+            </div>
+          )}
           <Form.Control
+            as="textarea"
             size="lg"
             type="text"
             style={{
-              fontSize: 50,
+              fontSize: 38,
               border: "none",
               outline: "none",
               outlineOffset: "none",
@@ -81,39 +95,32 @@ export default function UploadForm() {
             onChange={handleChange}
           />
         </Form.Group>
-        {messageTitle && (
-          <div
-            style={{
-              marginLeft: "10px",
-              marginTop: "-30px",
-              color: "red",
-            }}
-          >
-            Title is missing!
-          </div>
-        )}
+
         <FeelingListModal newPost={newPost} setNewPost={setNewPost} />
         <Form.Group controlId="formHashtags">
           <Form.Control
+            as="textarea"
             placeholder="Add Up to 5 tags... eg: #Inpiration #Programming"
             name="hashtags"
             size="md"
             type="text"
+            wrap="hard"
             autoComplete="off"
             value={newPost.hashtags}
             onChange={handleChange}
-            className="text-area no-border"
+            className="hash-area text-area no-border"
           />
         </Form.Group>
         {messageHashTags && (
           <div
             style={{
               marginLeft: "10px",
-              marginTop: "-30px",
+              marginTop: "-20px",
+              zIndex: 1,
               color: "red",
             }}
           >
-            Hashtags should be up to 5 only!
+            TOO MANY HASHTAGS! ONLY UP TO 5!
           </div>
         )}
         <Form.Group controlId="formContext">
@@ -129,7 +136,7 @@ export default function UploadForm() {
           )}
           <Form.Control
             as="textarea"
-            style={{ height: 500 }}
+            style={{ height: 300 }}
             placeholder="Would you like to shine a light to people who are lost for a bit?"
             name="context"
             value={newPost.context}

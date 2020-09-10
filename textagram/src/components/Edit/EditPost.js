@@ -101,9 +101,10 @@ export default function EditPost() {
 
   return (
     <>
-      <Form className="card" onSubmit={handleSubmit}>
+      <Form className="update-card" onSubmit={handleSubmit}>
         <Form.Group controlId="formTitle">
           <Form.Control
+            as="textarea"
             size="lg"
             type="text"
             style={{
@@ -114,6 +115,7 @@ export default function EditPost() {
             }}
             name="title"
             autoComplete="off"
+            // wrap="hard"
             className="font-weight-bold title-area"
             placeholder="New post title here..."
             value={updatedPost.title}
@@ -138,6 +140,7 @@ export default function EditPost() {
         <Form.Group controlId="formHashtags">
           <Form.Control
             placeholder="Add Up to 5 tags... eg: #Inpiration #Programming"
+            as="textarea"
             name="hashtags"
             size="md"
             type="text"

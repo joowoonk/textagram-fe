@@ -5,21 +5,21 @@ export default function HomeSinglePost({ show, setShow }) {
   const { goBack } = useHistory();
 
   return (
-    <div>
-      {/* <div
+    <div className="single-page">
+      <div
         className="go-back"
         onClick={() => {
           goBack();
         }}
-      ></div> */}
-      {/* <div className="space"></div> */}
+      ></div>
+      <div className="space"></div>
       <SinglePostView show={show} setShow={setShow} />
-      {/* <div
+      <div
         className="hashtags"
         onClick={() => {
           goBack();
         }}
-      ></div> */}
+      ></div>
     </div>
   );
 }

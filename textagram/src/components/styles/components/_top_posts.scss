@@ -7,13 +7,13 @@
     width: 300px;
     background-color: white;
     margin-bottom: 10px;
+    padding: 10px 0;
 
     .card-top {
       display: flex;
       padding: 10px 0 0 0;
       justify-content: center;
       align-content: center;
-      color: navy;
     }
     .card-bottom {
       margin: 10px;
@@ -26,7 +26,7 @@
         text-decoration: none;
       }
       p {
-        margin: -5px 0 0 0;
+        margin: 5px 0 0 0;
         color: silver;
       }
     }
