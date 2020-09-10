@@ -45,8 +45,6 @@ const Login = ({ show, setShow, showReg, setShowReg }) => {
           setIsLoggingIn(false);
           setErrorMsg("");
           handleClose();
-
-          push(`/page/1`);
         })
         .catch((err) => {
           //   console.log(err);

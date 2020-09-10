@@ -9,6 +9,7 @@ import RedirectRoute from "./components/utils/RedirectRoute";
 import HomeSinglePost from "./components/SinglePost/HomeSinglePost";
 import UploadForm from "./components/Upload/UploadForm";
 import EditPost from "./components/Edit/EditPost";
+import AllPostsView from "./components/Home/AllPostsView";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -29,7 +30,7 @@ function App() {
 
       <RedirectRoute exact path="/"></RedirectRoute>
       <Route exact path="/page/:page">
-        <Home show={show} setShow={setShow} />
+        <Home />
       </Route>
       <PrivateRoute exact path="/posts/:postId">
         <HomeSinglePost setShow={setShow} />

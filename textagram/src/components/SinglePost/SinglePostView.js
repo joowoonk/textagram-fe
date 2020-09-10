@@ -16,6 +16,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import decodedToken from "../utils/decodedToken";
 import DeletePostModal from "./DeletePostModal";
+import TopPosts from "../Home/TopPosts";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
 const SinglePostView = ({ setShow }) => {
   const match = useParams();
@@ -157,165 +158,170 @@ const SinglePostView = ({ setShow }) => {
     if (post.votes.votes >= 0) {
       return "#000000";
     } else if (-5 <= post.votes.votes && post.votes.votes < 0) {
-      return "#3C3C3C";
+      return "#5E5E5E";
     } else if (-10 <= post.votes.votes && post.votes.votes < -5) {
-      return "#7C7C7C";
+      return "#8d8d8d";
     } else if (-15 <= post.votes.votes && post.votes.votes < -10) {
-      return "#CBCBCB";
+      return "#bcbcbc";
     } else if (-20 <= post.votes.votes && post.votes.votes < -15) {
-      return "#E7E7E7";
+      return "#ebebeb";
     } else {
       return "white";
     }
   };
   return (
-    <div key={post.id} className="single-post-view">
-      <div className="card">
-        <div className="ds-card-top-section">
-          <div className="top-left-section">
-            <Image
-              className="noselect image"
-              roundedCircle
-              src={post.profile_picture}
-              style={{ height: "25px", width: "25px", margin: "0 10px" }}
-              alt={`user-id:${post.id}`}
-            />
-            <div className="post-user">
-              <p className="noselect fake-id ">
-                {post.fake_id} is feeling {post.feeling}.
-              </p>
-              <p
-                style={{
-                  color: "gray",
-                  fontSize: "10px",
-                  textTransform: "uppercase",
-                  margin: 0,
-                }}
-              >
-                {moment(post.created_at).fromNow()}
-              </p>
+    <div className="single-page">
+      <div key={post.id} className="single-post-view">
+        <div className="card">
+          <div className="ds-card-top-section">
+            <div className="top-left-section">
+              <Image
+                className="noselect image"
+                roundedCircle
+                src={post.profile_picture}
+                style={{ height: "25px", width: "25px", margin: "0 10px" }}
+                alt={`user-id:${post.id}`}
+              />
+              <div className="post-user">
+                <p className="noselect fake-id ">
+                  {post.fake_id} is feeling {post.feeling}.
+                </p>
+                <p
+                  style={{
+                    color: "gray",
+                    fontSize: "10px",
+                    textTransform: "uppercase",
+                    margin: 0,
+                  }}
+                >
+                  {moment(post.created_at).fromNow()}
+                </p>
+              </div>
+            </div>
+
+            <div className="top-right-section">
+              {upVotesPostId && upVotesPostId.includes(post.id) ? (
+                <i
+                  onClick={() => {
+                    cancelUpVotePost(post.id);
+                  }}
+                  style={{ color: "green" }}
+                  className="fas fa-arrow-up like"
+                ></i>
+              ) : (
+                <i
+                  onClick={() => {
+                    upVotePost(post.id);
+                    resetVotes(post.id);
+                  }}
+                  style={{ color: "lightgrey" }}
+                  className="fas fa-arrow-up like"
+                ></i>
+              )}
+              <p className="vote-number">{post.votes.votes}</p>
+
+              {downVotesPostId && downVotesPostId.includes(post.id) ? (
+                <i
+                  onClick={() => {
+                    cancelDownVotePost(post.id);
+                  }}
+                  style={{ color: "red" }}
+                  className="fas fa-arrow-down like"
+                ></i>
+              ) : (
+                <i
+                  onClick={() => {
+                    downVotePost(post.id);
+                    resetVotes(post.id);
+                  }}
+                  style={{ color: "lightgrey" }}
+                  className="fas fa-arrow-down like"
+                ></i>
+              )}
+              {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
+                <i
+                  onClick={() => {
+                    unbookmarkIt(post.id);
+                  }}
+                  className="fas fa-bookmark"
+                ></i>
+              ) : (
+                <i
+                  onClick={() => bookmarkIt(post.id)}
+                  className="far fa-bookmark"
+                ></i>
+              )}
+              {(post.user_id === decodedToken() || admin) && (
+                <Dropdown alignRight variant="info">
+                  <Dropdown.Toggle variant="none" id="dropdown-basic">
+                    <BsThreeDots size="1.2em" />
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      postId={post.id}
+                      href={`/edit/${match.postId}`}
+                    >
+                      Edit
+                    </Dropdown.Item>
+                    <DeletePostModal post_id={post.id} />
+                  </Dropdown.Menu>
+                </Dropdown>
+              )}
             </div>
           </div>
+          <div className="card-body body">
+            <h2
+              style={{ color: `${votesColor()}`, textTransform: "capitalize" }}
+            >
+              {post.title}
+            </h2>
 
-          <div className="top-right-section">
-            {upVotesPostId && upVotesPostId.includes(post.id) ? (
-              <i
-                onClick={() => {
-                  cancelUpVotePost(post.id);
-                }}
-                style={{ color: "green" }}
-                className="fas fa-arrow-up like"
-              ></i>
-            ) : (
-              <i
-                onClick={() => {
-                  upVotePost(post.id);
-                  resetVotes(post.id);
-                }}
-                style={{ color: "lightgrey" }}
-                className="fas fa-arrow-up like"
-              ></i>
-            )}
-            <p className="vote-number">{post.votes.votes}</p>
-
-            {downVotesPostId && downVotesPostId.includes(post.id) ? (
-              <i
-                onClick={() => {
-                  cancelDownVotePost(post.id);
-                }}
-                style={{ color: "red" }}
-                className="fas fa-arrow-down like"
-              ></i>
-            ) : (
-              <i
-                onClick={() => {
-                  downVotePost(post.id);
-                  resetVotes(post.id);
-                }}
-                style={{ color: "lightgrey" }}
-                className="fas fa-arrow-down like"
-              ></i>
-            )}
-            {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
-              <i
-                onClick={() => {
-                  unbookmarkIt(post.id);
-                }}
-                className="fas fa-bookmark"
-              ></i>
-            ) : (
-              <i
-                onClick={() => bookmarkIt(post.id)}
-                className="far fa-bookmark"
-              ></i>
-            )}
-            {(post.user_id === decodedToken() || admin) && (
-              <Dropdown alignRight variant="info">
-                <Dropdown.Toggle variant="none" id="dropdown-basic">
-                  <BsThreeDots size="1.2em" />
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item
-                    postId={post.id}
-                    href={`/edit/${match.postId}`}
+            <div className="hash-tags ">
+              {post.hashtags.map((hashtag, index) => {
+                return (
+                  <>
+                    {hashtag.length <= 25 ? (
+                      <span key={index} className="hash-tag">
+                        {hashtag}
+                      </span>
+                    ) : (
+                      <span key={index} className="hash-tag">{`${hashtag.slice(
+                        0,
+                        25
+                      )}...`}</span>
+                    )}
+                  </>
+                );
+              })}
+            </div>
+            {post.context &&
+              post.context.map((text) => {
+                return (
+                  <p
+                    style={{ color: votesColor(post.votes.votes) }}
+                    className="single-post-context"
                   >
-                    Edit
-                  </Dropdown.Item>
-                  <DeletePostModal post_id={post.id} />
-                </Dropdown.Menu>
-              </Dropdown>
-            )}
+                    {text}
+                  </p>
+                );
+              })}
           </div>
-        </div>
-        <div className="card-body body">
-          <h2 style={{ color: `${votesColor()}`, textTransform: "capitalize" }}>
-            {post.title}
-          </h2>
+          <div className="card-body">{post.comments.length} comments</div>
 
-          <div className="hash-tags ">
-            {post.hashtags.map((hashtag, index) => {
-              return (
-                <>
-                  {hashtag.length <= 25 ? (
-                    <span key={index} className="hash-tag">
-                      {hashtag}
-                    </span>
-                  ) : (
-                    <span key={index} className="hash-tag">{`${hashtag.slice(
-                      0,
-                      25
-                    )}...`}</span>
-                  )}
-                </>
-              );
-            })}
-          </div>
-          {post.context &&
-            post.context.map((text) => {
-              return (
-                <p
-                  style={{ color: votesColor(post.votes.votes) }}
-                  className="single-post-context"
-                >
-                  {text}
-                </p>
-              );
-            })}
-        </div>
-        <div className="card-body">{post.comments.length} comments</div>
-
-        {/* <input
+          {/* <input
           className="bottom-section"
           placeholder="Add a comment..."
         ></input> */}
-      </div>
-      {post.comments.length > 0 && (
-        <div className="card">
-          {post.comments.map((comment, index) => {
-            return <Comment comment={comment} key={index} />;
-          })}
         </div>
-      )}
+        {post.comments.length > 0 && (
+          <div className="card">
+            {post.comments.map((comment, index) => {
+              return <Comment comment={comment} key={index} />;
+            })}
+          </div>
+        )}
+      </div>
+      <TopPosts />
     </div>
   );
 };

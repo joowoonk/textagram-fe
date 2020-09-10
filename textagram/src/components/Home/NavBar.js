@@ -24,10 +24,11 @@ const NavBar = ({ setShow }) => {
     window.location.href = "/page/1";
   };
 
+  const { push } = useHistory();
   return (
     <nav className="nav-bar">
       <div className="nav-logo-search">
-        <a onClick={() => (window.location.href = "/page/1")} className="logo">
+        <a onClick={() => push("/")} className="logo">
           Textagram
         </a>
 
