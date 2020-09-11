@@ -61,7 +61,7 @@ export default function UploadForm() {
   };
 
   return (
-    <>
+    <div className="form">
       <Form className="upload-card" onSubmit={handleSubmit}>
         <Form.Group controlId="formTitle">
           {messageTitle && (
@@ -156,16 +156,7 @@ export default function UploadForm() {
         >
           Publish
         </Button>
-        {/* <Button
-        block
-        disabled={true}
-        className="submit"
-        variant=""
-        type="submit"
-      >
-        Preview
-      </Button> */}
       </div>
-    </>
+    </div>
   );
 }

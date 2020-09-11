@@ -32,11 +32,11 @@ const TopPosts = () => {
     return b[1] - a[1];
   });
   let topFive = sortable.slice(0, 5);
-  //   console.log({ topFive });
+
   return (
-    <div className="top-posts">
-      <div className="top-post-card">
-        <div className="card-top">
+    <div className="top-posts stick">
+      <div className="top-post-card ">
+        <div className="card-top ">
           <BsTrophy size="1.5em" style={{ margin: "0 1%", color: "gold" }} />{" "}
           <h5>Top 5 Posts</h5>
         </div>
@@ -54,15 +54,25 @@ const TopPosts = () => {
           </Link>
         ))}
       </div>
-      <div className="top-hash-card">
+      <div className="top-hash-card ">
         <div className="card-top">
           <BsGraphUp size="1.5em" style={{ margin: "0 1%", color: "red" }} />{" "}
           <h5>Top 5 Hashtags</h5>
         </div>
         <hr></hr>
-        {topFive.map((hashtag) => (
+        {topFive.map((hashtag, index) => (
           <div className="card-bottom">
-            <h6>{hashtag[0]}</h6>
+            {hashtag[0].length <= 25 ? (
+              <h6 key={index} className="hash-tag">
+                {hashtag[0]}
+              </h6>
+            ) : (
+              <h6 key={index} className="hash-tag">{`${hashtag[0].slice(
+                0,
+                25
+              )}...`}</h6>
+              // <h6>{hashtag[0]}</h6>
+            )}
             <p>{hashtag[1]} times being used</p>
           </div>
         ))}

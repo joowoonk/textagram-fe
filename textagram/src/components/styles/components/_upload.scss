@@ -7,6 +7,7 @@
   padding: 2%;
   justify-content: center;
   margin: 1% auto;
+
   .text-area {
     border: none;
     font-family: "Raleway", sans-serif;
@@ -17,7 +18,9 @@
     // word-break: break-all;
   }
   .title-area {
-    height: 80px;
+    height: 60px;
+    line-height: 50px;
+
     // word-break: break-all; NOT GOOD
   }
   .hash-area {
@@ -50,8 +53,8 @@
 }
 
 .feeling-modal {
-  width: 35%;
-  margin: -20px 0 0 10px;
+  width: 50%;
+  margin: 0 0 10px;
 }
 .feeling-box {
   width: auto;
@@ -76,6 +79,11 @@
     }
   }
 }
+
+.form {
+  margin-top: 80px;
+}
+
 @media only screen and (max-width: 600px) {
   .upload-card {
     width: 100%;

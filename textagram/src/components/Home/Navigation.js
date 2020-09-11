@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/app.scss";
 import { Link } from "react-router-dom";
-import { Nav } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { IoIosSearch } from "react-icons/io";
 import {
   BsFillPersonLinesFill,
@@ -15,7 +15,7 @@ import { GiExitDoor } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/actions/index";
 
-const NavBar = ({ setShow }) => {
+const Navigation = ({ setShow }) => {
   const dispatch = useDispatch();
   const loginState = useSelector((state) => state.usersReducer.login);
 
@@ -25,7 +25,7 @@ const NavBar = ({ setShow }) => {
   };
 
   return (
-    <nav id="top" className="nav-bar">
+    <Navbar id="top" className="nav-bar" sticky="top">
       <div className="nav-logo-search">
         <Link to={"/"} className="logo">
           Textagram
@@ -75,8 +75,8 @@ const NavBar = ({ setShow }) => {
           </>
         )}
       </div>
-    </nav>
+    </Navbar>
   );
 };
 
-export default NavBar;
+export default Navigation;

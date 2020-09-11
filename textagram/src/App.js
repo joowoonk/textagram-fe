@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Login from "./components/Authentication/Login";
 import { Route } from "react-router-dom";
 import Register from "./components/Authentication/Register";
-import NavBar from "./components/Home/NavBar";
+import Navigation from "./components/Home/Navigation";
 
 import PrivateRoute from "./components/utils/PrivateRoute";
 import RedirectRoute from "./components/utils/RedirectRoute";
@@ -10,6 +10,7 @@ import HomeSinglePost from "./components/SinglePost/HomeSinglePost";
 import UploadForm from "./components/Upload/UploadForm";
 import EditPost from "./components/Edit/EditPost";
 import AllPostsView from "./components/Home/AllPostsView";
+import Bookmark from "./components/Bookmark/Bookmark";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -18,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <NavBar show={show} setShow={setShow} />{" "}
+        <Navigation show={show} setShow={setShow} />{" "}
         <Login
           show={show}
           setShow={setShow}
@@ -34,6 +35,9 @@ function App() {
       </Route>
       <PrivateRoute exact path="/posts/:postId">
         <HomeSinglePost show={show} setShow={setShow} />
+      </PrivateRoute>
+      <PrivateRoute exact path="/bookmarks/">
+        <Bookmark />
       </PrivateRoute>
       <PrivateRoute exact path="/edit/:postId">
         <EditPost />

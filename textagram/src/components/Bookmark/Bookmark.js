@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { baseURL } from "../utils/config";
 import { Image } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,35 +13,15 @@ import {
 } from "../../redux/actions";
 
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import Pagination from "./Pagination";
-import TopPosts from "./TopPosts";
-const AllPostsView = ({ show, setShow }) => {
-  const params = useParams();
-
+import TopPosts from "./../Home/TopPosts";
+const Bookmark = ({ show, setShow }) => {
   const dispatch = useDispatch();
 
-  const posts = useSelector((state) => state.postReducer.posts);
-
-  const [currentPage, setCurrentPage] = useState(params.page);
-  const [postsPerPage] = useState(10);
-
-  if (params.page === undefined) {
-    params.page = 1;
-    setCurrentPage(params.page);
-  }
-
   // Get current posts
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const user = useSelector((state) => state.usersReducer);
-  console.log({ user });
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
+  console.log({ userBookmarks });
   const bookmarkPostId = useSelector(
     (state) => state.usersReducer.bookmarkPostId
   );
@@ -165,7 +145,8 @@ const AllPostsView = ({ show, setShow }) => {
   return (
     <div className="posts">
       <div>
-        {currentPosts.map((post) => {
+        {userBookmarks.map((post) => {
+          console.log(post);
           const votesColor = () => {
             if (post.votes >= 0) {
               return "#000000";
@@ -229,7 +210,7 @@ const AllPostsView = ({ show, setShow }) => {
                       className="fas fa-arrow-up like"
                     ></i>
                   )}
-                  {post.votes}
+                  {post.votes.votes}
                   {downVotesPostId && downVotesPostId.includes(post.id) ? (
                     <i
                       onClick={() => {
@@ -298,23 +279,14 @@ const AllPostsView = ({ show, setShow }) => {
                     })}
                   </div>
                 </div>
-
-                <div className="card-body comment">
-                  {post.comments} comments
-                </div>
               </Link>
             </div>
           );
         })}
-        <Pagination
-          postsPerPage={postsPerPage}
-          totalPosts={posts.length}
-          paginate={paginate}
-        />
       </div>
       <TopPosts />
     </div>
   );
 };
 
-export default AllPostsView;
+export default Bookmark;

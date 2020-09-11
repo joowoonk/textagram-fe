@@ -47,7 +47,7 @@ function Register({ setShowReg, showReg, setShow }) {
         })
         .catch((err) => {
           setIsLoggingIn(false);
-          setErrorMsg("Email is already associated with an Artsy account.");
+          setErrorMsg("Email is already associated with an Textagram account.");
         });
     }
   };
@@ -66,7 +66,7 @@ function Register({ setShowReg, showReg, setShow }) {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <Form.Label>username</Form.Label>
+            <Form.Label style={{ margin: "6px 0" }}>username</Form.Label>
             <Form.Control
               type="username"
               onChange={handleChange}
@@ -77,14 +77,14 @@ function Register({ setShowReg, showReg, setShow }) {
               Your username can include spaces, letters, numbers, punctuations
               and special characters.
             </Form.Text>
-            <Form.Label>email</Form.Label>
+            <Form.Label style={{ margin: "10px 0" }}>email</Form.Label>
             <Form.Control
               type="email"
               onChange={handleChange}
               value={newUser.email}
               name="email"
             />
-            <Form.Label>password</Form.Label>
+            <Form.Label style={{ margin: "6px 0" }}>password</Form.Label>
             <Form.Control
               type="password"
               onChange={handleChange}

@@ -1,39 +1,43 @@
-.card {
-  .ds-card-top-section {
-    display: flex;
-    padding: 10px 0 10px 10px;
-    border-bottom: 1px solid #f7f2e7;
+// .card {
+//   .ds-card-top-section {
+//     display: flex;
+//     padding: 10px 0 10px 10px;
+//     border-bottom: 1px solid #f7f2e7;
 
-    .top-left-section {
-      display: flex;
-      align-items: center;
-    }
+//     .top-left-section {
+//       display: flex;
+//       align-items: center;
+//     }
 
-    .top-right-section {
-      margin-left: 80px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%;
-      font-family: "Yanone Kaffeesatz", sans-serif;
-      font-size: 1.2rem;
+//     .top-right-section {
+//       margin-left: 80px;
+//       display: flex;
+//       justify-content: space-around;
+//       align-items: center;
+//       width: 100%;
+//       // font-family: "Yanone Kaffeesatz", sans-serif;
+//       // font-size: 1.2rem;
 
-      .vote-number {
-        font-size: 22px;
-        margin-bottom: 0;
-      }
+//       .vote-number {
+//         font-size: 22px;
+//         margin-bottom: 0;
+//       }
 
-      .fas,
-      .far {
-        cursor: pointer;
-      }
-    }
-  }
-  .card-body {
-    .single-post-context {
-      margin: 2% 0;
-      font-size: 1.2rem;
-      font-family: "Raleway", sans-serif;
-    }
-  }
-}
+//       .fas,
+//       .far {
+//         cursor: pointer;
+//       }
+//     }
+//   }
+//   .card-body {
+//     .single-post-context {
+//       margin: 2% 0;
+//       font-size: 1.2rem;
+//       font-family: "Nanum Gothic", sans-serif;
+//       margin: 15px 0;
+//       -webkit-box-decoration-break: clone;
+//       box-decoration-break: clone;
+//       padding: 20 0px;
+//     }
+//   }
+// }

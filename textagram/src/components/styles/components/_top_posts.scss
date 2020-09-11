@@ -42,4 +42,14 @@
       display: none;
     }
   }
+  html,
+  body {
+    overflow-x: hidden; // This needs to be hidden since I do not want unwanted space
+  }
+}
+
+.stick {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 70px;
 }

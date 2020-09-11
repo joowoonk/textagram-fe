@@ -6,6 +6,8 @@
   background-color: #fff;
   border-bottom: 2px solid #e9ecef;
   padding: 5px 0;
+  width: 100%;
+
   .nav-logo-search {
     display: flex;
     a {
@@ -79,4 +81,8 @@ nav a:hover {
     // margin: 10px auto;
     // width: 100%;
   }
+}
+#top {
+  position: fixed;
+  top: 0px;
 }

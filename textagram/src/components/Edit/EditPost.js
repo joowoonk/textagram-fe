@@ -100,7 +100,7 @@ export default function EditPost() {
   };
 
   return (
-    <>
+    <div className="form">
       <Form className="update-card" onSubmit={handleSubmit}>
         <Form.Group controlId="formTitle">
           <Form.Control
@@ -174,7 +174,7 @@ export default function EditPost() {
           )}
           <Form.Control
             as="textarea"
-            style={{ height: 500 }}
+            style={{ height: 380 }}
             placeholder="Would you like to shine a light to people who are lost for a bit?"
             name="context"
             value={updatedPost.context}
@@ -217,6 +217,6 @@ export default function EditPost() {
         Preview
       </Button> */}
       </div>
-    </>
+    </div>
   );
 }

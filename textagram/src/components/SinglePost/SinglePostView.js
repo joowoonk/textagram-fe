@@ -240,7 +240,7 @@ const SinglePostView = ({ show, setShow }) => {
               )}
               {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
                 <i
-                  style={{ color: "#A4DE02" }}
+                  style={{ color: "#A4DE02", marginRight: "2px" }}
                   onClick={() => {
                     unbookmarkIt(post.id);
                   }}
@@ -248,6 +248,7 @@ const SinglePostView = ({ show, setShow }) => {
                 ></i>
               ) : (
                 <i
+                  style={{ marginRight: "2px" }}
                   onClick={() => bookmarkIt(post.id)}
                   className="far fa-bookmark"
                 ></i>

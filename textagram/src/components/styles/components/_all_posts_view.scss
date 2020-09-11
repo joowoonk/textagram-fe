@@ -44,7 +44,7 @@
   #dropdown-basic {
     background: none;
     border: none;
-    // margin: 0 -10px;
+    margin: 0 -10px;
   }
 
   #dropdown-basic:focus {
@@ -62,6 +62,7 @@
       font-size: 1.7rem;
       font-family: "PT Sans Narrow", sans-serif;
     }
+
     .hash-tags {
       display: flex;
       flex-wrap: wrap;
@@ -75,6 +76,13 @@
         font-size: 1rem;
         color: silver;
       }
+    }
+
+    .single-post-context {
+      font-size: 1.2rem;
+      color: red;
+      margin: 10px 0;
+      line-height: 28px;
     }
   }
   .bottom-section {
@@ -115,12 +123,9 @@
   display: flex;
   margin: 0 auto;
   justify-content: center;
+  margin-top: 60px;
 }
 @media only screen and (max-width: 1000px) {
-  // .card-posts {
-  //   margin: 10px auto;
-  //   width: 500px;
-  // }
 }
 
 @media only screen and (max-width: 600px) {
