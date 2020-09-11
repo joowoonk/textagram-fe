@@ -70,7 +70,7 @@ const Login = ({ show, setShow, showReg, setShowReg }) => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <Form.Label style={{ margin: "4px 0" }}>email</Form.Label>
+            <Form.Label style={{ margin: "6px 0" }}>email</Form.Label>
             <Form.Control
               type="email"
               onChange={handleChange}

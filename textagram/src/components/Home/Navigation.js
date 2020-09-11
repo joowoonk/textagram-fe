@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/app.scss";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import { IoIosSearch } from "react-icons/io";
 import {
@@ -18,12 +18,25 @@ import { logout } from "../../redux/actions/index";
 const Navigation = ({ setShow }) => {
   const dispatch = useDispatch();
   const loginState = useSelector((state) => state.usersReducer.login);
-
+  const [inputSearch, setInputSearch] = useState("");
+  const { push } = useHistory();
   const signOut = () => {
     dispatch(logout());
     window.location.href = "/page/1";
   };
 
+  const handleChange = (e) => {
+    setInputSearch(e.target.value);
+  };
+  const submitSearch = (e) => {
+    e.preventDefault();
+    if (inputSearch === "") {
+      push(`/search/""`);
+    } else {
+      push(`/search/${inputSearch}`);
+      setInputSearch("");
+    }
+  };
   return (
     <Navbar id="top" className="nav-bar" sticky="top">
       <div className="nav-logo-search">
@@ -31,9 +44,11 @@ const Navigation = ({ setShow }) => {
           Textagram
         </Link>
 
-        <form className="nav-search">
+        <form className="nav-search" onSubmit={(e) => submitSearch(e)}>
           <input
             type="text"
+            value={inputSearch}
+            onChange={handleChange}
             placeholder="Search by title or hashtag"
             className="search-input"
           />
