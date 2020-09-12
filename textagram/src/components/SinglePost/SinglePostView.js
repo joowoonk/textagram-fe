@@ -314,13 +314,27 @@ const SinglePostView = ({ show, setShow }) => {
           className="bottom-section"
           placeholder="Add a comment..."
         ></input> */}
-
-          {post.comments.length > 0 && (
-            <div className="card">
+        </div>
+        <div className="comment-section">
+          {post.comments.length > 0 ? (
+            <>
               {post.comments.map((comment, index) => {
-                return <Comment comment={comment} key={index} />;
+                console.log(comment);
+                return (
+                  <Comment
+                    comment={comment.comment}
+                    id={comment.id}
+                    fake_id={comment.fake_id}
+                    profile_picture={comment.profile_picture}
+                    created_at={comment.created_at}
+                  />
+                );
               })}
-            </div>
+            </>
+          ) : (
+            <>
+              <h1>Comments are missing</h1>
+            </>
           )}
         </div>
       </div>

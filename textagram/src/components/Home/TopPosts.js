@@ -37,7 +37,7 @@ const TopPosts = () => {
     <div className="top-posts stick">
       <div className="top-post-card ">
         <div className="card-top ">
-          <BsTrophy size="1.5em" style={{ margin: "0 1%", color: "gold" }} />{" "}
+          <BsTrophy size="1.5em" style={{ margin: "0 3%", color: "gold" }} />
           <h5>Top 5 Posts</h5>
         </div>
         <hr></hr>
@@ -56,7 +56,7 @@ const TopPosts = () => {
       </div>
       <div className="top-hash-card ">
         <div className="card-top">
-          <BsGraphUp size="1.5em" style={{ margin: "0 1%", color: "red" }} />{" "}
+          <BsGraphUp size="1.5em" style={{ margin: "0 3%", color: "red" }} />
           <h5>Top 5 Hashtags</h5>
         </div>
         <hr></hr>
