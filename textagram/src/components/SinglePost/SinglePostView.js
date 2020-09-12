@@ -321,13 +321,15 @@ const SinglePostView = ({ show, setShow }) => {
               {post.comments.map((comment, index) => {
                 console.log(comment);
                 return (
-                  <Comment
-                    comment={comment.comment}
-                    id={comment.id}
-                    fake_id={comment.fake_id}
-                    profile_picture={comment.profile_picture}
-                    created_at={comment.created_at}
-                  />
+                  <>
+                    <Comment
+                      comment={comment.comment}
+                      id={comment.id}
+                      fake_id={comment.fake_id}
+                      profile_picture={comment.profile_picture}
+                      created_at={comment.created_at}
+                    />
+                  </>
                 );
               })}
             </>

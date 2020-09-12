@@ -19,7 +19,6 @@ const Comment = ({ comment, fake_id, profile_picture, id, created_at }) => {
               color: "gray",
               fontSize: "10px",
               textTransform: "uppercase",
-              margin: 0,
             }}
           >
             {moment(created_at).fromNow()}
