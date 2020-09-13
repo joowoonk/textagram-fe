@@ -145,8 +145,19 @@ const Bookmark = ({ show, setShow }) => {
   return (
     <div className="posts">
       <div>
+        <div className="notification-bookmark">
+          <p>Other people won't be able to see what you bookmarked 👀</p>
+        </div>
+        {userBookmarks.length === 0 && (
+          <div style={{ padding: "3%" }} className="card-posts">
+            <p style={{ fontSize: "30px", textAlign: "center" }}>
+              You have no bookmark yet!
+            </p>
+          </div>
+        )}
         {userBookmarks.map((post) => {
           console.log(post);
+
           const votesColor = () => {
             if (post.votes >= 0) {
               return "#000000";

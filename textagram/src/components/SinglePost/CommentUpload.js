@@ -3,7 +3,8 @@ import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
-export default function CommentUpload() {
+
+export default function CommentUpload({ post_id }) {
   const dispatch = useDispatch();
   const [newComment, setNewComment] = useState({
     comment: "",
@@ -22,7 +23,7 @@ export default function CommentUpload() {
     }
 
     axiosWithAuth()
-      .post(`${baseURL}/comments`, newComment)
+      .post(`${baseURL}/comments${post_id}`, newComment)
       .then((res) => {
         console.log({ res });
         setNewComment({
@@ -34,5 +35,26 @@ export default function CommentUpload() {
       });
   };
 
-  return <div></div>;
+  return (
+    <div className="comment-form">
+      <Form className="comment-card" onSubmit={handleSubmit}>
+        <Form.Group controlId="formComment">
+          <Form.Group controlId="formHashtags">
+            <Form.Control
+              as="textarea"
+              placeholder="What are your thoughts?"
+              name="comment"
+              size="md"
+              type="text"
+              wrap="hard"
+              autoComplete="off"
+              value={newComment.comment}
+              onChange={handleChange}
+              className="hash-area text-area no-border"
+            />
+          </Form.Group>
+        </Form.Group>
+      </Form>
+    </div>
+  );
 }

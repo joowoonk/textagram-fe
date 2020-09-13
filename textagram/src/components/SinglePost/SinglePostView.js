@@ -313,7 +313,7 @@ const SinglePostView = ({ show, setShow }) => {
         </div>
 
         <div className="comment-section" style={{ margin: "10px 0" }}>
-          <CommentUpload />
+          <CommentUpload post_id={post.id} />
           {post.comments.length > 0 ? (
             <>
               {post.comments.map((comment, index) => {
@@ -332,7 +332,14 @@ const SinglePostView = ({ show, setShow }) => {
             </>
           ) : (
             <>
-              <h1 style={{ margin: "10px 10px" }}>
+              <h1
+                style={{
+                  backgroundColor: "white",
+                  margin: "10px 0",
+                  textAlign: "center",
+                  padding: "3%",
+                }}
+              >
                 No comments as of now! Would you like to leave a comment for{" "}
                 <span style={{ fontWeight: "bold" }}>{post.fake_id}</span>?
               </h1>

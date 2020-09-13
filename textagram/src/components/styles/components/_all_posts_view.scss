@@ -124,6 +124,14 @@
   margin: 0 auto;
   justify-content: center;
   margin-top: 60px;
+  .notification-bookmark {
+    padding: 3%;
+    margin-top: 10px;
+    background-color: white;
+    p {
+      text-align: center;
+    }
+  }
 }
 @media only screen and (max-width: 1000px) {
 }
