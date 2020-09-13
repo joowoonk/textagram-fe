@@ -12,12 +12,13 @@ import {
 import moment from "moment";
 import { Image, Dropdown } from "react-bootstrap";
 import { baseURL } from "../utils/config";
-import Comment from "../Common/Comment";
+import Comment from "./Comment";
 import { BsThreeDots } from "react-icons/bs";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import decodedToken from "../utils/decodedToken";
 import DeletePostModal from "./DeletePostModal";
 import TopPosts from "../Home/TopPosts";
+import CommentUpload from "./CommentUpload";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
 const SinglePostView = ({ show, setShow }) => {
   const match = useParams();
@@ -52,7 +53,7 @@ const SinglePostView = ({ show, setShow }) => {
   useEffect(() => {
     dispatch(getUser());
     dispatch(getPosts());
-  }, [dispatch, show]);
+  }, [dispatch, show, post.comments.length]);
 
   useEffect(() => {
     dispatch(setBookmarksID());
@@ -309,17 +310,13 @@ const SinglePostView = ({ show, setShow }) => {
               })}
           </div>
           <div className="card-body">{post.comments.length} comments</div>
-
-          {/* <input
-          className="bottom-section"
-          placeholder="Add a comment..."
-        ></input> */}
         </div>
+
         <div className="comment-section" style={{ margin: "10px 0" }}>
+          <CommentUpload />
           {post.comments.length > 0 ? (
             <>
               {post.comments.map((comment, index) => {
-                console.log(comment);
                 return (
                   <>
                     <Comment
@@ -335,7 +332,7 @@ const SinglePostView = ({ show, setShow }) => {
             </>
           ) : (
             <>
-              <h1>
+              <h1 style={{ margin: "10px 10px" }}>
                 No comments as of now! Would you like to leave a comment for{" "}
                 <span style={{ fontWeight: "bold" }}>{post.fake_id}</span>?
               </h1>

@@ -44,8 +44,9 @@ export default function UploadForm() {
     axiosWithAuth()
       .post(`${baseURL}/posts`, newPost)
       .then((res) => {
-        console.log({ res });
         setMessageHashTags(false);
+        setMessageTitle(false);
+        setMessageContext(false);
         dispatch(getUser());
         push(`/posts/${res.data.newPost.id}`);
         setNewPost({
