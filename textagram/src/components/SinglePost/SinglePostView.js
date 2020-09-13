@@ -315,7 +315,7 @@ const SinglePostView = ({ show, setShow }) => {
           placeholder="Add a comment..."
         ></input> */}
         </div>
-        <div className="comment-section">
+        <div className="comment-section" style={{ margin: "10px 0" }}>
           {post.comments.length > 0 ? (
             <>
               {post.comments.map((comment, index) => {
@@ -335,7 +335,10 @@ const SinglePostView = ({ show, setShow }) => {
             </>
           ) : (
             <>
-              <h1>Comments are missing</h1>
+              <h1>
+                No comments as of now! Would you like to leave a comment for{" "}
+                <span style={{ fontWeight: "bold" }}>{post.fake_id}</span>?
+              </h1>
             </>
           )}
         </div>

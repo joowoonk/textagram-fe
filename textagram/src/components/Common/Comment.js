@@ -10,7 +10,7 @@ const Comment = ({ comment, fake_id, profile_picture, id, created_at }) => {
           roundedCircle
           src={profile_picture}
           style={{ height: "30px", width: "30px" }}
-          alt={`user-id:${id}`}
+          alt={`user-id:${id}, profile picture`}
         />
         <div>
           <p>{fake_id}</p>
