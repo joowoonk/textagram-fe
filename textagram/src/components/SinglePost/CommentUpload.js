@@ -4,11 +4,9 @@ import { useDispatch } from "react-redux";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
 
-export default function CommentUpload({ post_id }) {
+export default function CommentUpload({ newComment, setNewComment, post_id }) {
   const dispatch = useDispatch();
-  const [newComment, setNewComment] = useState({
-    comment: "",
-  });
+
   const handleChange = (e) => {
     setNewComment({
       ...newComment,
@@ -23,7 +21,7 @@ export default function CommentUpload({ post_id }) {
     }
 
     axiosWithAuth()
-      .post(`${baseURL}/comments${post_id}`, newComment)
+      .post(`${baseURL}/comments/${post_id}`, newComment)
       .then((res) => {
         console.log({ res });
         setNewComment({
@@ -37,23 +35,33 @@ export default function CommentUpload({ post_id }) {
 
   return (
     <div className="comment-form">
-      <Form className="comment-card" onSubmit={handleSubmit}>
+      <h3>What are your thoughts?</h3>
+      <Form className="comment-text-area" onSubmit={handleSubmit}>
         <Form.Group controlId="formComment">
-          <Form.Group controlId="formHashtags">
-            <Form.Control
-              as="textarea"
-              placeholder="What are your thoughts?"
-              name="comment"
-              size="md"
-              type="text"
-              wrap="hard"
-              autoComplete="off"
-              value={newComment.comment}
-              onChange={handleChange}
-              className="hash-area text-area no-border"
-            />
-          </Form.Group>
+          <Form.Control
+            as="textarea"
+            placeholder="Add to the comment"
+            name="comment"
+            size="md"
+            type="text"
+            wrap="hard"
+            autoComplete="off"
+            value={newComment.comment}
+            onChange={handleChange}
+            className="hash-area text-area no-border"
+          />
         </Form.Group>
+        <div className="button-area">
+          <Button
+            block
+            onClick={handleSubmit}
+            className="comment-post"
+            variant="info"
+            type="submit"
+          >
+            Post
+          </Button>
+        </div>
       </Form>
     </div>
   );

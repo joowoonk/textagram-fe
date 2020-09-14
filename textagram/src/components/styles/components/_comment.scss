@@ -1,12 +1,11 @@
 .comment-section {
-  // padding: 10px 10px;
-  // background-color: white;
+  padding: 5px 0;
+  background-color: white;
   .comment {
-    margin: 10px 0;
-
+    margin: 10px 10px;
+    border: 1px solid silver;
     border-radius: 2px;
-    background-color: white;
-    padding: 10px 10px;
+    padding: 10px 20px;
     .comment_user {
       display: flex;
       align-items: center;
@@ -15,9 +14,52 @@
         width: 100%;
         font-size: 15px;
       }
+      .setting {
+        display: flex;
+        justify-content: flex-end;
+        width: 80%;
+      }
     }
     p {
       margin: 10px 0;
+    }
+    .comments {
+      font-family: "Raleway", sans-serif;
+    }
+  }
+}
+
+.expandable {
+  background: #fff;
+  overflow: hidden;
+  color: #000;
+  line-height: 50px;
+
+  transition: all 0.5s ease-in-out;
+  transform-origin: left top;
+  transform: scaleY(0);
+}
+
+.expandable:target {
+  transform: scaleY(1);
+}
+
+.comment-form {
+  background-color: white;
+  padding: 10px 15px;
+
+  h3 {
+    font-size: 20px;
+    margin: 12px 5px;
+  }
+  .comment-text-area {
+    margin: 5px 0;
+  }
+  .button-area {
+    display: flex;
+    justify-content: flex-end;
+    .comment-post {
+      width: 100px;
     }
   }
 }

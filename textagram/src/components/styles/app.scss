@@ -19,3 +19,17 @@
   user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
 }
+
+#dropdown-basic {
+  background: none;
+  border: none;
+  margin: 0 -10px;
+}
+
+#dropdown-basic:focus {
+  border-color: none !important;
+  box-shadow: none !important;
+}
+#dropdown-basic::after {
+  display: none !important;
+}

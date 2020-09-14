@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
@@ -22,7 +22,9 @@ import CommentUpload from "./CommentUpload";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
 const SinglePostView = ({ show, setShow }) => {
   const match = useParams();
-
+  const [newComment, setNewComment] = useState({
+    comment: "",
+  });
   const dispatch = useDispatch();
   const post = useSelector((state) => state.postReducer.post);
 
@@ -53,7 +55,7 @@ const SinglePostView = ({ show, setShow }) => {
   useEffect(() => {
     dispatch(getUser());
     dispatch(getPosts());
-  }, [dispatch, show, post.comments.length]);
+  }, [dispatch, show, post.comments]);
 
   useEffect(() => {
     dispatch(setBookmarksID());
@@ -313,13 +315,20 @@ const SinglePostView = ({ show, setShow }) => {
         </div>
 
         <div className="comment-section" style={{ margin: "10px 0" }}>
-          <CommentUpload post_id={post.id} />
+          <CommentUpload
+            newComment={newComment}
+            setNewComment={setNewComment}
+            post_id={post.id}
+          />
           {post.comments.length > 0 ? (
             <>
               {post.comments.map((comment, index) => {
+                console.log(comment);
                 return (
                   <>
                     <Comment
+                      setNewComment={setNewComment}
+                      user_id={comment.user_id}
                       comment={comment.comment}
                       id={comment.id}
                       fake_id={comment.fake_id}
