@@ -1,11 +1,12 @@
 .profile {
-  margin-top: 120px;
+  margin-top: 105px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 30px;
 
   .image-profile-top-section {
-    width: 600px;
+    width: 700px;
     height: 7vh;
     background-color: white;
     display: flex;
@@ -21,7 +22,7 @@
   }
   .user-information {
     display: flex;
-    width: 600px;
+    width: 700px;
     background-color: white;
     justify-content: center;
     align-items: center;
@@ -35,6 +36,13 @@
     p {
       font-size: 1.2rem;
       margin: 10px 0;
+    }
+    .follow-list {
+      display: flex;
+      p {
+        margin-right: 5px;
+        margin-left: 5px;
+      }
     }
     .profile-edit {
       margin: 20px 0;

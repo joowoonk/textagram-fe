@@ -45,7 +45,13 @@ const Navigation = ({ setShow }) => {
   return (
     <Navbar id="top" className="nav-bar" sticky="top">
       <div className="nav-logo-search">
-        <Link to={"/"} className="logo">
+        <Link
+          to={"/"}
+          onClick={() => {
+            window.scrollTo(0, 0);
+          }}
+          className="logo"
+        >
           Textagram
         </Link>
 
