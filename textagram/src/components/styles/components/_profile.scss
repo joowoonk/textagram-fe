@@ -28,6 +28,11 @@
     align-items: center;
     flex-direction: column;
     margin: 0 auto;
+    .user-detail {
+      width: 300px;
+      margin: 0 auto;
+      // background-color: red;
+    }
     h2 {
       font-size: 3rem;
       margin: 10px 0;
@@ -35,8 +40,10 @@
     }
     p {
       font-size: 1.2rem;
-      margin: 10px 0;
+      margin: 12px 0;
+      color: #404040;
     }
+
     .follow-list {
       display: flex;
       p {

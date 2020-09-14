@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { Link, useParams, useHistory } from "react-router-dom";
+import decodedToken from "../utils/decodedToken";
 import {
   getPosts,
   getUser,
@@ -16,6 +17,10 @@ import { Image, Dropdown } from "react-bootstrap";
 const Profile = ({ show, setShow }) => {
   const [userInfo, setUserInfo] = useState([]);
 
+  const admin = useSelector((state) => state.usersReducer.user.is_admin);
+  const user_id = useSelector((state) => state.usersReducer.user.id);
+  console.log(`${userInfo.id} === ${decodedToken()}`);
+  // console.log(decodedToken());
   const dispatch = useDispatch();
   const { push } = useHistory();
   const match = useParams();
@@ -157,16 +162,9 @@ const Profile = ({ show, setShow }) => {
         </div>
         <div className="user-information">
           <h2>{userInfo.fake_id}</h2>
-          <p>{userInfo.about}</p>
-          {userInfo.location ? (
-            <p>
-              <i class="fas fa-map-marker-alt">{userInfo.location}</i>
-            </p>
-          ) : (
-            <p>
-              Location <i class="fas fa-map-marker-alt"></i> is missing
-            </p>
-          )}
+
+          <p>"{userInfo.about}"</p>
+
           {userInfo.posts && userInfo.posts.length > 0 ? (
             <p>{userInfo.posts.length} post(s)</p>
           ) : (
@@ -184,10 +182,30 @@ const Profile = ({ show, setShow }) => {
               <p>0 followers</p>
             )}
           </div>
-
-          <Button className="profile-edit" variant="info">
-            Edit Profile
-          </Button>
+          <div className="user-detail">
+            <p>
+              <i class="fas fa-birthday-cake"></i> Joined on{" "}
+              {moment(userInfo.created_at).format("MM/DD/YYYY")}
+            </p>
+            {userInfo.location ? (
+              <p>
+                <i class="fas fa-map-marker-alt">{userInfo.location}</i>
+              </p>
+            ) : (
+              <p>
+                <i class="fas fa-map-marker-alt"></i> City, State
+              </p>
+            )}
+          </div>
+          {userInfo.id === decodedToken() || admin ? (
+            <Button className="profile-edit" variant="info">
+              Edit Profile
+            </Button>
+          ) : (
+            <Button disabled className="profile-edit" variant="info">
+              Edit Profile
+            </Button>
+          )}
         </div>
       </div>
       <div>
