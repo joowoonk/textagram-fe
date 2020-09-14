@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { baseURL } from "../utils/config";
 import { Image } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,6 +19,7 @@ const AllPostsView = ({ show, setShow }) => {
   const params = useParams();
 
   const dispatch = useDispatch();
+  const { push } = useHistory();
 
   const posts = useSelector((state) => state.postReducer.posts);
 
@@ -38,7 +39,7 @@ const AllPostsView = ({ show, setShow }) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const user = useSelector((state) => state.usersReducer);
-  console.log({ user });
+
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
@@ -193,7 +194,12 @@ const AllPostsView = ({ show, setShow }) => {
                     alt={`user-id:${post.id}`}
                   />
                   <div className="post-user">
-                    <p className="noselect fake-id ">
+                    <p
+                      className="noselect fake-id"
+                      onClick={() => {
+                        push(`../profile/${post.user_id}`);
+                      }}
+                    >
                       {post.fake_id}{" "}
                       {post.feeling && `is feeling ${post.feeling}.`}
                     </p>

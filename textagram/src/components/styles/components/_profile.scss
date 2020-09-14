@@ -1,0 +1,44 @@
+.profile {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .image-profile-top-section {
+    width: 600px;
+    height: 7vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+
+    .image {
+      display: absolute;
+      margin: 0 auto;
+      margin-top: -50px;
+      border: 10px solid #e0ece4;
+    }
+  }
+  .user-information {
+    display: flex;
+    width: 600px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    h2 {
+      font-size: 3rem;
+      margin: 10px 0;
+      font-family: "PT Sans Narrow", sans-serif;
+    }
+    p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+    .profile-edit {
+      margin: 20px 0;
+      font-size: 25px;
+    }
+  }
+}

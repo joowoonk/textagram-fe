@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import {
   getPostById,
   getUser,
@@ -22,6 +22,7 @@ import CommentUpload from "./CommentUpload";
 //ONCE the user click a post title, the post_id will be used for dispatch to this component as a new page.
 const SinglePostView = ({ show, setShow }) => {
   const match = useParams();
+  const { push } = useHistory();
   const [newComment, setNewComment] = useState({
     comment: "",
   });
@@ -186,7 +187,12 @@ const SinglePostView = ({ show, setShow }) => {
                 alt={`user-id:${post.id}`}
               />
               <div className="post-user">
-                <p className="noselect fake-id ">
+                <p
+                  className="noselect fake-id"
+                  onClick={() => {
+                    push(`../profile/${post.user_id}`);
+                  }}
+                >
                   {post.fake_id} is feeling {post.feeling}.
                 </p>
                 <p

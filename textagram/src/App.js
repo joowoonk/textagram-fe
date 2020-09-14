@@ -3,6 +3,7 @@ import Login from "./components/Authentication/Login";
 import { Route } from "react-router-dom";
 import Register from "./components/Authentication/Register";
 import Navigation from "./components/Home/Navigation";
+import "boxicons";
 
 import PrivateRoute from "./components/utils/PrivateRoute";
 import RedirectRoute from "./components/utils/RedirectRoute";
@@ -11,6 +12,7 @@ import UploadForm from "./components/Upload/UploadForm";
 import EditPost from "./components/Edit/EditPost";
 import AllPostsView from "./components/Home/AllPostsView";
 import Bookmark from "./components/Bookmark/Bookmark";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -36,6 +38,9 @@ function App() {
       <PrivateRoute exact path="/posts/:postId">
         <HomeSinglePost show={show} setShow={setShow} />
       </PrivateRoute>
+      <PrivateRoute exact path="/profile/:userId">
+        <Profile show={show} setShow={setShow} />
+      </PrivateRoute>
       <PrivateRoute exact path="/bookmarks/">
         <Bookmark />
       </PrivateRoute>
@@ -45,7 +50,6 @@ function App() {
       <PrivateRoute exact path="/upload">
         <UploadForm />
       </PrivateRoute>
-      <PrivateRoute exact path="/profiles/:userId"></PrivateRoute>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/app.scss";
 import { Link, useHistory } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
@@ -13,7 +13,7 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 import { GiExitDoor } from "react-icons/gi";
 
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/actions/index";
+import { getUser, logout } from "../../redux/actions/index";
 
 const Navigation = ({ setShow }) => {
   const dispatch = useDispatch();
@@ -24,6 +24,11 @@ const Navigation = ({ setShow }) => {
     dispatch(logout());
     window.location.href = "/page/1";
   };
+  const userId = useSelector((state) => state.usersReducer.user.id);
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
 
   const handleChange = (e) => {
     setInputSearch(e.target.value);
@@ -69,7 +74,7 @@ const Navigation = ({ setShow }) => {
             <Nav.Link className="nav-att" href="/bookmarks">
               <BsFillBookmarksFill size="1.5em" />
             </Nav.Link>
-            <Nav.Link className="nav-att" href="/profile">
+            <Nav.Link className="nav-att" href={`/profile/${userId}`}>
               <BsFillPersonLinesFill size="2.0em" />
             </Nav.Link>
             <Nav.Link className="nav-att" onClick={() => signOut()}>
