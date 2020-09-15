@@ -190,8 +190,16 @@ const AllPostsView = ({ show, setShow }) => {
                     className="noselect"
                     roundedCircle
                     src={post.profile_picture}
-                    style={{ height: "25px", width: "25px", margin: "0 10px" }}
+                    style={{
+                      height: "25px",
+                      width: "25px",
+                      margin: "0 10px",
+                      cursor: "pointer",
+                    }}
                     alt={`user-id:${post.id}`}
+                    onClick={() => {
+                      push(`../profile/${post.user_id}`);
+                    }}
                   />
                   <div className="post-user">
                     <p

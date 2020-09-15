@@ -21,7 +21,7 @@ const Bookmark = ({ show, setShow }) => {
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
-  console.log({ userBookmarks });
+
   const bookmarkPostId = useSelector(
     (state) => state.usersReducer.bookmarkPostId
   );
@@ -156,8 +156,6 @@ const Bookmark = ({ show, setShow }) => {
           </div>
         )}
         {userBookmarks.map((post) => {
-          console.log(post);
-
           const votesColor = () => {
             if (post.votes >= 0) {
               return "#000000";

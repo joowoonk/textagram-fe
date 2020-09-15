@@ -14,17 +14,16 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
 import moment from "moment";
 import { Image, Dropdown } from "react-bootstrap";
+import UpdateProfileModal from "./UpdateProfileModal";
 const Profile = ({ show, setShow }) => {
   const [userInfo, setUserInfo] = useState([]);
 
   const admin = useSelector((state) => state.usersReducer.user.is_admin);
   const user_id = useSelector((state) => state.usersReducer.user.id);
-  console.log(`${userInfo.id} === ${decodedToken()}`);
-  // console.log(decodedToken());
   const dispatch = useDispatch();
   const { push } = useHistory();
   const match = useParams();
-  console.log({ userInfo });
+
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
@@ -54,7 +53,14 @@ const Profile = ({ show, setShow }) => {
       .then((res) => {
         setUserInfo(res.data.user);
       });
-  }, [userBookmarks, userUpVotes, userDownVotes, dispatch]);
+  }, [
+    userBookmarks,
+    userUpVotes,
+    userDownVotes,
+    userInfo.about,
+    userInfo.location,
+    dispatch,
+  ]);
   const bookmarkIt = (id) => {
     if (!localStorage.getItem("token")) {
       setShow(true);
@@ -189,7 +195,7 @@ const Profile = ({ show, setShow }) => {
             </p>
             {userInfo.location ? (
               <p>
-                <i class="fas fa-map-marker-alt">{userInfo.location}</i>
+                <i class="fas fa-map-marker-alt"></i> {userInfo.location}
               </p>
             ) : (
               <p>
@@ -198,9 +204,7 @@ const Profile = ({ show, setShow }) => {
             )}
           </div>
           {userInfo.id === decodedToken() || admin ? (
-            <Button className="profile-edit" variant="info">
-              Edit Profile
-            </Button>
+            <UpdateProfileModal user_id={userInfo.id} />
           ) : (
             <Button disabled className="profile-edit" variant="info">
               Edit Profile

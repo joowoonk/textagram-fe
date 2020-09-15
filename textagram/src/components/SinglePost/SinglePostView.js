@@ -183,8 +183,16 @@ const SinglePostView = ({ show, setShow }) => {
                 className="noselect image"
                 roundedCircle
                 src={post.profile_picture}
-                style={{ height: "25px", width: "25px", margin: "0 10px" }}
+                style={{
+                  height: "25px",
+                  width: "25px",
+                  margin: "0 10px",
+                  cursor: "pointer",
+                }}
                 alt={`user-id:${post.id}`}
+                onClick={() => {
+                  push(`../profile/${post.user_id}`);
+                }}
               />
               <div className="post-user">
                 <p
@@ -329,7 +337,6 @@ const SinglePostView = ({ show, setShow }) => {
           {post.comments.length > 0 ? (
             <>
               {post.comments.map((comment, index) => {
-                console.log(comment);
                 return (
                   <>
                     <Comment
@@ -353,6 +360,10 @@ const SinglePostView = ({ show, setShow }) => {
                   margin: "10px 0",
                   textAlign: "center",
                   padding: "3%",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setNewComment({ comment: `@${post.fake_id} ` });
                 }}
               >
                 No comments as of now! Would you like to leave a comment for{" "}

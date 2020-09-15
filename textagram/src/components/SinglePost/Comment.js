@@ -32,6 +32,7 @@ const Comment = ({
           />
           <div>
             <p
+              style={{ cursor: "pointer" }}
               onClick={() => {
                 setNewComment({ comment: `@${fake_id} ` });
               }}
