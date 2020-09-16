@@ -8,9 +8,9 @@ import decodedToken from "../utils/decodedToken";
 import { useDispatch } from "react-redux";
 import { getUser } from "../../redux/actions";
 export default function UpdateProfileModal({ user_id }) {
+  console.log("user_id", user_id);
   const [show, setShow] = useState(false);
-  const { replace } = useHistory();
-  const params = useParams();
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ export default function UpdateProfileModal({ user_id }) {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`${baseURL}/users/${params.userId}`)
+      .get(`${baseURL}/users/${user_id}`)
       .then((res) => {
         // console.log(res);
         setUpdatedProfile({
@@ -46,33 +46,28 @@ export default function UpdateProfileModal({ user_id }) {
           following:
             res.data.user.following !== null ? res.data.user.following : "",
           followers:
-            res.data.user.follwers !== null ? res.data.user.follwers : "",
+            res.data.user.followers !== null ? res.data.user.followers : "",
         });
       });
   }, [show]);
 
   const updateProfile = () => {
-    if (
-      updatedProfile.about.length > 150 ||
-      updatedProfile.location.length > 30
-    ) {
-      return setMessageError(true);
-    } else {
-      axiosWithAuth()
-        .put(`${baseURL}/users/${params.userId}`, updatedProfile)
-        .then((res) => {
-          setMessageError(false);
-          dispatch(getUser());
-          setUpdatedProfile({
-            about: "",
-            location: "",
-          });
-          setShow(false);
-        })
-        .catch((err) => {
-          console.log({ err });
+    axiosWithAuth()
+      .put(`${baseURL}/users/${user_id}`, updatedProfile)
+      .then((res) => {
+        console.log("yes");
+        setMessageError(false);
+        dispatch(getUser());
+        setUpdatedProfile({
+          about: "",
+          location: "",
         });
-    }
+        setShow(false);
+      })
+      .catch((err) => {
+        console.log("yes");
+        console.log({ err });
+      });
   };
 
   return (

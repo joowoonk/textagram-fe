@@ -62,3 +62,19 @@
     }
   }
 }
+
+.following-list {
+  display: flex;
+  // background-color: red;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding: 10px;
+
+  .name-list {
+    display: flex;
+
+    align-items: center;
+    padding: 10px;
+  }
+}

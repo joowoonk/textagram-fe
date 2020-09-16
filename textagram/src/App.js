@@ -13,6 +13,7 @@ import EditPost from "./components/Edit/EditPost";
 import AllPostsView from "./components/Home/AllPostsView";
 import Bookmark from "./components/Bookmark/Bookmark";
 import Profile from "./components/Profile/Profile";
+import UpdateProfileModal from "./components/Profile/UpdateProfileModal";
 
 function App() {
   const [show, setShow] = useState(false);

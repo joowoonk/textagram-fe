@@ -34,11 +34,6 @@ const initialState = {
   userUpVotes: [],
   userDownVotes: [],
 
-  friend: {
-    posts: [],
-    voting_counts: [], //how many votes this user has gotten
-    followers: [], //this will diplay a user's following in a list.
-  },
   isFetching: false,
   login: false,
 };
@@ -81,6 +76,7 @@ export const usersReducer = (state = initialState, action) => {
         followers: action.payload,
       };
     case SET_FOLLOWERS_ID:
+      console.log(state);
       return {
         ...state,
         followerId: state.followers.map((follower) => {

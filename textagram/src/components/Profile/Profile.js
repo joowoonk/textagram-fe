@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "react-bootstrap";
+import { Modal, Form, Button } from "react-bootstrap";
 import { Link, useParams, useHistory } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 import {
@@ -19,6 +19,12 @@ import { Image, Dropdown } from "react-bootstrap";
 import UpdateProfileModal from "./UpdateProfileModal";
 const Profile = ({ show, setShow }) => {
   const [userInfo, setUserInfo] = useState([]);
+  const [followingList, setFollowList] = useState(false);
+  const [followerList, setFollowerList] = useState(false);
+  const followHandleClose = () => setFollowList(false);
+  const followHandleShow = () => setFollowList(true);
+  const followerHandleClose = () => setFollowerList(false);
+  const followerHandleShow = () => setFollowerList(true);
 
   const admin = useSelector((state) => state.usersReducer.user.is_admin);
   const user_id = useSelector((state) => state.usersReducer.user.id);
@@ -40,7 +46,7 @@ const Profile = ({ show, setShow }) => {
   const followingsId = useSelector((state) => state.usersReducer.followingId);
   const followersId = useSelector((state) => state.usersReducer.followerId);
 
-  console.log({ followingsId, followersId });
+  // console.log({ followingsId, followersId });
 
   const userDownVotes = useSelector(
     (state) => state.usersReducer.userDownVotes
@@ -95,7 +101,23 @@ const Profile = ({ show, setShow }) => {
       axiosWithAuth()
         .post(`${baseURL}/followers/${id}`)
         .then((res) => {
-          console.log("yes?");
+          // console.log("yes?");
+          dispatch(getUser());
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+
+  const unfollowingAccount = (id) => {
+    if (!localStorage.getItem("token")) {
+      setShow(true);
+    } else {
+      axiosWithAuth()
+        .delete(`${baseURL}/followers/${id}`)
+        .then((res) => {
+          // console.log("yes?");
           dispatch(getUser());
         })
         .catch((err) => {
@@ -181,8 +203,10 @@ const Profile = ({ show, setShow }) => {
       return cancelUpVotePost(post_id);
     }
   }
+  console.log(userInfo.following);
 
-  console.log(match.userId, " !==", decodedToken());
+  console.log(userInfo.followers);
+  // console.log(match.userId, " !==", decodedToken());
   return (
     <>
       <div className="profile">
@@ -206,15 +230,39 @@ const Profile = ({ show, setShow }) => {
             <p>0 post(s)</p>
           )}
           <div className="follow-list">
-            {userInfo.follwing && userInfo.follwing.length > 0 ? (
-              <p>follwing:{userInfo.follwing.length}</p>
+            {userInfo.following && userInfo.following.length > 0 ? (
+              <p
+                onClick={() => {
+                  followHandleShow();
+                }}
+              >
+                {userInfo.following.length} following
+              </p>
             ) : (
-              <p>0 following</p>
+              <p
+                onClick={() => {
+                  followHandleShow();
+                }}
+              >
+                0 following
+              </p>
             )}
-            {userInfo.follwers && userInfo.follwers.length > 0 ? (
-              <p>{userInfo.follwers.length} followers</p>
+            {userInfo.followers && userInfo.followers.length > 0 ? (
+              <p
+                onClick={() => {
+                  followerHandleShow();
+                }}
+              >
+                {userInfo.followers.length} followers
+              </p>
             ) : (
-              <p>0 followers</p>
+              <p
+                onClick={() => {
+                  followerHandleShow();
+                }}
+              >
+                0 followers
+              </p>
             )}
           </div>
           <div className="user-detail">
@@ -223,13 +271,18 @@ const Profile = ({ show, setShow }) => {
             ) : (
               <>
                 {followingsId && followingsId.includes(userInfo.id) ? (
-                  <Button className="profile-follow" variant="info">
+                  <Button
+                    onClick={() => {
+                      unfollowingAccount(match.userId);
+                    }}
+                    className="profile-follow"
+                    variant="info"
+                  >
                     Unfollow
                   </Button>
                 ) : (
                   <Button
                     onClick={() => {
-                      console.log("clicked");
                       followingAccount(match.userId);
                     }}
                     className="profile-follow"
@@ -421,6 +474,52 @@ const Profile = ({ show, setShow }) => {
             );
           })}
       </div>
+
+      <Modal size="sm" show={followingList} onHide={followHandleClose} centered>
+        <Modal.Header closeButton className="header">
+          <Modal.Title className="follow-title">Following List</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="following-list">
+          {userInfo.following &&
+            userInfo.following.map((follow) => (
+              <div className="name-list">
+                <Image
+                  className="noselect"
+                  roundedCircle
+                  src={follow.profile_picture}
+                  style={{ height: "40px", width: "40px", margin: "0 10px" }}
+                  alt={`user-id:${follow.id}`}
+                />
+                {follow.fake_id}
+              </div>
+            ))}
+        </Modal.Body>
+      </Modal>
+      <Modal
+        size="sm"
+        show={followerList}
+        onHide={followerHandleClose}
+        centered
+      >
+        <Modal.Header closeButton className="header">
+          <Modal.Title>Follower List</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="following-list">
+          {userInfo.followers &&
+            userInfo.followers.map((follower) => (
+              <div className="name-list">
+                <Image
+                  className="noselect"
+                  roundedCircle
+                  src={follower.profile_picture}
+                  style={{ height: "40px", width: "40px", margin: "0 10px" }}
+                  alt={`user-id:${follower.id}`}
+                />
+                {follower.fake_id}
+              </div>
+            ))}
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

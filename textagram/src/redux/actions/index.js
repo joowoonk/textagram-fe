@@ -74,7 +74,7 @@ export const getUser = () => (dispatch) => {
         });
         dispatch({
           type: SET_USER_FOLLOWERS,
-          payload: res.data.user.follwers,
+          payload: res.data.user.followers,
         });
       })
       .catch((err) => {
