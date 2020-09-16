@@ -31,13 +31,13 @@ export default function UpdateProfileModal({ user_id }) {
     });
   };
 
-  console.log({ followProfile });
+  // console.log({ followProfile });
 
   useEffect(() => {
     axiosWithAuth()
       .get(`${baseURL}/users/${params.userId}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setUpdatedProfile({
           about: res.data.user.about !== null ? res.data.user.about : "",
           location: res.data.user.about !== null ? res.data.user.location : "",

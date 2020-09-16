@@ -85,6 +85,13 @@ export const getUser = () => (dispatch) => {
   }
 };
 
+export const followingId = () => (dispatch) => {
+  dispatch({ type: SET_FOLLOWING_ID });
+};
+export const followedId = () => (dispatch) => {
+  dispatch({ type: SET_FOLLOWERS_ID });
+};
+
 export const setBookmarksID = () => (dispatch) => {
   dispatch({ type: SET_BOOKMARKS_ID });
 };

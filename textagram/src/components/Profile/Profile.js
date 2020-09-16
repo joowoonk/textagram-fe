@@ -4,6 +4,8 @@ import { Button } from "react-bootstrap";
 import { Link, useParams, useHistory } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 import {
+  followedId,
+  followingId,
   getPosts,
   getUser,
   setBookmarksID,
@@ -35,8 +37,10 @@ const Profile = ({ show, setShow }) => {
   const upVotesPostId = useSelector(
     (state) => state.usersReducer.upVotesPostId
   );
-  const followingId = useSelector((state) => state.usersReducer.following);
-  // const followersId = useSelector((state) => state.usersReducer.followers);
+  const followingsId = useSelector((state) => state.usersReducer.followingId);
+  const followersId = useSelector((state) => state.usersReducer.followerId);
+
+  console.log({ followingsId, followersId });
 
   const userDownVotes = useSelector(
     (state) => state.usersReducer.userDownVotes
@@ -49,6 +53,8 @@ const Profile = ({ show, setShow }) => {
   }, []);
   useEffect(() => {
     // dispatch(getPosts());
+    dispatch(followingId());
+    dispatch(followedId());
     dispatch(setBookmarksID());
     dispatch(setUpVotesID());
     dispatch(setDownVotesID());
@@ -59,10 +65,13 @@ const Profile = ({ show, setShow }) => {
       });
   }, [
     userBookmarks,
+
     userUpVotes,
     userDownVotes,
     userInfo.about,
     userInfo.location,
+    followersId.length,
+    followingsId.length,
     dispatch,
   ]);
   const bookmarkIt = (id) => {
@@ -79,7 +88,21 @@ const Profile = ({ show, setShow }) => {
         });
     }
   };
-
+  const followingAccount = (id) => {
+    if (!localStorage.getItem("token")) {
+      setShow(true);
+    } else {
+      axiosWithAuth()
+        .post(`${baseURL}/followers/${id}`)
+        .then((res) => {
+          console.log("yes?");
+          dispatch(getUser());
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
   const unbookmarkIt = (id) => {
     axiosWithAuth()
       .delete(`${baseURL}/posts/${id}/unbookmark`)
@@ -158,6 +181,8 @@ const Profile = ({ show, setShow }) => {
       return cancelUpVotePost(post_id);
     }
   }
+
+  console.log(match.userId, " !==", decodedToken());
   return (
     <>
       <div className="profile">
@@ -187,21 +212,35 @@ const Profile = ({ show, setShow }) => {
               <p>0 following</p>
             )}
             {userInfo.follwers && userInfo.follwers.length > 0 ? (
-              <p>followers:{userInfo.follwers.length}</p>
+              <p>{userInfo.follwers.length} followers</p>
             ) : (
               <p>0 followers</p>
             )}
           </div>
           <div className="user-detail">
-            {followingId && followingId.includes(userInfo.id) ? (
-              <Button className="profile-follow" variant="info">
-                Unfollow
-              </Button>
+            {`${match.userId}` === `${decodedToken()}` ? (
+              <></>
             ) : (
-              <Button className="profile-follow" variant="info">
-                Follow
-              </Button>
+              <>
+                {followingsId && followingsId.includes(userInfo.id) ? (
+                  <Button className="profile-follow" variant="info">
+                    Unfollow
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      console.log("clicked");
+                      followingAccount(match.userId);
+                    }}
+                    className="profile-follow"
+                    variant="info"
+                  >
+                    Follow
+                  </Button>
+                )}
+              </>
             )}
+
             <p>
               <i class="fas fa-birthday-cake"></i> Joined on{" "}
               {moment(userInfo.created_at).format("MM/DD/YYYY")}

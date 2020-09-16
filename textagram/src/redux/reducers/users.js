@@ -19,14 +19,17 @@ const initialState = {
     id: "",
     posts: [],
     voting_counts: [], //how many votes this user has gotten
-    followers: [], //being follwered.
-    followering: [], //this will diplay a user's following in a list.
+    // followers: [], //being follwered.
+    // followering: [], //this will diplay a user's following in a list.
     bookmarks: [],
   },
   userBookmarks: [],
   favTexterIds: [],
 
   following: [],
+  followers: [],
+  followingId: [],
+  followerId: [],
 
   userUpVotes: [],
   userDownVotes: [],
