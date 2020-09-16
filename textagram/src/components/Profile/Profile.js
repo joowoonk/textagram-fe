@@ -35,6 +35,8 @@ const Profile = ({ show, setShow }) => {
   const upVotesPostId = useSelector(
     (state) => state.usersReducer.upVotesPostId
   );
+  const followingId = useSelector((state) => state.usersReducer.following);
+  // const followersId = useSelector((state) => state.usersReducer.followers);
 
   const userDownVotes = useSelector(
     (state) => state.usersReducer.userDownVotes
@@ -43,7 +45,9 @@ const Profile = ({ show, setShow }) => {
     (state) => state.usersReducer.downVotesPostId
   );
   useEffect(() => {
-    // dispatch(getUser());
+    dispatch(getUser());
+  }, []);
+  useEffect(() => {
     // dispatch(getPosts());
     dispatch(setBookmarksID());
     dispatch(setUpVotesID());
@@ -189,6 +193,15 @@ const Profile = ({ show, setShow }) => {
             )}
           </div>
           <div className="user-detail">
+            {followingId && followingId.includes(userInfo.id) ? (
+              <Button className="profile-follow" variant="info">
+                Unfollow
+              </Button>
+            ) : (
+              <Button className="profile-follow" variant="info">
+                Follow
+              </Button>
+            )}
             <p>
               <i class="fas fa-birthday-cake"></i> Joined on{" "}
               {moment(userInfo.created_at).format("MM/DD/YYYY")}
@@ -203,6 +216,7 @@ const Profile = ({ show, setShow }) => {
               </p>
             )}
           </div>
+
           {userInfo.id === decodedToken() || admin ? (
             <UpdateProfileModal user_id={userInfo.id} />
           ) : (

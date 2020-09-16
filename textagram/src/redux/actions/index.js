@@ -14,7 +14,10 @@ export const SET_USER_UP_VOTES = "SET_USER_UP_VOTES";
 export const SET_UP_VOTES_ID = "SET_UP_VOTES_ID";
 export const SET_USER_DOWN_VOTES = "SET_USER_DOWN_VOTES";
 export const SET_DOWN_VOTES_ID = "SET_DOWN_VOTES_ID";
-
+export const SET_USER_FOLLOWING = "SET_USER_FOLLOWING";
+export const SET_FOLLOWING_ID = "SET_FOLLOWING_ID";
+export const SET_USER_FOLLOWERS = "SET_USER_FOLLOWERS";
+export const SET_FOLLOWERS_ID = "SET_FOLLOWERS_ID";
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
   dispatch({ type: REMOVE_USER });
@@ -64,6 +67,14 @@ export const getUser = () => (dispatch) => {
         dispatch({
           type: SET_USER_DOWN_VOTES,
           payload: res.data.user.downVotes,
+        });
+        dispatch({
+          type: SET_USER_FOLLOWING,
+          payload: res.data.user.following,
+        });
+        dispatch({
+          type: SET_USER_FOLLOWERS,
+          payload: res.data.user.follwers,
         });
       })
       .catch((err) => {

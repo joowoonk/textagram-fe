@@ -157,15 +157,15 @@ const Bookmark = ({ show, setShow }) => {
         )}
         {userBookmarks.map((post) => {
           const votesColor = () => {
-            if (post.votes >= 0) {
+            if (post.votes.votes >= 0) {
               return "#000000";
-            } else if (-5 <= post.votes && post.votes < 0) {
+            } else if (-5 <= post.votes.votes && post.votes.votes < 0) {
               return "#5E5E5E";
-            } else if (-10 <= post.votes && post.votes < -5) {
+            } else if (-10 <= post.votes.votes && post.votes.votes < -5) {
               return "#8d8d8d";
-            } else if (-15 <= post.votes && post.votes < -10) {
+            } else if (-15 <= post.votes.votes && post.votes.votes < -10) {
               return "#bcbcbc";
-            } else if (-20 <= post.votes && post.votes < -15) {
+            } else if (-20 <= post.votes.votes && post.votes.votes < -15) {
               return "#ebebeb";
             } else {
               return "#white";

@@ -45,6 +45,9 @@ const TopPosts = () => {
           <Link
             key={post.id}
             to={`/posts/${post.id}`}
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
             style={{ textDecoration: "none" }}
           >
             <div className="card-bottom">
