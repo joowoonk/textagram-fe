@@ -15,9 +15,12 @@ import Bookmark from "./components/Bookmark/Bookmark";
 import Profile from "./components/Profile/Profile";
 import UpdateProfileModal from "./components/Profile/UpdateProfileModal";
 
+var dotenv = require("dotenv");
+
 function App() {
   const [show, setShow] = useState(false);
   const [showReg, setShowReg] = useState(false);
+  dotenv.config();
 
   return (
     <div className="App">

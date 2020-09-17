@@ -201,7 +201,8 @@ const SinglePostView = ({ show, setShow }) => {
                     push(`../profile/${post.user_id}`);
                   }}
                 >
-                  {post.fake_id} is feeling {post.feeling}.
+                  {post.fake_id}
+                  {post.feeling && `is feeling ${post.feeling}.`}
                 </p>
                 <p
                   style={{

@@ -203,10 +203,6 @@ const Profile = ({ show, setShow }) => {
       return cancelUpVotePost(post_id);
     }
   }
-  console.log(userInfo.following);
-
-  console.log(userInfo.followers);
-  // console.log(match.userId, " !==", decodedToken());
   return (
     <>
       <div className="profile">
@@ -215,14 +211,16 @@ const Profile = ({ show, setShow }) => {
             className="noselect image"
             roundedCircle
             src={userInfo.profile_picture}
-            style={{ height: "100px", width: "100px" }}
+            style={{ height: "110px", width: "110px" }}
             alt={`user-id:${match.userId}, profile picture`}
           />
         </div>
         <div className="user-information">
           <h2>{userInfo.fake_id}</h2>
 
-          <p>"{userInfo.about}"</p>
+          <p style={{ width: "80%", textAlign: "center" }}>
+            "{userInfo.about}"
+          </p>
 
           {userInfo.posts && userInfo.posts.length > 0 ? (
             <p>{userInfo.posts.length} post(s)</p>
@@ -232,6 +230,7 @@ const Profile = ({ show, setShow }) => {
           <div className="follow-list">
             {userInfo.following && userInfo.following.length > 0 ? (
               <p
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   followHandleShow();
                 }}
@@ -240,6 +239,7 @@ const Profile = ({ show, setShow }) => {
               </p>
             ) : (
               <p
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   followHandleShow();
                 }}
@@ -249,6 +249,7 @@ const Profile = ({ show, setShow }) => {
             )}
             {userInfo.followers && userInfo.followers.length > 0 ? (
               <p
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   followerHandleShow();
                 }}
@@ -257,6 +258,7 @@ const Profile = ({ show, setShow }) => {
               </p>
             ) : (
               <p
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   followerHandleShow();
                 }}
@@ -310,7 +312,10 @@ const Profile = ({ show, setShow }) => {
           </div>
 
           {userInfo.id === decodedToken() || admin ? (
-            <UpdateProfileModal user_id={userInfo.id} />
+            <UpdateProfileModal
+              profile_picture={userInfo.profile_picture}
+              user_id={userInfo.id}
+            />
           ) : (
             <Button disabled className="profile-edit" variant="info">
               Edit Profile

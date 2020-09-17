@@ -2,21 +2,24 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
-import { Modal, Form, Button } from "react-bootstrap";
-
+import { Modal, Form, Button, Image } from "react-bootstrap";
+// import
 import decodedToken from "../utils/decodedToken";
 import { useDispatch } from "react-redux";
 import { getUser } from "../../redux/actions";
-export default function UpdateProfileModal({ user_id }) {
-  console.log("user_id", user_id);
+
+export default function UpdateProfileModal({ profile_picture, user_id }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
   const [updatedProfile, setUpdatedProfile] = useState({
     about: "",
     location: "",
+    profile_picture: "",
   });
   const [followProfile, setFollowProfile] = useState({
     following: "",
@@ -41,6 +44,10 @@ export default function UpdateProfileModal({ user_id }) {
         setUpdatedProfile({
           about: res.data.user.about !== null ? res.data.user.about : "",
           location: res.data.user.about !== null ? res.data.user.location : "",
+          profile_picture:
+            res.data.user.profile_picture !== null
+              ? res.data.user.profile_picture
+              : "",
         });
         setFollowProfile({
           following:
@@ -55,21 +62,38 @@ export default function UpdateProfileModal({ user_id }) {
     axiosWithAuth()
       .put(`${baseURL}/users/${user_id}`, updatedProfile)
       .then((res) => {
-        console.log("yes");
         setMessageError(false);
         dispatch(getUser());
         setUpdatedProfile({
           about: "",
           location: "",
+          profile_picture: "",
         });
         setShow(false);
       })
       .catch((err) => {
-        console.log("yes");
         console.log({ err });
       });
   };
 
+  const uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "textagram");
+    setLoading(true);
+
+    const res = await fetch(`${process.env.REACT_APP_BASE_URL}/image/upload`, {
+      method: "POST",
+      body: data,
+    });
+
+    const file = await res.json();
+    setImage(file.secure_url);
+    setUpdatedProfile({ ...updatedProfile, profile_picture: file.secure_url });
+    setLoading(false);
+  };
+  // console.log(process.env.REACT_APP_BASE_URL);
   return (
     <>
       <Button onClick={handleShow} className="profile-edit" variant="info">
@@ -81,8 +105,41 @@ export default function UpdateProfileModal({ user_id }) {
         </Modal.Header>
         <Modal.Body>
           <Form className="edit-profile-form">
+            <Form.Group controlId="formPicture">
+              <Form.Label
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                  margin: "8px 0",
+                }}
+              >
+                Profile Picture:
+              </Form.Label>
+              <div className="profile-picture-setting" style={{}}>
+                <Image
+                  roundedCircle
+                  className="noselect image"
+                  src={updatedProfile.profile_picture}
+                  style={{ height: "100px", width: "100px" }}
+                  alt={`existed profile picture`}
+                />
+                <Form.File
+                  id="profile-picture"
+                  label=""
+                  onChange={uploadImage}
+                />
+              </div>
+            </Form.Group>
             <Form.Group controlId="formAbout">
-              <Form.Label>About:</Form.Label>
+              <Form.Label
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                  margin: "8px 0",
+                }}
+              >
+                About:
+              </Form.Label>
               <Form.Control
                 as="textarea"
                 size="lg"
@@ -100,7 +157,15 @@ export default function UpdateProfileModal({ user_id }) {
               />
             </Form.Group>
             <Form.Group controlId="formAbout">
-              <Form.Label>Location:</Form.Label>
+              <Form.Label
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                  margin: "8px 0",
+                }}
+              >
+                Location:
+              </Form.Label>
               <Form.Control
                 as="textarea"
                 size="lg"
