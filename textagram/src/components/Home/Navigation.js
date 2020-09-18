@@ -45,15 +45,16 @@ const Navigation = ({ setShow }) => {
   return (
     <Navbar id="top" className="nav-bar" sticky="top">
       <div className="nav-logo-search">
-        <div
+        <Link
+          to={"/page/1"}
           onClick={() => {
             window.scrollTo(0, 0);
-            window.location.href = "/page/1";
+            // window.location.href = "/page/1";
           }}
           className="logo"
         >
           Textagram
-        </div>
+        </Link>
 
         <form className="nav-search" onSubmit={(e) => submitSearch(e)}>
           <input

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal, Form, Button } from "react-bootstrap";
 import { Link, useParams, useHistory } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
+import axios from "axios";
 import {
   followedId,
   followingId,
@@ -63,11 +64,9 @@ const Profile = ({ show, setShow }) => {
     dispatch(setBookmarksID());
     dispatch(setUpVotesID());
     dispatch(setDownVotesID());
-    axiosWithAuth()
-      .get(`${baseURL}/users/${match.userId}`)
-      .then((res) => {
-        setUserInfo(res.data.user);
-      });
+    axios.get(`${baseURL}/users/${match.userId}`).then((res) => {
+      setUserInfo(res.data.user);
+    });
   }, [
     userBookmarks,
 
