@@ -4,6 +4,7 @@ import { baseURL } from "../utils/config";
 import { Image } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
+import Loader from "react-loader-spinner";
 import {
   getUser,
   setBookmarksID,
@@ -162,7 +163,17 @@ const AllPostsView = ({ show, setShow }) => {
       return cancelUpVotePost(post_id);
     }
   }
-
+  if (!posts)
+    return (
+      <Loader
+        style={{ margin: "100px auto" }}
+        className="loading"
+        type="ThreeDots"
+        color="#00BFFF"
+        height={250}
+        width={250}
+      />
+    );
   return (
     <div className="posts">
       <div>
