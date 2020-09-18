@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { getUser } from "../../redux/actions";
 
 export default function UpdateProfileModal({ profile_picture, user_id }) {
+  // console.log(user_id);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -83,10 +84,13 @@ export default function UpdateProfileModal({ profile_picture, user_id }) {
     data.append("upload_preset", "textagram");
     setLoading(true);
 
-    const res = await fetch(`${process.env.REACT_APP_BASE_URL}/image/upload`, {
-      method: "POST",
-      body: data,
-    });
+    const res = await fetch(
+      `https://api.cloudinary.com/v1_1/dujr5xene/image/upload`,
+      {
+        method: "POST",
+        body: data,
+      }
+    );
 
     const file = await res.json();
     setImage(file.secure_url);

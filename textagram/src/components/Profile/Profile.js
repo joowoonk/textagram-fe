@@ -31,7 +31,7 @@ const Profile = ({ show, setShow }) => {
   const dispatch = useDispatch();
   const { push } = useHistory();
   const match = useParams();
-
+  // console.log(match);
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
