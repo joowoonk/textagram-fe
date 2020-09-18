@@ -16,13 +16,14 @@ import {
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import Pagination from "./Pagination";
 import TopPosts from "./TopPosts";
+import axios from "axios";
 const AllPostsView = ({ show, setShow }) => {
   const params = useParams();
 
   const dispatch = useDispatch();
   const { push } = useHistory();
-
-  const posts = useSelector((state) => state.postReducer.posts);
+  const [posts, setPosts] = useState([]);
+  // const posts = useSelector((state) => state.postReducer.posts);
 
   const [currentPage, setCurrentPage] = useState(params.page);
   const [postsPerPage] = useState(10);
@@ -61,10 +62,17 @@ const AllPostsView = ({ show, setShow }) => {
   );
   useEffect(() => {
     dispatch(getUser());
-  }, [show]);
+    axios
+      .get(`${baseURL}/posts`)
+      .then((res) => {
+        setPosts(res.data.posts);
+      })
+      .catch((err) => {
+        console.log({ err });
+      });
+  }, []);
 
   useEffect(() => {
-    dispatch(getPosts());
     dispatch(setBookmarksID());
     dispatch(setUpVotesID());
     dispatch(setDownVotesID());
