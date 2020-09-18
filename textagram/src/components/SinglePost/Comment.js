@@ -10,9 +10,9 @@ import DeleteCommentModal from "./DeleteCommentModal";
 const Comment = ({
   setNewComment,
   user_id,
+  post_id,
   comment,
   fake_id,
-
   profile_picture,
   id,
   created_at,
@@ -56,7 +56,7 @@ const Comment = ({
                   <BsThreeDots id="comment-post" size="1.2em" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu style={{ width: "30px" }}>
-                  <DeleteCommentModal comment_id={id} />
+                  <DeleteCommentModal post_id={post_id} comment_id={id} />
                 </Dropdown.Menu>
               </Dropdown>
             )}

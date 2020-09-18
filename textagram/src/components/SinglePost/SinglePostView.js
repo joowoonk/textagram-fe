@@ -340,6 +340,7 @@ const SinglePostView = ({ show, setShow }) => {
                 return (
                   <div key={comment.id}>
                     <Comment
+                      post_id={post.id}
                       setNewComment={setNewComment}
                       user_id={comment.user_id}
                       comment={comment.comment}

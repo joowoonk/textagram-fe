@@ -79,27 +79,33 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .upload-card {
-    width: 100%;
-    .text-area::placeholder {
-      font-family: "Raleway", sans-serif;
-      font-size: 1rem;
-      word-wrap: break-word;
-    }
-  }
-  .buttons {
-    width: 100%;
-  }
-  .feeling-box {
-    width: 80%;
-    margin: 0 auto;
-    .feeling-body {
-      display: flex;
-      flex-wrap: wrap;
+  .form {
+    // width: 100%;
+    .upload-card,
+    .update-card {
+      // background-color: red;
       width: 100%;
-      justify-content: center;
-      .feeling {
-        width: 98%;
+      .text-area::placeholder {
+        font-family: "Raleway", sans-serif;
+        font-size: 1rem;
+        word-wrap: break-word;
+        // width: 100%;
+      }
+    }
+    .buttons {
+      width: 100%;
+    }
+    .feeling-box {
+      // width: 80%;
+      // margin: 0 auto;
+      .feeling-body {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+        .feeling {
+          width: 98%;
+        }
       }
     }
   }

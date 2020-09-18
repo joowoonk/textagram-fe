@@ -135,6 +135,9 @@
       flex-wrap: wrap;
       justify-content: center;
       margin: 2% auto;
+      .card-body {
+        width: 100%;
+      }
     }
   }
 }

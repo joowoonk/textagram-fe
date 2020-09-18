@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import { getPostById } from "../../redux/actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
 
@@ -23,7 +24,7 @@ export default function CommentUpload({ newComment, setNewComment, post_id }) {
     axiosWithAuth()
       .post(`${baseURL}/comments/${post_id}`, newComment)
       .then((res) => {
-        // console.log({ res });
+        dispatch(getPostById(post_id));
         setNewComment({
           comment: "",
         });
