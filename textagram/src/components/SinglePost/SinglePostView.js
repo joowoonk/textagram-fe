@@ -55,7 +55,7 @@ const SinglePostView = ({ show, setShow }) => {
 
   useEffect(() => {
     dispatch(getUser());
-    // dispatch(getPosts());
+    dispatch(getPosts());
   }, [dispatch, show]);
 
   useEffect(() => {
