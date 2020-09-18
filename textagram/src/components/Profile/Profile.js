@@ -325,159 +325,161 @@ const Profile = ({ show, setShow }) => {
       </div>
       <div>
         {userInfo.posts &&
-          userInfo.posts.map((post) => {
-            const votesColor = () => {
-              if (post.votes >= 0) {
-                return "#000000";
-              } else if (-5 <= post.votes && post.votes < 0) {
-                return "#5E5E5E";
-              } else if (-10 <= post.votes && post.votes < -5) {
-                return "#8d8d8d";
-              } else if (-15 <= post.votes && post.votes < -10) {
-                return "#bcbcbc";
-              } else if (-20 <= post.votes && post.votes < -15) {
-                return "#ebebeb";
-              } else {
-                return "#white";
-              }
-            };
-            return (
-              <div key={post.id} className="cards card-posts card-profile">
-                <div className="card-top">
-                  <div className="card-top-left-section">
-                    <Image
-                      className="noselect"
-                      roundedCircle
-                      src={userInfo.profile_picture}
-                      style={{
-                        height: "25px",
-                        width: "25px",
-                        margin: "0 10px",
-                      }}
-                      alt={`user-id:${post.id}`}
-                    />
-                    <div className="post-user">
-                      <p
-                        className="noselect fake-id"
-                        onClick={() => {
-                          push(`../profile/${post.user_id}`);
-                        }}
-                      >
-                        {userInfo.fake_id}{" "}
-                        {post.feeling && `is feeling ${post.feeling}.`}
-                      </p>
-                      <p
+          userInfo.posts
+            .map((post) => {
+              const votesColor = () => {
+                if (post.votes >= 0) {
+                  return "#000000";
+                } else if (-5 <= post.votes && post.votes < 0) {
+                  return "#5E5E5E";
+                } else if (-10 <= post.votes && post.votes < -5) {
+                  return "#8d8d8d";
+                } else if (-15 <= post.votes && post.votes < -10) {
+                  return "#bcbcbc";
+                } else if (-20 <= post.votes && post.votes < -15) {
+                  return "#ebebeb";
+                } else {
+                  return "#white";
+                }
+              };
+              return (
+                <div key={post.id} className="cards card-posts card-profile">
+                  <div className="card-top">
+                    <div className="card-top-left-section">
+                      <Image
+                        className="noselect"
+                        roundedCircle
+                        src={userInfo.profile_picture}
                         style={{
-                          color: "gray",
-                          fontSize: "10px",
-                          textTransform: "uppercase",
-                          margin: 0,
+                          height: "25px",
+                          width: "25px",
+                          margin: "0 10px",
                         }}
-                      >
-                        {moment(post.created_at).fromNow()}
-                      </p>
+                        alt={`user-id:${post.id}`}
+                      />
+                      <div className="post-user">
+                        <p
+                          className="noselect fake-id"
+                          onClick={() => {
+                            push(`../profile/${post.user_id}`);
+                          }}
+                        >
+                          {userInfo.fake_id}{" "}
+                          {post.feeling && `is feeling ${post.feeling}.`}
+                        </p>
+                        <p
+                          style={{
+                            color: "gray",
+                            fontSize: "10px",
+                            textTransform: "uppercase",
+                            margin: 0,
+                          }}
+                        >
+                          {moment(post.created_at).fromNow()}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="card-top-right-section">
+                      {upVotesPostId && upVotesPostId.includes(post.id) ? (
+                        <i
+                          onClick={() => {
+                            cancelUpVotePost(post.id);
+                          }}
+                          style={{ color: "green" }}
+                          className="fas fa-arrow-up like"
+                        ></i>
+                      ) : (
+                        <i
+                          onClick={() => {
+                            upVotePost(post.id);
+                            resetVotes(post.id);
+                          }}
+                          style={{ color: "lightgrey" }}
+                          className="fas fa-arrow-up like"
+                        ></i>
+                      )}
+                      {post.votes}
+                      {downVotesPostId && downVotesPostId.includes(post.id) ? (
+                        <i
+                          onClick={() => {
+                            cancelDownVotePost(post.id);
+                          }}
+                          style={{ color: "red" }}
+                          className="fas fa-arrow-down like"
+                        ></i>
+                      ) : (
+                        <i
+                          onClick={() => {
+                            downVotePost(post.id);
+                            resetVotes(post.id);
+                          }}
+                          style={{ color: "lightgrey" }}
+                          className="fas fa-arrow-down like"
+                        ></i>
+                      )}
+
+                      {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
+                        <i
+                          style={{
+                            color: "#A4DE02",
+                            marginRight: "10px",
+                          }}
+                          onClick={() => unbookmarkIt(post.id)}
+                          className="fas fa-bookmark"
+                        ></i>
+                      ) : (
+                        <i
+                          style={{
+                            marginRight: "10px",
+                          }}
+                          onClick={() => bookmarkIt(post.id)}
+                          className="far fa-bookmark"
+                        ></i>
+                      )}
                     </div>
                   </div>
-
-                  <div className="card-top-right-section">
-                    {upVotesPostId && upVotesPostId.includes(post.id) ? (
-                      <i
-                        onClick={() => {
-                          cancelUpVotePost(post.id);
-                        }}
-                        style={{ color: "green" }}
-                        className="fas fa-arrow-up like"
-                      ></i>
-                    ) : (
-                      <i
-                        onClick={() => {
-                          upVotePost(post.id);
-                          resetVotes(post.id);
-                        }}
-                        style={{ color: "lightgrey" }}
-                        className="fas fa-arrow-up like"
-                      ></i>
-                    )}
-                    {post.votes}
-                    {downVotesPostId && downVotesPostId.includes(post.id) ? (
-                      <i
-                        onClick={() => {
-                          cancelDownVotePost(post.id);
-                        }}
-                        style={{ color: "red" }}
-                        className="fas fa-arrow-down like"
-                      ></i>
-                    ) : (
-                      <i
-                        onClick={() => {
-                          downVotePost(post.id);
-                          resetVotes(post.id);
-                        }}
-                        style={{ color: "lightgrey" }}
-                        className="fas fa-arrow-down like"
-                      ></i>
-                    )}
-
-                    {bookmarkPostId && bookmarkPostId.includes(post.id) ? (
-                      <i
+                  <Link
+                    className="title"
+                    to={`/posts/${post.id}`}
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
+                    <div className="card-body body">
+                      <h2
                         style={{
-                          color: "#A4DE02",
-                          marginRight: "10px",
+                          color: votesColor(),
+                          textTransform: "capitalize",
                         }}
-                        onClick={() => unbookmarkIt(post.id)}
-                        className="fas fa-bookmark"
-                      ></i>
-                    ) : (
-                      <i
-                        style={{
-                          marginRight: "10px",
-                        }}
-                        onClick={() => bookmarkIt(post.id)}
-                        className="far fa-bookmark"
-                      ></i>
-                    )}
-                  </div>
+                      >
+                        {post.title}
+                      </h2>
+
+                      <div className="hash-tags ">
+                        {post.hashtags.map((hashtag) => {
+                          return (
+                            <>
+                              {hashtag.length <= 25 ? (
+                                <span className="hash-tag">{hashtag}</span>
+                              ) : (
+                                <span className="hash-tag">{`${hashtag.slice(
+                                  0,
+                                  25
+                                )}...`}</span>
+                              )}
+                            </>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div className="card-body comment">
+                      {post.comments && post.comments.length} comments
+                    </div>
+                  </Link>
                 </div>
-                <Link
-                  className="title"
-                  to={`/posts/${post.id}`}
-                  onClick={() => window.scrollTo(0, 0)}
-                >
-                  <div className="card-body body">
-                    <h2
-                      style={{
-                        color: votesColor(),
-                        textTransform: "capitalize",
-                      }}
-                    >
-                      {post.title}
-                    </h2>
-
-                    <div className="hash-tags ">
-                      {post.hashtags.map((hashtag) => {
-                        return (
-                          <>
-                            {hashtag.length <= 25 ? (
-                              <span className="hash-tag">{hashtag}</span>
-                            ) : (
-                              <span className="hash-tag">{`${hashtag.slice(
-                                0,
-                                25
-                              )}...`}</span>
-                            )}
-                          </>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <div className="card-body comment">
-                    {post.comments && post.comments.length} comments
-                  </div>
-                </Link>
-              </div>
-            );
-          })}
+              );
+            })
+            .reverse()}
       </div>
 
       <Modal size="sm" show={followingList} onHide={followHandleClose} centered>

@@ -48,7 +48,7 @@ function App() {
           <HomeSinglePost show={show} setShow={setShow} />
         </Route>
         <Route exact path="/search/:title">
-          <Search />
+          <Search show={show} setShow={setShow} />
         </Route>
         <PrivateRoute path="/bookmarks/">
           <Bookmark />
