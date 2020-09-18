@@ -19,6 +19,7 @@ import TopPosts from "./TopPosts";
 import axios from "axios";
 const AllPostsView = ({ show, setShow }) => {
   const params = useParams();
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const { push } = useHistory();
@@ -61,10 +62,12 @@ const AllPostsView = ({ show, setShow }) => {
     (state) => state.usersReducer.downVotesPostId
   );
   useEffect(() => {
+    setLoading(true);
     dispatch(getUser());
     axios
       .get(`${baseURL}/posts`)
       .then((res) => {
+        setLoading(false);
         setPosts(res.data.posts);
       })
       .catch((err) => {
@@ -176,15 +179,24 @@ const AllPostsView = ({ show, setShow }) => {
   return (
     <div className="posts">
       <div>
-        {!posts && (
-          <Loader
-            style={{ margin: "100px auto" }}
+        {loading && (
+          <div
             className="loading"
-            type="ThreeDots"
-            color="#00BFFF"
-            height={250}
-            width={250}
-          />
+            style={{
+              margin: "100px auto",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            {console.log("yes")}
+            <Loader
+              className="loading"
+              type="ThreeDots"
+              color="#00BFFF"
+              height={100}
+              width={100}
+            />
+          </div>
         )}
         {currentPosts.map((post) => {
           const votesColor = () => {
