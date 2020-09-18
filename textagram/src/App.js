@@ -37,7 +37,6 @@ function App() {
         <Register showReg={showReg} setShowReg={setShowReg} setShow={setShow} />
       </header>
       <Switch>
-        <RedirectRoute exact path="/"></RedirectRoute>
         <Route exact path="/page/:page">
           <AllPostsView show={show} setShow={setShow} />
         </Route>

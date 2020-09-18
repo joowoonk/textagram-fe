@@ -3,9 +3,8 @@ import Loader from "react-loader-spinner";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { BsSearch } from "react-icons/bs";
-import { getPosts } from "../../redux/actions";
+
 import moment from "moment";
 import { Image } from "react-bootstrap";
 import TopPosts from "./TopPosts";
@@ -17,11 +16,6 @@ export default function Search({ show, setShow }) {
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
 
   const submitSearch = () => {
     if (inputValue !== "") {

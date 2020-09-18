@@ -42,7 +42,6 @@ const Bookmark = ({ show, setShow }) => {
   }, [show]);
 
   useEffect(() => {
-    dispatch(getPosts());
     dispatch(setBookmarksID());
     dispatch(setUpVotesID());
     dispatch(setDownVotesID());

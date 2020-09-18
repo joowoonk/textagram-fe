@@ -58,7 +58,6 @@ const Profile = ({ show, setShow }) => {
     dispatch(getUser());
   }, []);
   useEffect(() => {
-    // dispatch(getPosts());
     dispatch(followingId());
     dispatch(followedId());
     dispatch(setBookmarksID());

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsGraphUp, BsTrophy } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
+import { getPosts } from "../../redux/actions";
 const TopPosts = () => {
   const posts = useSelector((state) => state.postReducer.posts);
   const { replace } = useHistory();
+  const dispatch = useDispatch();
   let topPosts = [...posts];
 
   topPosts = topPosts.sort((a, b) => {
@@ -22,7 +24,9 @@ const TopPosts = () => {
       count[`${hashtags[i]}`] = 1;
     }
   }
-
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
   var sortable = [];
   for (var hashtag in count) {
     sortable.push([hashtag, count[hashtag]]);
