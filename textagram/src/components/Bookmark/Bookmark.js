@@ -18,8 +18,8 @@ const Bookmark = ({ show, setShow }) => {
   const dispatch = useDispatch();
 
   // Get current posts
-  const userBookmarks = useSelector(
-    (state) => state.usersReducer.userBookmarks
+  const userBookmarks = useSelector((state) =>
+    state.usersReducer.userBookmarks.reverse()
   );
 
   const bookmarkPostId = useSelector(

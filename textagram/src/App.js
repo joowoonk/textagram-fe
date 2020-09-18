@@ -14,6 +14,8 @@ import AllPostsView from "./components/Home/AllPostsView";
 import Bookmark from "./components/Bookmark/Bookmark";
 import Profile from "./components/Profile/Profile";
 import UpdateProfileModal from "./components/Profile/UpdateProfileModal";
+import Switch from "react-bootstrap/esm/Switch";
+import Search from "./components/Home/Search";
 
 var dotenv = require("dotenv");
 
@@ -34,26 +36,30 @@ function App() {
         />
         <Register showReg={showReg} setShowReg={setShowReg} setShow={setShow} />
       </header>
-
-      <RedirectRoute exact path="/"></RedirectRoute>
-      <Route exact path="/page/:page">
-        <AllPostsView show={show} setShow={setShow} />
-      </Route>
-      <PrivateRoute exact path="/posts/:postId">
-        <HomeSinglePost show={show} setShow={setShow} />
-      </PrivateRoute>
-      <PrivateRoute exact path="/profile/:userId">
-        <Profile show={show} setShow={setShow} />
-      </PrivateRoute>
-      <PrivateRoute exact path="/bookmarks/">
-        <Bookmark />
-      </PrivateRoute>
-      <PrivateRoute exact path="/edit/:postId">
-        <EditPost />
-      </PrivateRoute>
-      <PrivateRoute exact path="/upload">
-        <UploadForm />
-      </PrivateRoute>
+      <Switch>
+        <RedirectRoute exact path="/"></RedirectRoute>
+        <Route exact path="/page/:page">
+          <AllPostsView show={show} setShow={setShow} />
+        </Route>
+        <Route exact path="/profile/:userId">
+          <Profile show={show} setShow={setShow} />
+        </Route>
+        <Route exact path="/posts/:postId">
+          <HomeSinglePost show={show} setShow={setShow} />
+        </Route>
+        <Route exact path="/search/:title">
+          <Search />
+        </Route>
+        <PrivateRoute path="/bookmarks/">
+          <Bookmark />
+        </PrivateRoute>
+        <PrivateRoute path="/edit/:postId">
+          <EditPost />
+        </PrivateRoute>
+        <PrivateRoute path="/upload">
+          <UploadForm />
+        </PrivateRoute>
+      </Switch>
     </div>
   );
 }

@@ -60,7 +60,7 @@ const Navigation = ({ setShow }) => {
             type="text"
             value={inputSearch}
             onChange={handleChange}
-            placeholder="Search by title or hashtag"
+            placeholder="Search by title"
             className="search-input"
           />
           <button type="search">
