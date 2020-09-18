@@ -14,7 +14,7 @@ export default function EditFeelingListModal({ updatedPost, setUpdatedPost }) {
         {!updatedPost.feeling && "Feeling"}
       </Button>
 
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal show={show} onHide={handleClose} className="feeling-box" centered>
         <Modal.Header closeButton className="header">
           <Modal.Title> How are you feeling?</Modal.Title>
         </Modal.Header>

@@ -36,7 +36,7 @@ export default function Search({ show, setShow }) {
         console.error(err);
       });
   }, [match.title]);
-  console.log(searchResults);
+  // console.log(searchResults);
   if (!searchResults) return <Loader />;
 
   return (

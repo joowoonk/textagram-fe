@@ -16,6 +16,8 @@ import Profile from "./components/Profile/Profile";
 import UpdateProfileModal from "./components/Profile/UpdateProfileModal";
 import Switch from "react-bootstrap/esm/Switch";
 import Search from "./components/Home/Search";
+import FeelingListModal from "./components/Upload/FeelingListModal";
+import EditFeelingListModal from "./components/Edit/EditFeelingListModal";
 
 var dotenv = require("dotenv");
 
@@ -55,6 +57,7 @@ function App() {
         </PrivateRoute>
         <PrivateRoute path="/edit/:postId">
           <EditPost />
+          {/* <EditFeelingListModal /> */}
         </PrivateRoute>
         <PrivateRoute path="/upload">
           <UploadForm />

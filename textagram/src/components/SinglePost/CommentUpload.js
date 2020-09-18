@@ -23,7 +23,7 @@ export default function CommentUpload({ newComment, setNewComment, post_id }) {
     axiosWithAuth()
       .post(`${baseURL}/comments/${post_id}`, newComment)
       .then((res) => {
-        console.log({ res });
+        // console.log({ res });
         setNewComment({
           comment: "",
         });

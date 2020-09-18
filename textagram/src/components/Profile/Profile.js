@@ -103,7 +103,6 @@ const Profile = ({ show, setShow }) => {
       axiosWithAuth()
         .post(`${baseURL}/followers/${id}`)
         .then((res) => {
-          // console.log("yes?");
           dispatch(getUser());
         })
         .catch((err) => {
@@ -119,7 +118,6 @@ const Profile = ({ show, setShow }) => {
       axiosWithAuth()
         .delete(`${baseURL}/followers/${id}`)
         .then((res) => {
-          // console.log("yes?");
           dispatch(getUser());
         })
         .catch((err) => {

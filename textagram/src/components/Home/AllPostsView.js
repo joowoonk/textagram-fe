@@ -178,7 +178,6 @@ const AllPostsView = ({ show, setShow }) => {
       return cancelUpVotePost(post_id);
     }
   }
-  console.log(posts);
 
   return (
     <div className="posts">
@@ -192,7 +191,6 @@ const AllPostsView = ({ show, setShow }) => {
               justifyContent: "center",
             }}
           >
-            {console.log("yes")}
             <Loader
               className="loading"
               type="ThreeDots"

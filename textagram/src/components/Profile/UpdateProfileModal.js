@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { getUser } from "../../redux/actions";
 
 export default function UpdateProfileModal({ profile_picture, user_id }) {
-  // console.log(user_id);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
