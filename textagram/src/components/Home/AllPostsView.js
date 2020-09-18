@@ -70,7 +70,7 @@ const AllPostsView = ({ show, setShow }) => {
       .catch((err) => {
         console.log({ err });
       });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(setBookmarksID());
@@ -171,20 +171,21 @@ const AllPostsView = ({ show, setShow }) => {
       return cancelUpVotePost(post_id);
     }
   }
-  if (!posts)
-    return (
-      <Loader
-        style={{ margin: "100px auto" }}
-        className="loading"
-        type="ThreeDots"
-        color="#00BFFF"
-        height={250}
-        width={250}
-      />
-    );
+  console.log(posts);
+
   return (
     <div className="posts">
       <div>
+        {!posts && (
+          <Loader
+            style={{ margin: "100px auto" }}
+            className="loading"
+            type="ThreeDots"
+            color="#00BFFF"
+            height={250}
+            width={250}
+          />
+        )}
         {currentPosts.map((post) => {
           const votesColor = () => {
             if (post.votes >= 0) {
