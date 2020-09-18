@@ -297,16 +297,16 @@ const Profile = ({ show, setShow }) => {
             )}
 
             <p>
-              <i class="fas fa-birthday-cake"></i> Joined on{" "}
+              <i className="fas fa-birthday-cake"></i> Joined on{" "}
               {moment(userInfo.created_at).format("MM/DD/YYYY")}
             </p>
             {userInfo.location ? (
               <p>
-                <i class="fas fa-map-marker-alt"></i> {userInfo.location}
+                <i className="fas fa-map-marker-alt"></i> {userInfo.location}
               </p>
             ) : (
               <p>
-                <i class="fas fa-map-marker-alt"></i> City, State
+                <i className="fas fa-map-marker-alt"></i> City, State
               </p>
             )}
           </div>
@@ -455,9 +455,9 @@ const Profile = ({ show, setShow }) => {
                       </h2>
 
                       <div className="hash-tags ">
-                        {post.hashtags.map((hashtag) => {
+                        {post.hashtags.map((hashtag, index) => {
                           return (
-                            <>
+                            <div key={index}>
                               {hashtag.length <= 25 ? (
                                 <span className="hash-tag">{hashtag}</span>
                               ) : (
@@ -466,7 +466,7 @@ const Profile = ({ show, setShow }) => {
                                   25
                                 )}...`}</span>
                               )}
-                            </>
+                            </div>
                           );
                         })}
                       </div>
@@ -488,8 +488,8 @@ const Profile = ({ show, setShow }) => {
         </Modal.Header>
         <Modal.Body className="following-list">
           {userInfo.following &&
-            userInfo.following.map((follow) => (
-              <div className="name-list">
+            userInfo.following.map((follow, index) => (
+              <div className="name-list" key={index}>
                 <Image
                   className="noselect"
                   roundedCircle
@@ -513,8 +513,8 @@ const Profile = ({ show, setShow }) => {
         </Modal.Header>
         <Modal.Body className="following-list">
           {userInfo.followers &&
-            userInfo.followers.map((follower) => (
-              <div className="name-list">
+            userInfo.followers.map((follower, index) => (
+              <div className="name-list" key={index}>
                 <Image
                   className="noselect"
                   roundedCircle

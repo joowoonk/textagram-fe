@@ -296,9 +296,9 @@ const AllPostsView = ({ show, setShow }) => {
                   </h2>
 
                   <div className="hash-tags ">
-                    {post.hashtags.map((hashtag) => {
+                    {post.hashtags.map((hashtag, index) => {
                       return (
-                        <>
+                        <div key={index}>
                           {hashtag.length <= 25 ? (
                             <span className="hash-tag">{hashtag}</span>
                           ) : (
@@ -307,7 +307,7 @@ const AllPostsView = ({ show, setShow }) => {
                               25
                             )}...`}</span>
                           )}
-                        </>
+                        </div>
                       );
                     })}
                   </div>

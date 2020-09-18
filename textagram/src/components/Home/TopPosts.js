@@ -64,11 +64,9 @@ const TopPosts = () => {
         </div>
         <hr></hr>
         {topFive.map((hashtag, index) => (
-          <div className="card-bottom">
+          <div className="card-bottom" key={index}>
             {hashtag[0].length <= 25 ? (
-              <h6 key={index} className="hash-tag">
-                {hashtag[0]}
-              </h6>
+              <h6 className="hash-tag">{hashtag[0]}</h6>
             ) : (
               <h6 key={index} className="hash-tag">{`${hashtag[0].slice(
                 0,

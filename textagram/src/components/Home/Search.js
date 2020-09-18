@@ -52,7 +52,7 @@ export default function Search({ show, setShow }) {
           <div className="search-posts">
             {searchResults.length > 0 ? (
               searchResults
-                .map((post) => {
+                .map((post, index) => {
                   const votesColor = () => {
                     if (post.votes >= 0) {
                       return "#000000";
@@ -69,8 +69,8 @@ export default function Search({ show, setShow }) {
                     }
                   };
                   return (
-                    <div className="search">
-                      <div key={post.id} className="search-card">
+                    <div className="search" key={post.id}>
+                      <div className="search-card">
                         <div
                           style={{
                             borderBottom: "1px solid silver",

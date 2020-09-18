@@ -55,8 +55,8 @@ const SinglePostView = ({ show, setShow }) => {
 
   useEffect(() => {
     dispatch(getUser());
-    dispatch(getPosts());
-  }, [dispatch, show, post.comments]);
+    // dispatch(getPosts());
+  }, [dispatch, show]);
 
   useEffect(() => {
     dispatch(setBookmarksID());
@@ -278,7 +278,7 @@ const SinglePostView = ({ show, setShow }) => {
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item
-                      postId={post.id}
+                      postid={post.id}
                       href={`/edit/${match.postId}`}
                     >
                       Edit
@@ -299,25 +299,24 @@ const SinglePostView = ({ show, setShow }) => {
             <div className="hash-tags ">
               {post.hashtags.map((hashtag, index) => {
                 return (
-                  <>
+                  <div key={index}>
                     {hashtag.length <= 25 ? (
-                      <span key={index} className="hash-tag">
-                        {hashtag}
-                      </span>
+                      <span className="hash-tag">{hashtag}</span>
                     ) : (
-                      <span key={index} className="hash-tag">{`${hashtag.slice(
+                      <span className="hash-tag">{`${hashtag.slice(
                         0,
                         25
                       )}...`}</span>
                     )}
-                  </>
+                  </div>
                 );
               })}
             </div>
             {post.context &&
-              post.context.map((text) => {
+              post.context.map((text, index) => {
                 return (
                   <p
+                    key={index}
                     style={{ color: votesColor(post.votes.votes) }}
                     className="single-post-context"
                   >
@@ -338,8 +337,9 @@ const SinglePostView = ({ show, setShow }) => {
           {post.comments.length > 0 ? (
             <>
               {post.comments.map((comment, index) => {
+                // console.log(comment.id);
                 return (
-                  <>
+                  <div key={comment.id}>
                     <Comment
                       setNewComment={setNewComment}
                       user_id={comment.user_id}
@@ -349,7 +349,7 @@ const SinglePostView = ({ show, setShow }) => {
                       profile_picture={comment.profile_picture}
                       created_at={comment.created_at}
                     />
-                  </>
+                  </div>
                 );
               })}
             </>

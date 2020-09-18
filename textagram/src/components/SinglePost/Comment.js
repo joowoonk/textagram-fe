@@ -63,8 +63,10 @@ const Comment = ({
           </div>
         </div>
 
-        {comment.map((comm) => (
-          <p className="comments">{comm}</p>
+        {comment.map((comm, index) => (
+          <p key={index} className="comments">
+            {comm}
+          </p>
         ))}
       </div>
     </>

@@ -156,7 +156,7 @@ const Bookmark = ({ show, setShow }) => {
           </div>
         )}
         {userBookmarks
-          .map((post) => {
+          .map((post, index) => {
             const votesColor = () => {
               if (post.votes.votes >= 0) {
                 return "#000000";
@@ -280,9 +280,9 @@ const Bookmark = ({ show, setShow }) => {
                     </h2>
 
                     <div className="hash-tags ">
-                      {post.hashtags.map((hashtag) => {
+                      {post.hashtags.map((hashtag, index) => {
                         return (
-                          <>
+                          <div key={index}>
                             {hashtag.length <= 25 ? (
                               <span className="hash-tag">{hashtag}</span>
                             ) : (
@@ -291,7 +291,7 @@ const Bookmark = ({ show, setShow }) => {
                                 25
                               )}...`}</span>
                             )}
-                          </>
+                          </div>
                         );
                       })}
                     </div>
