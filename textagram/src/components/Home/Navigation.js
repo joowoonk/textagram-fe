@@ -46,7 +46,7 @@ const Navigation = ({ setShow }) => {
     <Navbar id="top" className="nav-bar" sticky="top">
       <div className="nav-logo-search">
         <Link
-          to={"/page/1"}
+          to={"/"}
           onClick={() => {
             window.scrollTo(0, 0);
             // window.location.href = "/page/1";
