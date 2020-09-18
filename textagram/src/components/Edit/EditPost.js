@@ -112,6 +112,7 @@ export default function EditPost() {
               border: "none",
               outline: "none",
               outlineOffset: "none",
+              height: "10vh",
             }}
             name="title"
             autoComplete="off"
@@ -145,6 +146,7 @@ export default function EditPost() {
             size="md"
             type="text"
             autoComplete="off"
+            style={{ height: "6vh" }}
             value={updatedPost.hashtags}
             onChange={handleChange}
             className="text-area hashtags-area no-border"

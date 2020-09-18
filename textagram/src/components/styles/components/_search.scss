@@ -9,7 +9,7 @@
     width: 500px;
     display: block;
     .search-card {
-      padding: 10px;
+      padding: 3px 0;
       //   width: 500px;
       background-color: white;
       h2 {
@@ -18,7 +18,18 @@
       }
       .card-top-left-section {
         display: flex;
+        margin: 6px 0;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .search-results {
+    margin: 50px 0;
+    .search {
+      width: 100%;
+      margin: 10px 0;
     }
   }
 }
@@ -32,4 +43,8 @@
     // right: 0;
     // margin: 70px 130px;
   }
+}
+
+.custom-switch {
+  padding-left: 0;
 }

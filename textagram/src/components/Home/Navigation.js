@@ -100,7 +100,26 @@ const Navigation = ({ setShow }) => {
             </Nav.Link>
           </>
         )}
-      </div>
+      </div>{" "}
+      {localStorage.getItem("token") || loginState ? (
+        <>
+          <Nav.Link className="mobile-top-logging" onClick={() => signOut()}>
+            <GiExitDoor size="2.0em" />
+          </Nav.Link>
+        </>
+      ) : null}
+      {localStorage.getItem("token") ? null : (
+        <>
+          <Nav.Link
+            className="mobile-top-logging"
+            onClick={() => {
+              setShow(true);
+            }}
+          >
+            <BsFillPersonCheckFill size="2.0em" />
+          </Nav.Link>
+        </>
+      )}
     </Navbar>
   );
 };

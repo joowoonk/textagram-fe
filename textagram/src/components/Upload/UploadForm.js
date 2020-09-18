@@ -69,7 +69,6 @@ export default function UploadForm() {
             <div
               style={{
                 marginLeft: "20px",
-                // marginBottom: "-20px",
                 zIndex: 1,
                 color: "red",
                 fontFamily: "bold",
@@ -87,6 +86,7 @@ export default function UploadForm() {
               border: "none",
               outline: "none",
               outlineOffset: "none",
+              height: "8vh",
             }}
             name="title"
             autoComplete="off"
@@ -107,6 +107,7 @@ export default function UploadForm() {
             type="text"
             wrap="hard"
             autoComplete="off"
+            style={{ height: "6vh" }}
             value={newPost.hashtags}
             onChange={handleChange}
             className="hash-area text-area no-border"

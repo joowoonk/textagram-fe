@@ -74,12 +74,31 @@ nav a:hover {
   color: black !important;
   //   outline-offset: none !important;
 }
+.mobile-top-logging {
+  display: none;
+}
 
 @media only screen and (max-width: 800px) {
   .nav-bar {
-    display: none;
+    // display: none;
+    .nav-logo-search {
+      .nav-search {
+        display: none;
+      }
+    }
+    .nav-icons {
+      display: none;
+    }
     // margin: 10px auto;
     // width: 100%;
+
+    .mobile-top-logging {
+      display: inline;
+      color: black;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   }
 }
 #top {

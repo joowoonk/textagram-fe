@@ -12,22 +12,16 @@
     border: none;
     font-family: "Raleway", sans-serif;
     font-size: 1.5rem;
-    // overflow-wrap: break-word;
-    // resize: both;
-    // overflow: auto;
-    // word-break: break-all;
   }
   .title-area {
     height: 60px;
     line-height: 50px;
-
     // word-break: break-all; NOT GOOD
   }
   .hash-area {
     height: 30px;
   }
-  .hashtags-area {
-  }
+
   .text-area:focus,
   .title-area:focus {
     outline: none !important;
