@@ -25,6 +25,11 @@ export default function Search({ show, setShow }) {
     setInputValue(e.target.value);
   };
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
   const submitSearch = () => {
     if (inputValue !== "") {
       push(`search/${inputValue}`);

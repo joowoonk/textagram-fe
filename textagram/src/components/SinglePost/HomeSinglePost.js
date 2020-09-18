@@ -15,7 +15,7 @@ export default function HomeSinglePost({ show, setShow }) {
       <div className="space"></div>
       <SinglePostView show={show} setShow={setShow} />
       <div
-        className="hashtags"
+        className="go-back"
         onClick={() => {
           goBack();
         }}

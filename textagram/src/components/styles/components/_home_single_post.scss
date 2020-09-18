@@ -14,4 +14,11 @@
   .hashtags {
     width: 33%;
   }
+  @media only screen and (max-width: 600px) {
+    .go-back,
+    .space,
+    .hashtags {
+      display: none;
+    }
+  }
 }
