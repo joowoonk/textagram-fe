@@ -64,6 +64,9 @@ const AllPostsView = ({ show, setShow }) => {
   useEffect(() => {
     setLoading(true);
     dispatch(getUser());
+    const refresh = () => {
+      window.location.href = "/";
+    };
     axios
       .get(`${baseURL}/posts`)
       .then((res) => {
@@ -71,6 +74,7 @@ const AllPostsView = ({ show, setShow }) => {
         setPosts(res.data.posts);
       })
       .catch((err) => {
+        refresh();
         console.log({ err });
       });
   }, [dispatch]);
