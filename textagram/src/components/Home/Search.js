@@ -5,14 +5,7 @@ import { baseURL } from "../utils/config";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { BsSearch } from "react-icons/bs";
-import {
-  getPostById,
-  getPosts,
-  getUser,
-  setBookmarksID,
-  setUpVotesID,
-  setDownVotesID,
-} from "../../redux/actions";
+import { getPosts } from "../../redux/actions";
 import moment from "moment";
 import { Image } from "react-bootstrap";
 import TopPosts from "./TopPosts";
