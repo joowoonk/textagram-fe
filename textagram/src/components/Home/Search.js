@@ -38,7 +38,25 @@ export default function Search({ show, setShow }) {
       });
   }, [match.title]);
   // console.log(searchResults);
-  if (!searchResults) return <Loader />;
+  if (!searchResults)
+    return (
+      <div
+        className="loading"
+        style={{
+          margin: "100px auto",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Loader
+          className="loading"
+          type="ThreeDots"
+          color="#00BFFF"
+          height={100}
+          width={100}
+        />
+      </div>
+    );
 
   return (
     <>

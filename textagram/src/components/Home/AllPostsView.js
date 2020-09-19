@@ -4,7 +4,6 @@ import { baseURL } from "../utils/config";
 import { Image } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
-import Loader from "react-loader-spinner";
 import {
   getUser,
   setBookmarksID,
@@ -19,12 +18,11 @@ import TopPosts from "./TopPosts";
 import axios from "axios";
 const AllPostsView = ({ show, setShow }) => {
   const params = useParams();
-  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const { push } = useHistory();
-  const [posts, setPosts] = useState([]);
-  // const posts = useSelector((state) => state.postReducer.posts);
+
+  const posts = useSelector((state) => state.postReducer.posts);
 
   const [currentPage, setCurrentPage] = useState(params.page);
   const [postsPerPage] = useState(10);
@@ -62,24 +60,11 @@ const AllPostsView = ({ show, setShow }) => {
     (state) => state.usersReducer.downVotesPostId
   );
   useEffect(() => {
-    setLoading(true);
     dispatch(getUser());
-    const refresh = () => {
-      window.location.href = "/";
-    };
-    axios
-      .get(`${baseURL}/posts`)
-      .then((res) => {
-        setLoading(false);
-        setPosts(res.data.posts);
-      })
-      .catch((err) => {
-        refresh();
-        console.log({ err });
-      });
-  }, [dispatch]);
+  }, [show]);
 
   useEffect(() => {
+    dispatch(getPosts());
     dispatch(setBookmarksID());
     dispatch(setUpVotesID());
     dispatch(setDownVotesID());
@@ -182,24 +167,6 @@ const AllPostsView = ({ show, setShow }) => {
   return (
     <div className="posts">
       <div>
-        {loading && (
-          <div
-            className="loading"
-            style={{
-              margin: "100px auto",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Loader
-              className="loading"
-              type="ThreeDots"
-              color="#00BFFF"
-              height={100}
-              width={100}
-            />
-          </div>
-        )}
         {currentPosts.map((post) => {
           const votesColor = () => {
             if (post.votes >= 0) {
@@ -330,9 +297,9 @@ const AllPostsView = ({ show, setShow }) => {
                   </h2>
 
                   <div className="hash-tags ">
-                    {post.hashtags.map((hashtag, index) => {
+                    {post.hashtags.map((hashtag, idex) => {
                       return (
-                        <div key={index}>
+                        <div key={idex}>
                           {hashtag.length <= 25 ? (
                             <span className="hash-tag">{hashtag}</span>
                           ) : (
