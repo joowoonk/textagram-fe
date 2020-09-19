@@ -143,7 +143,7 @@ const Bookmark = ({ show, setShow }) => {
 
   return (
     <div className="posts">
-      <div>
+      <div className="posts-bookmarks">
         <div className="notification-bookmark">
           <p>Other people won't be able to see what you bookmarked 👀</p>
         </div>
@@ -173,7 +173,12 @@ const Bookmark = ({ show, setShow }) => {
             };
             return (
               <div key={post.id} className="cards card-posts">
-                <div className="card-top">
+                <div
+                  className="card-top"
+                  style={{
+                    borderBottom: "2px solid #e9ecef",
+                  }}
+                >
                   <div className="card-top-left-section">
                     <Image
                       className="noselect"

@@ -344,7 +344,7 @@ const Profile = ({ show, setShow }) => {
               )}
             </div>
           </div>{" "}
-          <div>
+          <div className="profile-mobile">
             {userInfo.posts &&
               userInfo.posts
                 .map((post) => {

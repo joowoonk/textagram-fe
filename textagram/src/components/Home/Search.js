@@ -100,7 +100,7 @@ export default function Search({ show, setShow }) {
                       <div className="search-card">
                         <div
                           style={{
-                            borderBottom: "1px solid silver",
+                            borderBottom: "2px solid #e9ecef",
                           }}
                         >
                           <div className="card-top-left-section">
