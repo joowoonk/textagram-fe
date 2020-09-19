@@ -6,7 +6,7 @@ import { IoIosSearch } from "react-icons/io";
 import {
   BsFillPersonLinesFill,
   BsFillPersonCheckFill,
-  BsFillBookmarksFill,
+  BsFillBookmarkFill,
 } from "react-icons/bs";
 
 import { AiOutlineCloudUpload } from "react-icons/ai";
@@ -76,10 +76,10 @@ const Navigation = ({ setShow }) => {
         {localStorage.getItem("token") || loginState ? (
           <>
             <Nav.Link className="nav-att" href="/upload">
-              <AiOutlineCloudUpload size="2.0em" />
+              <AiOutlineCloudUpload size="2.2em" />
             </Nav.Link>
             <Nav.Link className="nav-att" href="/bookmarks">
-              <BsFillBookmarksFill size="1.5em" />
+              <BsFillBookmarkFill size="2em" />
             </Nav.Link>
             <Nav.Link className="nav-att" href={`/profile/${userId}`}>
               <BsFillPersonLinesFill size="2.0em" />

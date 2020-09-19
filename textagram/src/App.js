@@ -18,6 +18,7 @@ import Switch from "react-bootstrap/esm/Switch";
 import Search from "./components/Home/Search";
 import FeelingListModal from "./components/Upload/FeelingListModal";
 import EditFeelingListModal from "./components/Edit/EditFeelingListModal";
+import MobileNav from "./components/Home/MobileNav";
 
 var dotenv = require("dotenv");
 
@@ -29,7 +30,8 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Navigation show={show} setShow={setShow} />{" "}
+        <Navigation show={show} setShow={setShow} />
+        <MobileNav setShow={setShow} />
         <Login
           show={show}
           setShow={setShow}

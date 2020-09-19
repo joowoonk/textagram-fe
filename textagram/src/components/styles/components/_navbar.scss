@@ -55,6 +55,7 @@
   }
   .nav-icons {
     display: flex;
+    align-items: center;
     margin: 0;
   }
 }
@@ -83,6 +84,9 @@ nav a:hover {
 .mobile-search {
   display: none;
 }
+.mobile-nav {
+  display: none;
+}
 
 @media only screen and (max-width: 800px) {
   .nav-bar {
@@ -104,6 +108,24 @@ nav a:hover {
       position: absolute;
       top: 0;
       right: 0;
+    }
+  }
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 5px 0;
+    background-color: white;
+    align-items: center;
+
+    bottom: 0;
+    z-index: 3;
+    .nav-mobile-att {
+      color: black !important;
+    }
+    .center {
+      color: $main-green !important;
     }
   }
 }

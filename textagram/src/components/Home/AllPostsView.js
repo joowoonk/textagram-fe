@@ -183,6 +183,7 @@ const AllPostsView = ({ show, setShow }) => {
               return "#white";
             }
           };
+          console.log({ post });
           return (
             <div key={post.id} className="cards card-posts">
               <div className="card-top">
@@ -301,12 +302,17 @@ const AllPostsView = ({ show, setShow }) => {
                       return (
                         <div key={idex}>
                           {hashtag.length <= 25 ? (
-                            <span className="hash-tag">{hashtag}</span>
+                            <span
+                              style={{ margin: "0 4px" }}
+                              className="hash-tag"
+                            >
+                              {hashtag}
+                            </span>
                           ) : (
-                            <span className="hash-tag">{`${hashtag.slice(
-                              0,
-                              25
-                            )}...`}</span>
+                            <span
+                              style={{ margin: "0 4px" }}
+                              className="hash-tag"
+                            >{`${hashtag.slice(0, 25)}...`}</span>
                           )}
                         </div>
                       );

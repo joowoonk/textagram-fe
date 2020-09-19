@@ -300,12 +300,14 @@ const SinglePostView = ({ show, setShow }) => {
                 return (
                   <div key={index}>
                     {hashtag.length <= 25 ? (
-                      <span className="hash-tag">{hashtag}</span>
+                      <span style={{ margin: "0 4px" }} className="hash-tag">
+                        {hashtag}
+                      </span>
                     ) : (
-                      <span className="hash-tag">{`${hashtag.slice(
-                        0,
-                        25
-                      )}...`}</span>
+                      <span
+                        style={{ margin: "0 4px" }}
+                        className="hash-tag"
+                      >{`${hashtag.slice(0, 25)}...`}</span>
                     )}
                   </div>
                 );
