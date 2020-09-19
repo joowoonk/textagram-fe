@@ -80,11 +80,12 @@
 
 @media only screen and (max-width: 600px) {
   .form {
-    // width: 100%;
+    margin: 70px auto 70px auto;
     .upload-card,
     .update-card {
       // background-color: red;
       width: 100%;
+
       .text-area::placeholder {
         font-family: "Raleway", sans-serif;
         font-size: 1rem;

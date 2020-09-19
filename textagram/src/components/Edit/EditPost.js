@@ -176,7 +176,7 @@ export default function EditPost() {
           )}
           <Form.Control
             as="textarea"
-            style={{ height: 380 }}
+            style={{ height: 300 }}
             placeholder="Would you like to shine a light to people who are lost for a bit?"
             name="context"
             value={updatedPost.context}
