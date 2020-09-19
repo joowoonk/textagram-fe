@@ -7,7 +7,6 @@ import {
   setBookmarksID,
   setUpVotesID,
   setDownVotesID,
-  getPosts,
 } from "../../redux/actions";
 import moment from "moment";
 import { Image, Dropdown } from "react-bootstrap";
@@ -338,7 +337,6 @@ const SinglePostView = ({ show, setShow }) => {
           {post.comments.length > 0 ? (
             <>
               {post.comments.map((comment, index) => {
-                // console.log(comment.id);
                 return (
                   <div key={comment.id}>
                     <Comment

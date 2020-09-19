@@ -28,7 +28,7 @@ const Navigation = ({ setShow }) => {
 
   useEffect(() => {
     dispatch(getUser());
-  }, []);
+  }, [dispatch]);
 
   const handleChange = (e) => {
     setInputSearch(e.target.value);

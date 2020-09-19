@@ -15,7 +15,7 @@ import {
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import Pagination from "./Pagination";
 import TopPosts from "./TopPosts";
-import axios from "axios";
+
 const AllPostsView = ({ show, setShow }) => {
   const params = useParams();
 
@@ -38,8 +38,6 @@ const AllPostsView = ({ show, setShow }) => {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-  const user = useSelector((state) => state.usersReducer);
 
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
@@ -183,7 +181,7 @@ const AllPostsView = ({ show, setShow }) => {
               return "#white";
             }
           };
-          console.log({ post });
+
           return (
             <div key={post.id} className="cards card-posts">
               <div className="card-top">

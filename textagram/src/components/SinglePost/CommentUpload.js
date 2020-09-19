@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { getPostById } from "../../redux/actions";

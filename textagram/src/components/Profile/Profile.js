@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { Link, useParams, useHistory } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 import axios from "axios";
@@ -8,7 +8,6 @@ import Loader from "react-loader-spinner";
 import {
   followedId,
   followingId,
-  getPosts,
   getUser,
   setBookmarksID,
   setDownVotesID,
@@ -17,7 +16,7 @@ import {
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
 import moment from "moment";
-import { Image, Dropdown } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import UpdateProfileModal from "./UpdateProfileModal";
 const Profile = ({ show, setShow }) => {
   const [userInfo, setUserInfo] = useState([]);
@@ -29,12 +28,10 @@ const Profile = ({ show, setShow }) => {
   const followerHandleShow = () => setFollowerList(true);
 
   const admin = useSelector((state) => state.usersReducer.user.is_admin);
-  const user_id = useSelector((state) => state.usersReducer.user.id);
   const dispatch = useDispatch();
   const { push } = useHistory();
   const [loading, setLoading] = useState(false);
   const match = useParams();
-  // console.log(match);
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
@@ -48,8 +45,6 @@ const Profile = ({ show, setShow }) => {
   );
   const followingsId = useSelector((state) => state.usersReducer.followingId);
   const followersId = useSelector((state) => state.usersReducer.followerId);
-
-  // console.log({ followingsId, followersId });
 
   const userDownVotes = useSelector(
     (state) => state.usersReducer.userDownVotes

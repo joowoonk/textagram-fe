@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
 import { Modal, Form, Button, Image } from "react-bootstrap";
 // import
-import decodedToken from "../utils/decodedToken";
 import { useDispatch } from "react-redux";
 import { getUser } from "../../redux/actions";
 
-export default function UpdateProfileModal({ profile_picture, user_id }) {
+export default function UpdateProfileModal({ user_id }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
   const [image, setImage] = useState("");
-  const [loading, setLoading] = useState(false);
+
   const [updatedProfile, setUpdatedProfile] = useState({
     about: "",
     location: "",
@@ -34,13 +33,10 @@ export default function UpdateProfileModal({ profile_picture, user_id }) {
     });
   };
 
-  // console.log({ followProfile });
-
   useEffect(() => {
     axiosWithAuth()
       .get(`${baseURL}/users/${user_id}`)
       .then((res) => {
-        // console.log(res);
         setUpdatedProfile({
           about: res.data.user.about !== null ? res.data.user.about : "",
           location: res.data.user.about !== null ? res.data.user.location : "",
@@ -81,7 +77,6 @@ export default function UpdateProfileModal({ profile_picture, user_id }) {
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "textagram");
-    setLoading(true);
 
     const res = await fetch(
       `https://api.cloudinary.com/v1_1/dujr5xene/image/upload`,
@@ -94,9 +89,8 @@ export default function UpdateProfileModal({ profile_picture, user_id }) {
     const file = await res.json();
     setImage(file.secure_url);
     setUpdatedProfile({ ...updatedProfile, profile_picture: file.secure_url });
-    setLoading(false);
   };
-  // console.log(process.env.REACT_APP_BASE_URL);
+
   return (
     <>
       <Button onClick={handleShow} className="profile-edit" variant="info">

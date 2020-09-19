@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Image, Dropdown } from "react-bootstrap";
 import moment from "moment";
 import { BsThreeDots } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import decodedToken from "../utils/decodedToken";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { baseURL } from "../utils/config";
 import DeleteCommentModal from "./DeleteCommentModal";
 const Comment = ({
   setNewComment,

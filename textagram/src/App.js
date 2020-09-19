@@ -13,11 +13,8 @@ import EditPost from "./components/Edit/EditPost";
 import AllPostsView from "./components/Home/AllPostsView";
 import Bookmark from "./components/Bookmark/Bookmark";
 import Profile from "./components/Profile/Profile";
-import UpdateProfileModal from "./components/Profile/UpdateProfileModal";
 import Switch from "react-bootstrap/esm/Switch";
 import Search from "./components/Home/Search";
-import FeelingListModal from "./components/Upload/FeelingListModal";
-import EditFeelingListModal from "./components/Edit/EditFeelingListModal";
 import MobileNav from "./components/Home/MobileNav";
 
 var dotenv = require("dotenv");
@@ -59,7 +56,6 @@ function App() {
         </PrivateRoute>
         <PrivateRoute path="/edit/:postId">
           <EditPost />
-          {/* <EditFeelingListModal /> */}
         </PrivateRoute>
         <PrivateRoute path="/upload">
           <UploadForm />

@@ -9,7 +9,6 @@ import {
   setBookmarksID,
   setUpVotesID,
   setDownVotesID,
-  getPosts,
 } from "../../redux/actions";
 
 import { axiosWithAuth } from "../utils/axiosWithAuth";

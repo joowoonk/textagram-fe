@@ -76,7 +76,6 @@ export const usersReducer = (state = initialState, action) => {
         followers: action.payload,
       };
     case SET_FOLLOWERS_ID:
-      // console.log(state);
       return {
         ...state,
         followerId: state.followers.map((follower) => {

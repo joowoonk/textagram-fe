@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
 import { Modal, Dropdown, Form, Button } from "react-bootstrap";
@@ -8,7 +7,6 @@ import { getPostById } from "../../redux/actions";
 
 export default function DeleteCommentModal({ post_id, comment_id }) {
   const [show, setShow] = useState(false);
-  const { replace } = useHistory();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const dispatch = useDispatch();
