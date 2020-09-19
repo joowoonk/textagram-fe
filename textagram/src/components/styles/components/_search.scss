@@ -24,9 +24,40 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
+  .mobile-search {
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    width: 90%;
+    border: 1px solid silver;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin: 70px auto 0 auto;
+    .search-input {
+      width: 100%;
+    }
+  }
+  .mobile-search input,
+  .mobile-search button,
+  .mobile-search:active,
+  :focus {
+    border: none;
+    // background: none;
+  }
+
+  .mobile-search button:focus,
+  .mobile-search input:focus {
+    outline: none !important;
+    outline-offset: none !important;
+  }
+  .search-posts {
+    margin: 10px 0;
+    // background-color: ;
+  }
+
   .search-results {
-    margin: 50px 0;
+    margin: 0 0 40px 0;
     .search {
       width: 100%;
       margin: 10px 0;

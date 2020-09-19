@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loader from "react-loader-spinner";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { IoIosSearch } from "react-icons/io";
 import { baseURL } from "../utils/config";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
@@ -19,7 +20,7 @@ export default function Search({ show, setShow }) {
 
   const submitSearch = () => {
     if (inputValue !== "") {
-      push(`search/${inputValue}`);
+      push(`../search/${inputValue}`);
     } else {
       push(`search`);
     }
@@ -41,6 +42,20 @@ export default function Search({ show, setShow }) {
 
   return (
     <>
+      {" "}
+      <form onSubmit={submitSearch} className="mobile-search">
+        <input
+          type="text"
+          placeholder="Search for titles"
+          className="search-input"
+          value={inputValue}
+          onChange={handleChange}
+        />
+
+        <button type="search" style={{ padding: "5px", color: "gray" }}>
+          <IoIosSearch size="1.5em" />
+        </button>
+      </form>
       <div className="search-page">
         <div className="search-results">
           <div className="search-posts">
@@ -136,26 +151,29 @@ export default function Search({ show, setShow }) {
                 })
                 .reverse()
             ) : (
-              <div
-                className="notification"
-                style={{
-                  margin: "10px auto",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  fontSize: "1.2rem",
-                  width: "90%",
-                  padding: "20px",
-                  backgroundColor: "white",
-                }}
-              >
-                <BsSearch size="2em" style={{ margin: "10px auto" }} />
-                <p>
-                  There are no results with{""}
-                  <span style={{ fontWeight: "bold" }}>"{match.title}"</span>.
-                  Please try a new search.
-                </p>
-              </div>
+              <>
+                <div
+                  className="notification"
+                  style={{
+                    margin: "0 auto",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    fontSize: "1.2rem",
+                    width: "80%",
+                    padding: "20px",
+                    backgroundColor: "white",
+                  }}
+                >
+                  <BsSearch size="2em" style={{ margin: "10px auto" }} />
+                  <p>
+                    There are no results with{""}
+                    <span style={{ fontWeight: "bold" }}>"{match.title}"</span>.
+                    Please try a new search.
+                  </p>
+                </div>
+              </>
             )}
           </div>
           <TopPosts className="topPosts" />
