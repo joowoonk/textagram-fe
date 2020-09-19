@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-
+  border: 1px solid #f7f2e7;
   .card-top {
     padding: 10px 1%;
     border-bottom: 1px solid #f7f2e7;
@@ -125,7 +125,7 @@
 @media only screen and (max-width: 600px) {
   .posts {
     display: block;
-    margin: 58px auto 80px auto;
+    margin: 58px auto 69px auto;
     width: 100%;
     .card-posts {
       width: 100%;

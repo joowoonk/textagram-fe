@@ -35,7 +35,7 @@ export default function MobileNav({ setShow }) {
       ) : (
         <nav className="mobile-nav">
           {" "}
-          <Nav.Link href="/search/textagram" className="nav-mobile-att">
+          <Nav.Link href="/search/textagram" className="nav-mobile-att center">
             <IoIosSearch size="2em" /> {/* search */}
           </Nav.Link>
         </nav>
