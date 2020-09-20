@@ -37,30 +37,23 @@ function App() {
         />
         <Register showReg={showReg} setShowReg={setShowReg} setShow={setShow} />
       </header>
-      <Switch>
-        <RedirectRoute exact path="/"></RedirectRoute>
-        <Route exact path="/page/:page">
-          <AllPostsView show={show} setShow={setShow} />
-        </Route>
-        <Route exact path="/profile/:userId">
-          <Profile show={show} setShow={setShow} />
-        </Route>
-        <Route exact path="/posts/:postId">
-          <HomeSinglePost show={show} setShow={setShow} />
-        </Route>
-        <Route exact path="/search/:title">
-          <Search show={show} setShow={setShow} />
-        </Route>
-        <PrivateRoute path="/bookmarks/">
-          <Bookmark />
-        </PrivateRoute>
-        <PrivateRoute path="/edit/:postId">
-          <EditPost />
-        </PrivateRoute>
-        <PrivateRoute path="/upload">
-          <UploadForm />
-        </PrivateRoute>
-      </Switch>
+
+      <RedirectRoute exact path="/" />
+      <Route exact path="/page/:page">
+        <AllPostsView show={show} setShow={setShow} />
+      </Route>
+      <Route exact path="/profile/:userId">
+        <Profile show={show} setShow={setShow} />
+      </Route>
+      <Route exact path="/posts/:postId">
+        <HomeSinglePost show={show} setShow={setShow} />
+      </Route>
+      <Route exact path="/search/:title">
+        <Search show={show} setShow={setShow} />
+      </Route>
+      <PrivateRoute path="/bookmarks/" component={Bookmark} />
+      <PrivateRoute path="/edit/:postId" component={EditPost} />
+      <PrivateRoute path="/upload" component={UploadForm} />
     </div>
   );
 }
