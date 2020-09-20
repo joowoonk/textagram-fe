@@ -1,11 +1,17 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getPostById } from "../../redux/actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { baseURL } from "../utils/config";
 
-export default function CommentUpload({ newComment, setNewComment, post_id }) {
+export default function CommentUpload({
+  newComment,
+  setNewComment,
+  post_id,
+  setShow,
+}) {
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -14,11 +20,15 @@ export default function CommentUpload({ newComment, setNewComment, post_id }) {
       [e.target.name]: e.target.value,
     });
   };
+  useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newComment.comment === "" || newComment.comment.length === 0) {
       return;
+    }
+    if (!localStorage.getItem("token")) {
+      return setShow(true);
     }
 
     axiosWithAuth()

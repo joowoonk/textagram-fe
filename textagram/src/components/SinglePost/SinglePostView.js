@@ -330,6 +330,8 @@ const SinglePostView = ({ show, setShow }) => {
 
         <div className="comment-section" style={{ margin: "10px 0" }}>
           <CommentUpload
+            show={show}
+            setShow={setShow}
             newComment={newComment}
             setNewComment={setNewComment}
             post_id={post.id}
