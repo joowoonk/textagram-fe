@@ -15,6 +15,7 @@ import {
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import Pagination from "./Pagination";
 import TopPosts from "./TopPosts";
+import Introduction from "./Introduction";
 
 const AllPostsView = ({ show, setShow }) => {
   const params = useParams();
@@ -165,6 +166,7 @@ const AllPostsView = ({ show, setShow }) => {
   return (
     <div className="posts">
       <div>
+        {localStorage.getItem("token") ? <></> : <Introduction />}
         {currentPosts.map((post) => {
           const votesColor = () => {
             if (post.votes >= 0) {

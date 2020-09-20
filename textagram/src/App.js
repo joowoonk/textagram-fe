@@ -16,6 +16,7 @@ import Profile from "./components/Profile/Profile";
 import Switch from "react-bootstrap/esm/Switch";
 import Search from "./components/Home/Search";
 import MobileNav from "./components/Home/MobileNav";
+import Introduction from "./components/Home/Introduction";
 
 var dotenv = require("dotenv");
 
