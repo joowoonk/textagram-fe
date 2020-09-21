@@ -24,30 +24,29 @@ export default function CommentUpload({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (newComment.comment === "" || newComment.comment.length === 0) {
-      return;
-    }
     if (!localStorage.getItem("token")) {
-      return setShow(true);
-    }
-
-    axiosWithAuth()
-      .post(`${baseURL}/comments/${post_id}`, newComment)
-      .then((res) => {
-        dispatch(getPostById(post_id));
-        setNewComment({
-          comment: "",
+      setShow(true);
+    } else if (newComment.comment === "" || newComment.comment.length === 0) {
+      return;
+    } else {
+      axiosWithAuth()
+        .post(`${baseURL}/comments/${post_id}`, newComment)
+        .then((res) => {
+          dispatch(getPostById(post_id));
+          setNewComment({
+            comment: "",
+          });
+        })
+        .catch((err) => {
+          console.log({ err });
         });
-      })
-      .catch((err) => {
-        console.log({ err });
-      });
+    }
   };
 
   return (
     <div className="comment-form">
       <h3>What are your thoughts?</h3>
-      <Form className="comment-text-area" onSubmit={handleSubmit}>
+      <Form className="comment-text-area" onSubmit={() => handleSubmit()}>
         <Form.Group controlId="formComment">
           <Form.Control
             as="textarea"
