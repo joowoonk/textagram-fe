@@ -198,7 +198,7 @@ const Profile = ({ show, setShow }) => {
       return cancelUpVotePost(post_id);
     }
   }
-  console.log(userInfo.followers);
+
   return (
     <>
       {loading ? (
