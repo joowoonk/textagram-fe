@@ -186,7 +186,11 @@ const AllPostsView = ({ show, setShow }) => {
   return (
     <div className="posts">
       <div>
-        {localStorage.getItem("token") ? <></> : <Introduction />}
+        {localStorage.getItem("token") || currentPage !== 1 ? (
+          <></>
+        ) : (
+          <Introduction />
+        )}
         {currentPosts.map((post) => {
           const votesColor = () => {
             if (post.votes >= 0) {
