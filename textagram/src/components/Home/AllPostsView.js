@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { baseURL } from "../utils/config";
 import { Image } from "react-bootstrap";
+import Loader from "react-loader-spinner";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import {
@@ -162,6 +163,25 @@ const AllPostsView = ({ show, setShow }) => {
       return cancelUpVotePost(post_id);
     }
   }
+  if (posts.length === 0)
+    return (
+      <div
+        className="loading"
+        style={{
+          margin: "100px auto",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Loader
+          className="loading"
+          type="ThreeDots"
+          color="#00BFFF"
+          height={100}
+          width={100}
+        />
+      </div>
+    );
 
   return (
     <div className="posts">
