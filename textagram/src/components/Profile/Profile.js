@@ -29,7 +29,7 @@ const Profile = ({ show, setShow }) => {
 
   const admin = useSelector((state) => state.usersReducer.user.is_admin);
   const dispatch = useDispatch();
-  const { push } = useHistory();
+  const { push, go } = useHistory();
   const [loading, setLoading] = useState(false);
   const match = useParams();
   const userBookmarks = useSelector(
@@ -198,6 +198,7 @@ const Profile = ({ show, setShow }) => {
       return cancelUpVotePost(post_id);
     }
   }
+  console.log(userInfo.followers);
   return (
     <>
       {loading ? (
@@ -514,7 +515,12 @@ const Profile = ({ show, setShow }) => {
             <Modal.Body className="following-list">
               {userInfo.following &&
                 userInfo.following.map((follow, index) => (
-                  <div className="name-list" key={index}>
+                  <a
+                    style={{ color: "black", textDecoration: "none" }}
+                    href={`../profile/${follow.id}`}
+                    className="name-list"
+                    key={index}
+                  >
                     <Image
                       className="noselect"
                       roundedCircle
@@ -527,7 +533,7 @@ const Profile = ({ show, setShow }) => {
                       alt={`user-id:${follow.id}`}
                     />
                     {follow.fake_id}
-                  </div>
+                  </a>
                 ))}
             </Modal.Body>
           </Modal>
@@ -543,7 +549,12 @@ const Profile = ({ show, setShow }) => {
             <Modal.Body className="following-list">
               {userInfo.followers &&
                 userInfo.followers.map((follower, index) => (
-                  <div className="name-list" key={index}>
+                  <a
+                    style={{ color: "black", textDecoration: "none" }}
+                    href={`../profile/${follower.id}`}
+                    className="name-list"
+                    key={index}
+                  >
                     <Image
                       className="noselect"
                       roundedCircle
@@ -556,7 +567,7 @@ const Profile = ({ show, setShow }) => {
                       alt={`user-id:${follower.id}`}
                     />
                     {follower.fake_id}
-                  </div>
+                  </a>
                 ))}
             </Modal.Body>
           </Modal>

@@ -96,8 +96,11 @@
 
   .name-list {
     display: flex;
-
     align-items: center;
     padding: 10px;
+  }
+  .name-list:hover {
+    background-color: $main-green;
+    border-radius: 10px;
   }
 }
