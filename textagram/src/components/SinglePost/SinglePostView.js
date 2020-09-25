@@ -347,7 +347,26 @@ const SinglePostView = ({ show, setShow }) => {
                 );
               })}
           </div>
-          <div className="card-body">{post.comments.length} comments</div>
+          <div className="card-body comment-social-media">
+            <p>{post.comments.length} comments</p>
+            <div>
+              <a
+                href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                className="twitter-share-button"
+                data-size="large"
+                data-text={`Sharing this post from Textagram, "${post.title}" by ${post.fake_id}`}
+                data-show-count="true"
+                target="_"
+              >
+                Tweet
+              </a>
+              <script
+                async
+                src="https://platform.twitter.com/widgets.js"
+                charset="utf-8"
+              ></script>
+            </div>
+          </div>
         </div>
 
         <div className="comment-section" style={{ margin: "10px 0" }}>
