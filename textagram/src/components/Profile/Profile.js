@@ -213,7 +213,7 @@ const Profile = ({ show, setShow }) => {
           <Loader
             className="loading"
             type="ThreeDots"
-            color="#00BFFF"
+            color="#32cd32"
             height={100}
             width={100}
           />

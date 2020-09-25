@@ -7,12 +7,11 @@ import {
 const initialState = {
   post: {
     comments: [],
-    total_votes: 0,
-    up_votes: 0,
+    context: [],
     hashtags: [],
+    profile_picture:
+      "https://static.wixstatic.com/media/4151a5_7706b6198d164a3e947f4548166228ad~mv2.png",
     votes: [],
-    downVoted: [],
-    upVoted: [],
   },
   posts: [],
   all_hashtags: [],

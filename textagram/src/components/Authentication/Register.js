@@ -103,7 +103,12 @@ function Register({ setShowReg, showReg, setShow }) {
               onClick={(e) => handleSubmit(e)}
             >
               {isLoggingIn ? (
-                <Loader type="ThreeDots" color="#fff" height={30} width={30} />
+                <Loader
+                  type="ThreeDots"
+                  color="#32cd32"
+                  height={30}
+                  width={30}
+                />
               ) : (
                 "Get Started"
               )}

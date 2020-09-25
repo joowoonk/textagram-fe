@@ -100,7 +100,7 @@ const Login = ({ show, setShow, showReg, setShowReg }) => {
             onClick={(e) => handleSubmit(e)}
           >
             {isLoggingIn ? (
-              <Loader type="ThreeDots" color="#fff" height={30} width={30} />
+              <Loader type="ThreeDots" color="#32cd32" height={30} width={30} />
             ) : (
               "Log In"
             )}

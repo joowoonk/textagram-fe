@@ -172,7 +172,8 @@ const SinglePostView = ({ show, setShow }) => {
       return "white";
     }
   };
-  if (post.length === 0)
+
+  if (post.context.length === 0)
     return (
       <div
         className="loading"
@@ -185,7 +186,7 @@ const SinglePostView = ({ show, setShow }) => {
         <Loader
           className="loading"
           type="ThreeDots"
-          color="#00BFFF"
+          color="#32cd32"
           height={100}
           width={100}
         />
