@@ -79,7 +79,6 @@ export const getUser = () => (dispatch) => {
       })
       .catch((err) => {
         console.error({ err });
-        window.location.reload();
       });
   } else {
     dispatch({ type: REMOVE_USER });

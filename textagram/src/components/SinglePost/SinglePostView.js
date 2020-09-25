@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Loader from "react-loader-spinner";
 import { useParams, useHistory } from "react-router-dom";
 import {
   getPostById,
@@ -171,6 +172,26 @@ const SinglePostView = ({ show, setShow }) => {
       return "white";
     }
   };
+  if (post.length === 0)
+    return (
+      <div
+        className="loading"
+        style={{
+          margin: "100px auto",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Loader
+          className="loading"
+          type="ThreeDots"
+          color="#00BFFF"
+          height={100}
+          width={100}
+        />
+      </div>
+    );
+
   return (
     <div className="posts">
       <div>
