@@ -24,6 +24,7 @@ const TopPosts = () => {
       count[`${hashtags[i]}`] = 1;
     }
   }
+
   useEffect(() => {
     window.twttr.widgets.load();
     dispatch(getPosts());

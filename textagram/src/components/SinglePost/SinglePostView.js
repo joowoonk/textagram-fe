@@ -50,7 +50,6 @@ const SinglePostView = ({ show, setShow }) => {
   );
 
   useEffect(() => {
-    window.twttr.widgets.load();
     dispatch(getPostById(match.postId));
   }, [dispatch, userBookmarks, match.postId]);
 
