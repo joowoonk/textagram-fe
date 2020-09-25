@@ -354,7 +354,7 @@ const SinglePostView = ({ show, setShow }) => {
                 href="https://twitter.com/share?ref_src=twsrc%5Etfw"
                 className="twitter-share-button"
                 data-size="large"
-                data-text={`Sharing this post from Textagram, "${post.title}" by ${post.fake_id}`}
+                data-text={`Sharing this post from Textagram, ${post.title}' by ${post.fake_id}`}
                 data-show-count="true"
                 target="_"
               >
