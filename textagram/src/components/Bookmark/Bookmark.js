@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { baseURL } from "../utils/config";
 import Loader from "react-loader-spinner";
 import { Image } from "react-bootstrap";
@@ -16,7 +16,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import TopPosts from "./../Home/TopPosts";
 const Bookmark = ({ show, setShow }) => {
   const dispatch = useDispatch();
-
+  const { push } = useHistory();
   // Get current posts
   const userBookmarks = useSelector((state) =>
     state.usersReducer.userBookmarks.reverse()
@@ -183,16 +183,25 @@ const Bookmark = ({ show, setShow }) => {
                     <Image
                       className="noselect"
                       roundedCircle
+                      onClick={() => {
+                        push(`../profile/${post.user_id}`);
+                      }}
                       src={post.profile_picture}
                       style={{
                         height: "25px",
                         width: "25px",
                         margin: "0 10px",
+                        cursor: "pointer",
                       }}
                       alt={`user-id:${post.id}`}
                     />
                     <div className="post-user">
-                      <p className="noselect fake-id ">
+                      <p
+                        className="noselect fake-id"
+                        onClick={() => {
+                          push(`../profile/${post.user_id}`);
+                        }}
+                      >
                         {post.fake_id}{" "}
                         {post.feeling && `is feeling ${post.feeling}.`}
                       </p>

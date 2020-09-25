@@ -369,11 +369,13 @@ const Profile = ({ show, setShow }) => {
                           <Image
                             className="noselect"
                             roundedCircle
+                            onClick={() => window.scrollTo(0, 0)}
                             src={userInfo.profile_picture}
                             style={{
                               height: "25px",
                               width: "25px",
                               margin: "0 10px",
+                              cursor: "pointer",
                             }}
                             alt={`user-id:${post.id}`}
                           />
@@ -381,7 +383,7 @@ const Profile = ({ show, setShow }) => {
                             <p
                               className="noselect fake-id"
                               onClick={() => {
-                                push(`../profile/${post.user_id}`);
+                                window.scrollTo(0, 0);
                               }}
                             >
                               {userInfo.fake_id}{" "}
