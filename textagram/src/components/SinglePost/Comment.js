@@ -3,6 +3,7 @@ import { Image, Dropdown } from "react-bootstrap";
 import moment from "moment";
 import { BsThreeDots } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import decodedToken from "../utils/decodedToken";
 import DeleteCommentModal from "./DeleteCommentModal";
 const Comment = ({
@@ -17,6 +18,8 @@ const Comment = ({
 }) => {
   const admin = useSelector((state) => state.usersReducer.user.is_admin);
 
+  const { push } = useHistory();
+
   return (
     <>
       <div className="comment" key={id}>
@@ -24,8 +27,9 @@ const Comment = ({
           <Image
             className="noselect image"
             roundedCircle
+            onClick={() => push(`../profile/${user_id}`)}
             src={profile_picture}
-            style={{ height: "25px", width: "25px" }}
+            style={{ height: "25px", width: "25px", cursor: "pointer" }}
             alt={`user-id:${id}, profile picture`}
           />
           <div>
