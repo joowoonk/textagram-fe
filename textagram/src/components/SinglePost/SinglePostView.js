@@ -353,13 +353,11 @@ const SinglePostView = ({ show, setShow }) => {
               <a
                 href="https://twitter.com/share?ref_src=twsrc%5Etfw"
                 className="twitter-share-button"
-                data-size="large"
                 data-text={`Sharing this post from Textagram, ${post.title}' by ${post.fake_id}`}
+                // data-size="large"
                 data-show-count="true"
                 target="_"
-              >
-                Tweet
-              </a>
+              ></a>
               <script
                 async
                 src="https://platform.twitter.com/widgets.js"
