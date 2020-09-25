@@ -25,6 +25,7 @@ const TopPosts = () => {
     }
   }
   useEffect(() => {
+    window.twttr.widgets.load();
     dispatch(getPosts());
   }, []);
   var sortable = [];
@@ -84,9 +85,11 @@ const TopPosts = () => {
       </div>
       <a
         href="https://twitter.com/johnwhoprograms?ref_src=twsrc%5Etfw"
-        class="twitter-follow-button"
+        className="twitter-follow-button"
         data-show-count="true"
-      />
+      >
+        Follow
+      </a>
     </div>
   );
 };
