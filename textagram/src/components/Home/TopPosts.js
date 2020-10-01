@@ -26,7 +26,6 @@ const TopPosts = () => {
   }
 
   useEffect(() => {
-    window.twttr.widgets.load();
     dispatch(getPosts());
   }, []);
   var sortable = [];
