@@ -40,7 +40,6 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, page }) => {
         </li>
         {/* {parseInt(page) > 3 && <ul className="page-link">...</ul>} */}
         {pageNumbers.map((number) => {
-          // console.log(number);
           return (
             <li key={number} className="page-item">
               <ul
