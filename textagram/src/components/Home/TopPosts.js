@@ -87,9 +87,7 @@ const TopPosts = () => {
         href="https://twitter.com/johnwhoprograms?ref_src=twsrc%5Etfw"
         className="twitter-follow-button"
         data-show-count="true"
-      >
-        Follow
-      </a>
+      ></a>
     </div>
   );
 };

@@ -40,7 +40,7 @@ const AllPostsView = ({ show, setShow }) => {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  let page = params.page;
   const userBookmarks = useSelector(
     (state) => state.usersReducer.userBookmarks
   );
@@ -351,6 +351,7 @@ const AllPostsView = ({ show, setShow }) => {
           postsPerPage={postsPerPage}
           totalPosts={posts.length}
           paginate={paginate}
+          page={page}
         />
       </div>
       <TopPosts />
