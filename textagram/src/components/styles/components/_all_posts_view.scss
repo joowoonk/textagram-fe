@@ -100,7 +100,9 @@
 }
 
 .pagination {
-  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
   width: 600px;
 }
 
