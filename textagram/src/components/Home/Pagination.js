@@ -8,23 +8,18 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, page }) => {
     pageNumbers.push(i);
   }
   const copy = [...pageNumbers];
-  console.log(copy);
+
   // pageNumbers[pageNumbers.length - 2] = "...";
   let last = pageNumbers[pageNumbers.length - 1];
   // for (let i = page; i < page + 3; i++) {
-  let plusThree = page + 2;
+
   pageNumbers.splice(0, parseInt(page) - 3);
-  console.log(pageNumbers.length - 3);
+
   pageNumbers.splice(parseInt(page) + 3, pageNumbers.length - 3);
   if (parseInt(page) > pageNumbers.length - 2) {
-    pageNumbers.pop();
+    // pageNumbers.pop();
   }
 
-  if (parseInt(page) === 1) {
-    // pageNumbers.splice(0, 1);
-    console.log("yes");
-  }
-  // pageNumbers.push(last);
   return (
     <nav>
       <ul className="pagination">
