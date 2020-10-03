@@ -14,7 +14,8 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, page }) => {
   // for (let i = page; i < page + 3; i++) {
   let plusThree = page + 2;
   pageNumbers.splice(0, parseInt(page) - 3);
-  pageNumbers.splice(parseInt(page) + 2, pageNumbers.length - 3, "...");
+  console.log(pageNumbers.length - 3);
+  pageNumbers.splice(parseInt(page) + 3, pageNumbers.length - 3);
   if (parseInt(page) > pageNumbers.length - 2) {
     pageNumbers.pop();
   }
@@ -30,7 +31,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, page }) => {
         <li className="page-item">
           {parseInt(page) > 1 && (
             <ul
-              style={{ margin: "0 5px" }}
+              style={{ margin: "0 2px" }}
               onClick={() => {
                 paginate(copy[0]);
                 window.scrollTo(0, 0);
@@ -38,11 +39,11 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, page }) => {
               }}
               className="page-link"
             >
-              first
+              1..
             </ul>
           )}
         </li>
-        {parseInt(page) > 2 && <ul className="page-link">...</ul>}
+        {/* {parseInt(page) > 3 && <ul className="page-link">...</ul>} */}
         {pageNumbers.map((number) => {
           // console.log(number);
           return (
@@ -62,11 +63,12 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, page }) => {
             </li>
           );
         })}{" "}
+        {/* {parseInt(page) > copy.length - 3 && <ul className="page-link">...</ul>} */}
         <br />
         <li className="page-item">
           {parseInt(page) !== copy.length && (
             <ul
-              style={{ margin: "0 5px" }}
+              style={{ margin: "0 2px" }}
               onClick={() => {
                 paginate(copy.length);
                 window.scrollTo(0, 0);
@@ -74,7 +76,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, page }) => {
               }}
               className="page-link"
             >
-              last
+              ..{copy.length}
             </ul>
           )}
         </li>
