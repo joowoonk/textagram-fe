@@ -177,7 +177,7 @@ export default function EditPost() {
           <Form.Control
             as="textarea"
             style={{ height: 300 }}
-            placeholder="Would you like to shine a light to people who are lost for a bit?"
+            placeholder="Your contexts goes here"
             name="context"
             value={updatedPost.context}
             autoComplete="off"

@@ -139,7 +139,7 @@ export default function UploadForm() {
           <Form.Control
             as="textarea"
             style={{ height: 300 }}
-            placeholder="Would you like to shine a light to people who are lost for a bit?"
+            placeholder="Your contexts goes here"
             name="context"
             value={newPost.context}
             autoComplete="off"
