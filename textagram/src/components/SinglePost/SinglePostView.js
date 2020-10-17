@@ -355,6 +355,7 @@ const SinglePostView = ({ show, setShow }) => {
                 className="twitter-share-button"
                 data-text={`Sharing this post from Textagram, "${post.title}" by ${post.fake_id}`}
                 target="_"
+                alt="twitter feedback"
               ></a>
               <script
                 async

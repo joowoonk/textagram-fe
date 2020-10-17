@@ -52,6 +52,7 @@ const Navigation = ({ setShow }) => {
             // window.location.href = "/page/1";
           }}
           className="logo"
+          alt="title: Testagram"
         >
           Textagram
         </Link>
