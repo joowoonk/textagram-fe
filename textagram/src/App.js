@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div className="App">
-      <header>
+      <header style={{marginTop:"5px"}}>
         <Navigation show={show} setShow={setShow} />
         <MobileNav setShow={setShow} />
         <Login
